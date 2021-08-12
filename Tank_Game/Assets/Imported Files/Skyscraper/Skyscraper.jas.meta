@@ -1,0 +1,122 @@
+fileFormatVersion: 2
+guid: 49428b6baa59340bbabd9b90d026b6fd
+ModelImporter:
+  serializedVersion: 15
+  fileIDToRecycleName:
+    100000: //RootNode
+    100002: Skyscraper01
+    100004: Skyscraper02
+    100006: Skyscraper03
+    100008: Skyscraper04
+    100010: Skyscraper05
+    100012: Skyscraper06
+    100014: Skyscraper07
+    100016: Skyscraper08
+    100018: Skyscraper09
+    100020: Skyscraper10
+    100022: Skyscraper11
+    100024: Skyscraper12
+    400000: //RootNode
+    400002: Skyscraper01
+    400004: Skyscraper02
+    400006: Skyscraper03
+    400008: Skyscraper04
+    400010: Skyscraper05
+    400012: Skyscraper06
+    400014: Skyscraper07
+    400016: Skyscraper08
+    400018: Skyscraper09
+    400020: Skyscraper10
+    400022: Skyscraper11
+    400024: Skyscraper12
+    2300000: Skyscraper01
+    2300002: Skyscraper02
+    2300004: Skyscraper03
+    2300006: Skyscraper04
+    2300008: Skyscraper05
+    2300010: Skyscraper06
+    2300012: Skyscraper07
+    2300014: Skyscraper08
+    2300016: Skyscraper09
+    2300018: Skyscraper10
+    2300020: Skyscraper11
+    2300022: Skyscraper12
+    3300000: Skyscraper01
+    3300002: Skyscraper02
+    3300004: Skyscraper03
+    3300006: Skyscraper04
+    3300008: Skyscraper05
+    3300010: Skyscraper06
+    3300012: Skyscraper07
+    3300014: Skyscraper08
+    3300016: Skyscraper09
+    3300018: Skyscraper10
+    3300020: Skyscraper11
+    3300022: Skyscraper12
+    4300000: Plane
+    4300002: Skyscraper01
+    4300004: Skyscraper02
+    4300006: Skyscraper03
+    4300008: Skyscraper04
+    4300010: Skyscraper05
+    4300012: Skyscraper06
+    4300014: Skyscraper07
+    4300016: Skyscraper08
+    4300018: Skyscraper09
+    4300020: Skyscraper10
+    4300022: Skyscraper11
+    4300024: Skyscraper12
+    4300026: Skyscraper08.1
+    11100000: //RootNode
+  materials:
+    importMaterials: 1
+    materialName: 3
+    materialSearch: 1
+  animations:
+    legacyGenerateAnimations: 4
+    bakeSimulation: 0
+    optimizeGameObjects: 0
+    animationCompression: 1
+    animationRotationError: .5
+    animationPositionError: .5
+    animationScaleError: .5
+    animationWrapMode: 0
+    extraExposedTransformPaths: []
+    clipAnimations: []
+    isReadable: 1
+  meshes:
+    lODScreenPercentages: []
+    globalScale: .00999999978
+    meshCompression: 0
+    addColliders: 0
+    importBlendShapes: 1
+    swapUVChannels: 0
+    generateSecondaryUV: 0
+    useFileUnits: 1
+    optimizeMeshForGPU: 1
+    weldVertices: 1
+    secondaryUVAngleDistortion: 8
+    secondaryUVAreaDistortion: 15.000001
+    secondaryUVHardAngle: 88
+    secondaryUVPackMargin: 4
+  tangentSpace:
+    normalSmoothAngle: 60
+    splitTangentsAcrossUV: 0
+    normalImportMode: 1
+    tangentImportMode: 1
+  importAnimation: 1
+  copyAvatar: 0
+  humanDescription:
+    human: []
+    skeleton: []
+    armTwist: .5
+    foreArmTwist: .5
+    upperLegTwist: .5
+    legTwist: .5
+    armStretch: .0500000007
+    legStretch: .0500000007
+    feetSpacing: 0
+    rootMotionBoneName: 
+  lastHumanDescriptionAvatarSource: {instanceID: 0}
+  animationType: 1
+  userData: 

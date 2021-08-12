@@ -1,0 +1,134 @@
+fileFormatVersion: 2
+guid: 10e18e4d0cf8c4f58b9b1d0d8f091ab7
+ModelImporter:
+  serializedVersion: 15
+  fileIDToRecycleName:
+    100000: //RootNode
+    100002: Missile
+    100004: Missile.1
+    100006: Missile.2
+    100008: Missile.3
+    100010: Missile.4
+    100012: Missile.5
+    100014: Missile.6
+    100016: Missile.7
+    100018: MissileRackLeft
+    100020: MissileRackRight
+    100022: RocketLeft
+    100024: RocketRight
+    100026: Rotor
+    100028: Tail
+    400000: //RootNode
+    400002: Missile
+    400004: Missile.1
+    400006: Missile.2
+    400008: Missile.3
+    400010: Missile.4
+    400012: Missile.5
+    400014: Missile.6
+    400016: Missile.7
+    400018: MissileRackLeft
+    400020: MissileRackRight
+    400022: RocketLeft
+    400024: RocketRight
+    400026: Rotor
+    400028: Tail
+    2300000: //RootNode
+    2300002: Missile
+    2300004: Missile.1
+    2300006: Missile.2
+    2300008: Missile.3
+    2300010: Missile.4
+    2300012: Missile.5
+    2300014: Missile.6
+    2300016: Missile.7
+    2300018: MissileRackLeft
+    2300020: MissileRackRight
+    2300022: RocketLeft
+    2300024: RocketRight
+    2300026: Rotor
+    2300028: Tail
+    2800000: __AssetImporterPreview
+    3300000: //RootNode
+    3300002: Missile
+    3300004: Missile.1
+    3300006: Missile.2
+    3300008: Missile.3
+    3300010: Missile.4
+    3300012: Missile.5
+    3300014: Missile.6
+    3300016: Missile.7
+    3300018: MissileRackLeft
+    3300020: MissileRackRight
+    3300022: RocketLeft
+    3300024: RocketRight
+    3300026: Rotor
+    3300028: Tail
+    4300000: Helicopter
+    4300002: MissileRackLeft
+    4300004: Missile
+    4300006: Missile.1
+    4300008: Missile.2
+    4300010: Missile.3
+    4300012: MissileRackRight
+    4300014: Missile.4
+    4300016: Missile.5
+    4300018: Missile.6
+    4300020: Missile.7
+    4300022: RocketLeft
+    4300024: RocketRight
+    4300026: Tail
+    4300028: Rotor
+    11100000: //RootNode
+  materials:
+    importMaterials: 1
+    materialName: 3
+    materialSearch: 1
+  animations:
+    legacyGenerateAnimations: 4
+    bakeSimulation: 0
+    optimizeGameObjects: 0
+    animationCompression: 1
+    animationRotationError: .5
+    animationPositionError: .5
+    animationScaleError: .5
+    animationWrapMode: 0
+    extraExposedTransformPaths: []
+    clipAnimations: []
+    isReadable: 1
+  meshes:
+    lODScreenPercentages: []
+    globalScale: .00999999978
+    meshCompression: 0
+    addColliders: 0
+    importBlendShapes: 1
+    swapUVChannels: 0
+    generateSecondaryUV: 0
+    useFileUnits: 1
+    optimizeMeshForGPU: 1
+    weldVertices: 1
+    secondaryUVAngleDistortion: 8
+    secondaryUVAreaDistortion: 15.000001
+    secondaryUVHardAngle: 88
+    secondaryUVPackMargin: 4
+  tangentSpace:
+    normalSmoothAngle: 60
+    splitTangentsAcrossUV: 0
+    normalImportMode: 0
+    tangentImportMode: 1
+  importAnimation: 1
+  copyAvatar: 0
+  humanDescription:
+    human: []
+    skeleton: []
+    armTwist: .5
+    foreArmTwist: .5
+    upperLegTwist: .5
+    legTwist: .5
+    armStretch: .0500000007
+    legStretch: .0500000007
+    feetSpacing: 0
+    rootMotionBoneName: 
+  lastHumanDescriptionAvatarSource: {instanceID: 0}
+  animationType: 1
+  userData: 

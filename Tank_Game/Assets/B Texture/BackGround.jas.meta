@@ -1,0 +1,226 @@
+fileFormatVersion: 2
+guid: 7e62325bdd11e756d000a0da642d2739
+ModelImporter:
+  serializedVersion: 15
+  fileIDToRecycleName:
+    100000: //RootNode
+    100002: Barrel
+    100004: Helicopter
+    100006: LeftBarrel
+    100008: Missile1
+    100010: Missile2
+    100012: Missile3
+    100014: Missile4
+    100016: Missile5
+    100018: Missile6
+    100020: Missile7
+    100022: Missile8
+    100024: NameTurret
+    100026: Plane
+    100028: Radar
+    100030: RightBarrel
+    100032: rotablade
+    100034: rotablade Joint
+    100036: tailblade
+    100038: tailblade Joint
+    100040: Tank
+    100042: TireLeft01
+    100044: TireLeft02
+    100046: TireLeft03
+    100048: TireLeft04
+    100050: TireRight01
+    100052: TireRight02
+    100054: TireRight03
+    100056: TireRight04
+    100058: Tracks
+    100060: Turret
+    100062: TurretBase
+    100064: TurretHead
+    400000: //RootNode
+    400002: Barrel
+    400004: Helicopter
+    400006: LeftBarrel
+    400008: Missile1
+    400010: Missile2
+    400012: Missile3
+    400014: Missile4
+    400016: Missile5
+    400018: Missile6
+    400020: Missile7
+    400022: Missile8
+    400024: NameTurret
+    400026: Plane
+    400028: Radar
+    400030: RightBarrel
+    400032: rotablade
+    400034: rotablade Joint
+    400036: tailblade
+    400038: tailblade Joint
+    400040: Tank
+    400042: TireLeft01
+    400044: TireLeft02
+    400046: TireLeft03
+    400048: TireLeft04
+    400050: TireRight01
+    400052: TireRight02
+    400054: TireRight03
+    400056: TireRight04
+    400058: Tracks
+    400060: Turret
+    400062: TurretBase
+    400064: TurretHead
+    2300000: Barrel
+    2300002: Helicopter
+    2300004: LeftBarrel
+    2300006: Missile1
+    2300008: Missile2
+    2300010: Missile3
+    2300012: Missile4
+    2300014: Missile5
+    2300016: Missile6
+    2300018: Missile7
+    2300020: Missile8
+    2300022: NameTurret
+    2300024: Plane
+    2300026: Radar
+    2300028: RightBarrel
+    2300030: Tank
+    2300032: TireLeft01
+    2300034: TireLeft02
+    2300036: TireLeft03
+    2300038: TireLeft04
+    2300040: TireRight01
+    2300042: TireRight02
+    2300044: TireRight03
+    2300046: TireRight04
+    2300048: Tracks
+    2300050: Turret
+    2300052: TurretBase
+    2300054: TurretHead
+    3300000: Barrel
+    3300002: Helicopter
+    3300004: LeftBarrel
+    3300006: Missile1
+    3300008: Missile2
+    3300010: Missile3
+    3300012: Missile4
+    3300014: Missile5
+    3300016: Missile6
+    3300018: Missile7
+    3300020: Missile8
+    3300022: NameTurret
+    3300024: Plane
+    3300026: Radar
+    3300028: RightBarrel
+    3300030: Tank
+    3300032: TireLeft01
+    3300034: TireLeft02
+    3300036: TireLeft03
+    3300038: TireLeft04
+    3300040: TireRight01
+    3300042: TireRight02
+    3300044: TireRight03
+    3300046: TireRight04
+    3300048: Tracks
+    3300050: Turret
+    3300052: TurretBase
+    3300054: TurretHead
+    4300000: Tank
+    4300002: Tracks
+    4300004: Turret
+    4300006: Barrel
+    4300008: Helicopter
+    4300010: rotablade
+    4300012: tailblade
+    4300014: Missile1
+    4300016: Missile2
+    4300018: Missile3
+    4300020: Missile4
+    4300022: Missile5
+    4300024: Missile6
+    4300026: Missile7
+    4300028: Missile8
+    4300030: Forest Turret
+    4300032: Radar
+    4300034: Right Tire01
+    4300036: Right Tire02
+    4300038: Right Tire03
+    4300040: Right Tire04
+    4300042: Left Tire01
+    4300044: Left Tire02
+    4300046: Left Tire03
+    4300048: Left Tire04
+    4300050: Turret Base
+    4300052: Turret Head
+    4300054: Right Barrel
+    4300056: Left Barrel
+    4300058: Plane
+    4300060: NameTurret
+    4300062: TireLeft01
+    4300064: TireLeft02
+    4300066: TireLeft03
+    4300068: TireLeft04
+    4300070: TireRight01
+    4300072: TireRight02
+    4300074: TireRight03
+    4300076: TireRight04
+    4300078: TurretBase
+    4300080: TurretHead
+    4300082: LeftBarrel
+    4300084: RightBarrel
+    7400000: Fly
+    11100000: //RootNode
+    13700000: rotablade
+    13700002: tailblade
+  materials:
+    importMaterials: 1
+    materialName: 3
+    materialSearch: 1
+  animations:
+    legacyGenerateAnimations: 4
+    bakeSimulation: 0
+    optimizeGameObjects: 0
+    animationCompression: 1
+    animationRotationError: .5
+    animationPositionError: .5
+    animationScaleError: .5
+    animationWrapMode: 0
+    extraExposedTransformPaths: []
+    clipAnimations: []
+    isReadable: 1
+  meshes:
+    lODScreenPercentages: []
+    globalScale: .00999999978
+    meshCompression: 0
+    addColliders: 0
+    importBlendShapes: 1
+    swapUVChannels: 0
+    generateSecondaryUV: 0
+    useFileUnits: 1
+    optimizeMeshForGPU: 1
+    weldVertices: 1
+    secondaryUVAngleDistortion: 8
+    secondaryUVAreaDistortion: 15.000001
+    secondaryUVHardAngle: 88
+    secondaryUVPackMargin: 4
+  tangentSpace:
+    normalSmoothAngle: 60
+    splitTangentsAcrossUV: 0
+    normalImportMode: 1
+    tangentImportMode: 1
+  importAnimation: 1
+  copyAvatar: 0
+  humanDescription:
+    human: []
+    skeleton: []
+    armTwist: .5
+    foreArmTwist: .5
+    upperLegTwist: .5
+    legTwist: .5
+    armStretch: .0500000007
+    legStretch: .0500000007
+    feetSpacing: 0
+    rootMotionBoneName: 
+  lastHumanDescriptionAvatarSource: {instanceID: 0}
+  animationType: 1
+  userData: 

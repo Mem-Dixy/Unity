@@ -1,0 +1,132 @@
+fileFormatVersion: 2
+guid: 7d346a77490ea4667aa83e0c36f574d4
+ModelImporter:
+  serializedVersion: 15
+  fileIDToRecycleName:
+    100000: LeftBarrel
+    100002: //RootNode
+    100004: Radar
+    100006: RightBarrel
+    100008: TireLeft01
+    100010: TireLeft02
+    100012: TireLeft03
+    100014: TireLeft04
+    100016: TireRight01
+    100018: TireRight02
+    100020: TireRight03
+    100022: TireRight04
+    100024: Tires
+    100026: TurretHead
+    400000: LeftBarrel
+    400002: //RootNode
+    400004: Radar
+    400006: RightBarrel
+    400008: TireLeft01
+    400010: TireLeft02
+    400012: TireLeft03
+    400014: TireLeft04
+    400016: TireRight01
+    400018: TireRight02
+    400020: TireRight03
+    400022: TireRight04
+    400024: Tires
+    400026: TurretHead
+    2300000: LeftBarrel
+    2300002: //RootNode
+    2300004: Radar
+    2300006: RightBarrel
+    2300008: TireLeft01
+    2300010: TireLeft02
+    2300012: TireLeft03
+    2300014: TireLeft04
+    2300016: TireRight01
+    2300018: TireRight02
+    2300020: TireRight03
+    2300022: TireRight04
+    2300024: TurretHead
+    2800000: __AssetImporterPreview
+    3300000: LeftBarrel
+    3300002: //RootNode
+    3300004: Radar
+    3300006: RightBarrel
+    3300008: TireLeft01
+    3300010: TireLeft02
+    3300012: TireLeft03
+    3300014: TireLeft04
+    3300016: TireRight01
+    3300018: TireRight02
+    3300020: TireRight03
+    3300022: TireRight04
+    3300024: TurretHead
+    4300000: Name Turret
+    4300002: Radar
+    4300004: TireLeft01
+    4300006: TireLeft02
+    4300008: TireLeft03
+    4300010: TireLeft04
+    4300012: TireRight01
+    4300014: TireRight02
+    4300016: TireRight03
+    4300018: TireRight04
+    4300020: Turret Base
+    4300022: Turret Head
+    4300024: Left Barrel
+    4300026: Right Barrel
+    4300028: NameTurret
+    4300030: TurretBase
+    4300032: TurretHead
+    4300034: LeftBarrel
+    4300036: RightBarrel
+    11100000: //RootNode
+  materials:
+    importMaterials: 1
+    materialName: 3
+    materialSearch: 1
+  animations:
+    legacyGenerateAnimations: 4
+    bakeSimulation: 0
+    optimizeGameObjects: 0
+    animationCompression: 1
+    animationRotationError: .5
+    animationPositionError: .5
+    animationScaleError: .5
+    animationWrapMode: 0
+    extraExposedTransformPaths: []
+    clipAnimations: []
+    isReadable: 1
+  meshes:
+    lODScreenPercentages: []
+    globalScale: .00999999978
+    meshCompression: 0
+    addColliders: 0
+    importBlendShapes: 1
+    swapUVChannels: 0
+    generateSecondaryUV: 0
+    useFileUnits: 1
+    optimizeMeshForGPU: 1
+    weldVertices: 1
+    secondaryUVAngleDistortion: 8
+    secondaryUVAreaDistortion: 15.000001
+    secondaryUVHardAngle: 88
+    secondaryUVPackMargin: 4
+  tangentSpace:
+    normalSmoothAngle: 60
+    splitTangentsAcrossUV: 0
+    normalImportMode: 1
+    tangentImportMode: 1
+  importAnimation: 1
+  copyAvatar: 0
+  humanDescription:
+    human: []
+    skeleton: []
+    armTwist: .5
+    foreArmTwist: .5
+    upperLegTwist: .5
+    legTwist: .5
+    armStretch: .0500000007
+    legStretch: .0500000007
+    feetSpacing: 0
+    rootMotionBoneName: 
+  lastHumanDescriptionAvatarSource: {instanceID: 0}
+  animationType: 1
+  userData: 

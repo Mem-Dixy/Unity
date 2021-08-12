@@ -1,0 +1,15 @@
+fileFormatVersion: 2
+guid: 635a6f2fcd1187dbd000d38b642d2739
+MonoImporter:
+  serializedVersion: 2
+  defaultReferences:
+  - explodeFlame: {fileID: 400000, guid: fa8e6b6b1b6e446259feb3a426b228f7, type: 2}
+  - explodeSmoke: {fileID: 400000, guid: 8f75f3774461549e4884fae6ed2149a6, type: 2}
+  - soundHealth: {fileID: 8300000, guid: 62332237dd115e15d0009efa642d2739, type: 3}
+  - soundPlayerHit: {fileID: 8300000, guid: 385774c7dd11b825d0003ad9642d2739, type: 3}
+  - soundPlayerExplode: {fileID: 8300000, guid: 69132237dd115e15d0009efa642d2739,
+      type: 3}
+  - soundFire: {fileID: 8300000, guid: c2822237dd115e15d0009efa642d2739, type: 3}
+  executionOrder: 0
+  icon: {instanceID: 0}
+  userData: 
