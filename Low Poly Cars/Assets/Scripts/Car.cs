@@ -33,21 +33,20 @@ public class Car : MonoBehaviour
     {
         var pos = Vector3.zero;
         var rot = Quaternion.identity;
-
         wheelColliderLeftFront.GetWorldPose(out pos, out rot);
-        wheelLeftFront.position = pos;
-        wheelLeftFront.rotation = rot * Quaternion.Euler(0, 180, -90);
+        //wheelLeftFront.localPosition = pos;
+        wheelLeftFront.rotation = rot * Quaternion.Euler(0, 180, 0);
 
         wheelColliderRightFront.GetWorldPose(out pos, out rot);
-        wheelRightFront.position = pos;
-        wheelRightFront.rotation = rot * Quaternion.Euler(0,180,90);
+        //wheelRightFront.position = pos;
+        wheelRightFront.rotation = rot * Quaternion.Euler(0,180, 0);
 
         wheelColliderLeftBack.GetWorldPose(out pos, out rot);
-        wheelLeftBack.position = pos;
-        wheelLeftBack.rotation = rot * Quaternion.Euler(0, 180, -90);
+        //wheelLeftBack.position = pos;
+        wheelLeftBack.rotation = rot * Quaternion.Euler(0, 180, 0);
 
         wheelColliderRightBack.GetWorldPose(out pos, out rot);
-        wheelRightBack.position = pos;
-        wheelRightBack.rotation = rot * Quaternion.Euler(0, 180,90);
+        //wheelRightBack.position = pos;
+        wheelRightBack.rotation = rot * Quaternion.Euler(0, 180, 0);
     }
 }
