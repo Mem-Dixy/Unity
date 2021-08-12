@@ -17,7 +17,7 @@ public class Menu : MonoBehaviour {
 //	private Helicopter helicopter;
 //	private bool winner = false;
 //	private int cameraType = 1;						// Public so players can get value.
-	private Vector3 fresh = new Vector3();
+//	private Vector3 fresh = new Vector3();
 	//
 //	private Transform self;
 //	private Camera view;

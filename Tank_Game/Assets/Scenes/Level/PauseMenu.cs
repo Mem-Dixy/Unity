@@ -1,6 +1,4 @@
 using UnityEngine;
-using System.Collections;
-
 public class PauseMenu : MonoBehaviour {
 	
 	public static bool paused = true;			// Controlls pause menu.		// Used to see if we are on main menu or playing game (we want BZFlag menu style).
@@ -20,8 +18,8 @@ public class PauseMenu : MonoBehaviour {
 	public Vector2 windowPadding = new Vector2();						// How much spacing is between the buttons and the window.
 	public Vector2 screenPadding = new Vector2(20, 20);
 
-	public ArrayList menuHierarchyArray = new ArrayList();		// This stores all the info on what menus to show.
-	public ArrayList menuHeadingArray = new ArrayList();		// This stores all the info on what menus to show.
+	public System.Collections.ArrayList menuHierarchyArray = new System.Collections.ArrayList();		// This stores all the info on what menus to show.
+	public System.Collections.ArrayList menuHeadingArray = new System.Collections.ArrayList();		// This stores all the info on what menus to show.
 
 	public Vector4 windowPropertiesValue = new Vector4();		// Actual size and position of window.
 	public Vector4 windowPropertiesTarget = new Vector4();		// Size and postion we want the window to be at.

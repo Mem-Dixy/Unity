@@ -35,7 +35,7 @@ public class Car : MonoBehaviour {
 		UnityEngine.Vector3 pos = Vector3.zero;
 		UnityEngine.Quaternion quat = Quaternion.identity;
 		collider.GetWorldPose(out pos , out quat);
-		wheel.position = pos;
+		wheel.position = pos;/
 		wheel.rotation = quat;
 	}
 }
