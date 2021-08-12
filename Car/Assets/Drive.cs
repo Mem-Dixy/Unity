@@ -1,4 +1,5 @@
 public class Drive : UnityEngine.MonoBehaviour {
+    public UnityEngine.Transform wheel;
     // Start is called before the first frame update
     public void Start()
     {
@@ -15,5 +16,8 @@ public class Drive : UnityEngine.MonoBehaviour {
         z *= UnityEngine.Time.deltaTime;
         UnityEngine.Vector3 translation = new UnityEngine.Vector3(x , y , z);
         transform.Translate(translation);
-    }
+		UnityEngine.Debug.Log("hi");
+        
+	}
 }
+        
