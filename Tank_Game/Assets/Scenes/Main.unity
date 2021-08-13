@@ -285,7 +285,9 @@ MonoBehaviour:
   activeTile: {fileID: 0}
   isLoading: 0
   floor: 0
-  levelGroup: []
+  levelGroup:
+  - 
+  - 
   selectedLevel: 0
 --- !u!218 &39
 Terrain:
@@ -367,6 +369,10 @@ PrefabInstance:
       propertyPath: levelEdit
       value: 
       objectReference: {fileID: 38}
+    - target: {fileID: 11400000, guid: 5e083e01cec3845319d7b741361c1585, type: 3}
+      propertyPath: sampleLevel.Array.size
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 5e083e01cec3845319d7b741361c1585, type: 3}
 --- !u!1 &49

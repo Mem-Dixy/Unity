@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 12001, guid: 0000000000000000e000000000000000, type: 0}
   m_Name: GUISkin
   m_EditorClassIdentifier: 
-  m_Font: {fileID: 12800000, guid: 6decf7f3dd119ca2d00060aa642d2739, type: 3}
+  m_Font: {fileID: 12800000, guid: cabf18d66e0ee3d48a8e7706f850818e, type: 3}
   m_box:
     m_Name: box
     m_Normal:
@@ -135,7 +135,7 @@ MonoBehaviour:
       m_Top: 0
       m_Bottom: 0
     m_Font: {fileID: 0}
-    m_FontSize: 0
+    m_FontSize: 24
     m_FontStyle: 0
     m_Alignment: 4
     m_WordWrap: 0
@@ -219,7 +219,7 @@ MonoBehaviour:
     m_Normal:
       m_Background: {fileID: 0}
       m_ScaledBackgrounds: []
-      m_TextColor: {r: 0.9, g: 0.9, b: 0.9, a: 1}
+      m_TextColor: {r: 0.34117648, g: 0.77254903, b: 1, a: 1}
     m_Hover:
       m_Background: {fileID: 0}
       m_ScaledBackgrounds: []
@@ -269,9 +269,9 @@ MonoBehaviour:
       m_Top: 0
       m_Bottom: 0
     m_Font: {fileID: 0}
-    m_FontSize: 0
-    m_FontStyle: 0
-    m_Alignment: 0
+    m_FontSize: 24
+    m_FontStyle: 1
+    m_Alignment: 4
     m_WordWrap: 1
     m_RichText: 1
     m_TextClipping: 1
@@ -1407,7 +1407,7 @@ MonoBehaviour:
       m_Right: 0
       m_Top: 0
       m_Bottom: 0
-    m_Font: {fileID: 12800000, guid: ef9bce5dbd11a2c3d000dc0b8d76c639, type: 3}
+    m_Font: {fileID: 12800000, guid: b57754b96d9e847cdbdc1f2146fbb718, type: 3}
     m_FontSize: 0
     m_FontStyle: 0
     m_Alignment: 4
@@ -1473,7 +1473,7 @@ MonoBehaviour:
       m_Right: 0
       m_Top: 0
       m_Bottom: 0
-    m_Font: {fileID: 12800000, guid: ef9bce5dbd11a2c3d000dc0b8d76c639, type: 3}
+    m_Font: {fileID: 12800000, guid: b57754b96d9e847cdbdc1f2146fbb718, type: 3}
     m_FontSize: 0
     m_FontStyle: 0
     m_Alignment: 4
@@ -1605,7 +1605,7 @@ MonoBehaviour:
       m_Right: 0
       m_Top: 0
       m_Bottom: 0
-    m_Font: {fileID: 12800000, guid: 6604e41cdd11e192d0005b0b642d2739, type: 3}
+    m_Font: {fileID: 12800000, guid: b57754b96d9e847cdbdc1f2146fbb718, type: 3}
     m_FontSize: 0
     m_FontStyle: 0
     m_Alignment: 4
