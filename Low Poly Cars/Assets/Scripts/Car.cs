@@ -16,6 +16,11 @@ public class Car : MonoBehaviour
     public Transform wheelLeftBack;
     public Transform wheelRightBack;
 
+    public Transform gun;
+    public Transform view;
+    public Transform aim;
+    public Transform car;
+
     public float motorTorque = 100f;
     public float maxSteer = 20f;
     private Rigidbody _rigidbody;
@@ -47,12 +52,29 @@ public class Car : MonoBehaviour
         float ry = UnityEngine.InputSystem.Gamepad.current.rightStick.y.ReadValue();
 
 
-        wheelColliderLeftBack.motorTorque = ry * motorTorque;
-        wheelColliderRightBack.motorTorque = ry * motorTorque;
-     
-        wheelColliderLeftFront.steerAngle = rx * maxSteer;
-        wheelColliderRightFront.steerAngle = rx * maxSteer;
-  
+        Quaternion forward = Quaternion.identity;
+        forward.eulerAngles = Vector3.forward;
+
+
+
+        Vector3 zero = new Vector3(10 * lx , 0 , 10 * ly);
+        Vector3 one = car.position + zero;
+        Vector3 point = car.InverseTransformVector(zero);
+        aim.position = one;
+        float turn = Mathf.Atan2(point.x , point.z);
+        turn = Mathf.Sign(turn) * Mathf.Min(Mathf.Abs(turn), Mathf.Deg2Rad * maxSteer);
+
+        Vector3 face = car.TransformVector(aim.position - car.position);
+        float forwardy = Mathf.Clamp01(face.z);
+
+        wheelColliderLeftBack.motorTorque = forwardy * motorTorque;
+        wheelColliderRightBack.motorTorque = forwardy * motorTorque;
+        wheelColliderLeftFront.steerAngle = turn * maxSteer;
+        wheelColliderRightFront.steerAngle = turn * maxSteer;
+
+        Vector3 relativePos = new Vector3(rx, 0, ry);
+        Quaternion rotation = Quaternion.LookRotation(relativePos , Vector3.up);
+        gun.localRotation = rotation;
     }
 
     void Update()
