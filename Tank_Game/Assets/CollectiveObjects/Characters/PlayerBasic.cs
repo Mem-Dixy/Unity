@@ -5,8 +5,8 @@ public class PlayerBasic : MonoBehaviour {
 	// Targeting:
 	private Vector3 ourPosition = Vector3.zero;
 	private float objectDistance = Mathf.Infinity;
-	private int otherDamage = 0;
-	private float otherHealth = Mathf.Infinity;
+	//private int otherDamage = 0;
+	//private float otherHealth = Mathf.Infinity;
 	private float yRotate = 180;
 		//
 	private int targetPriority = 0;
@@ -123,8 +123,8 @@ public class PlayerBasic : MonoBehaviour {
 		if (!tracking) {		// If no target then reset variables.
 			ourPosition = transform.position;
 			objectDistance = Mathf.Infinity;
-			otherDamage = 0;
-			otherHealth = Mathf.Infinity;
+			//otherDamage = 0;
+			//otherHealth = Mathf.Infinity;
 			yRotate = 180;
 			targetPriority = 0;
 		}

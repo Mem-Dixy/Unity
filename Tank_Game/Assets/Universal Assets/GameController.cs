@@ -227,7 +227,8 @@ public class GameController : MonoBehaviour {
 		}
 		// Player Info.
 		GUI.Box(new Rect((Screen.width / 2) + 5 , 0 , 150 , 25) , (basic ? "Health : " + basic.healthCurrent.ToString() : "Regenerating") , "You Win");
-		GUI.Box(new Rect((Screen.width / 2) + 5 , 25 , 150 , 25) , "Level : " + Application.loadedLevel , "You Win");   // Currnet level number.		
+		//GUI.Box(new Rect((Screen.width / 2) + 5 , 25 , 150 , 25) , "Level : " + Application.loadedLevel , "You Win");   // Currnet level number.		
+		GUI.Box(new Rect((Screen.width / 2) + 5 , 25 , 150 , 25) , "Level Complete" , "You Win");   // Currnet level number.		
 		if (basic) {
 			helicopter = basic.GetComponent(typeof(Helicopter)) as Helicopter;
 		}
@@ -251,7 +252,8 @@ public class GameController : MonoBehaviour {
 			//	windowPropertiesTarget = Vector4(100, 100, 400, 400);
 			GUI.Box(new Rect((Screen.width / 2) - 175 , 25 , 350 , 50) , "Tank Game");
 			GUI.Box(new Rect((Screen.width / 2) - 100 , 75 , 200 , 25) , "By: Mem Dixy" , "Author");
-			GUI.Box(new Rect((Screen.width / 2) - 100 , 125 , 200 , 25) , Application.loadedLevelName , "Author");
+			//GUI.Box(new Rect((Screen.width / 2) - 100 , 125 , 200 , 25) , Application.loadedLevelName , "Author");
+			GUI.Box(new Rect((Screen.width / 2) - 100 , 125 , 200 , 25) , "In Game" , "Author");
 		}
 		else if ((int) menuHierarchyArray[0] == 1) {        // Select Level.
 			if ((int) menuHierarchyArray[1] == 0) {
@@ -458,7 +460,19 @@ public class GameController : MonoBehaviour {
 			}
 		}
 	}
-	public void OnLevelWasLoaded(int level) {
+
+
+	void OnEnable() {
+		Debug.Log("OnEnable called");
+		UnityEngine.SceneManagement.SceneManager.sceneLoaded += LevelWasLoaded;
+	}
+
+	void OnDisable() {
+		Debug.Log("OnDisable");
+		UnityEngine.SceneManagement.SceneManager.sceneLoaded -= LevelWasLoaded;
+	}
+
+	public void LevelWasLoaded(UnityEngine.SceneManagement.Scene scene , UnityEngine.SceneManagement.LoadSceneMode mode) {
 		winner = false;                                         // Makes this false. If it where true and we load level 0 then we win.
 																//		menuHierarchyActive = 0;							// Go back to the main menu.
 																//		menuHierarchyArray[menuHierarchyActive] = 0;		// Then set current state to zero.

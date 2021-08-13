@@ -35,7 +35,8 @@ public class PauseMenu : MonoBehaviour {
 	
 	private void Start () {
 		menuHeadingArray.Add("Main Menu");
-		menuHierarchyArray.Add(0);									// Then move up one level.
+		menuHierarchyArray.Add(0);
+		// Then move up one level.
 		fresh = new Vector3(2, 2, 2);
 		levelEdit = LevelEdit.instance;
 		if (levelEdit == null) {
@@ -46,7 +47,7 @@ public class PauseMenu : MonoBehaviour {
 	}
 
 
-	private Vector4 windowPropertiesStep = new Vector4();
+	//private Vector4 windowPropertiesStep = new Vector4();
 	private Vector4 windowPropertiesTarget = new Vector4();
 	private Vector4 windowPropertiesValue = new Vector4();
 	public string[] caption = new string[] { };
