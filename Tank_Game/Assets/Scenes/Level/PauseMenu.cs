@@ -4,7 +4,7 @@ public class PauseMenu : MonoBehaviour {
 	public static bool paused = true;			// Controlls pause menu.		// Used to see if we are on main menu or playing game (we want BZFlag menu style).
 
 	public GUISkin gUISkin;
-	public Transform Player;	
+	public Transform Player;
 	public LevelEdit levelEdit;
 	public bool playing = false;
 
@@ -21,10 +21,6 @@ public class PauseMenu : MonoBehaviour {
 	public System.Collections.ArrayList menuHierarchyArray = new System.Collections.ArrayList();		// This stores all the info on what menus to show.
 	public System.Collections.ArrayList menuHeadingArray = new System.Collections.ArrayList();		// This stores all the info on what menus to show.
 
-	public Vector4 windowPropertiesValue = new Vector4();		// Actual size and position of window.
-	public Vector4 windowPropertiesTarget = new Vector4();		// Size and postion we want the window to be at.
-	public string[] caption = new string[]{};
-	private Vector2 scrollPosition = Vector2.zero;
 
 	public string heading;		// This is what is displayed at the top of each menu.
 	private float sound = 100;		// How loud the sound output is.
@@ -57,6 +53,42 @@ public class PauseMenu : MonoBehaviour {
 		caption = new string[]{"Restart Level", "Load Level", "Level Editor", "Setup", "Help", "Quit"};
 		windowSize = new Vector2(buttonSize.x, buttonSize.y*(caption.Length)+buttonSize.y*2);
 	}
+
+
+	private Vector4 windowPropertiesStep = new Vector4();
+	private Vector4 windowPropertiesTarget = new Vector4();
+	private Vector4 windowPropertiesValue = new Vector4();
+	public string[] caption = new string[] { };
+	private Vector2 scrollPosition = Vector2.zero;
+	private void FixedUpdate() {
+
+
+		float x1 = windowPropertiesTarget.x;
+		float y1 = windowPropertiesTarget.y;
+		float z1 = windowPropertiesTarget.z;
+		float w1 = windowPropertiesTarget.w;
+
+		float step = 5;
+
+		float x2 = x1 - windowPropertiesValue.x;
+		float y2 = y1 - windowPropertiesValue.y;
+		float z2 = z1 - windowPropertiesValue.z;
+		float w2 = w1 - windowPropertiesValue.w;
+		UnityEngine.Debug.Log("check" + new Vector4(x2 , y2 , z2 , w2));
+
+		float x3 = Mathf.Sign(x2);
+		float y3 = Mathf.Sign(y2);
+		float z3 = Mathf.Sign(z2);
+		float w3 = Mathf.Sign(w2);
+		UnityEngine.Debug.Log("sign" + new Vector4(x3 , y3 , z3 , w3));
+
+		windowPropertiesValue.x += Mathf.Min(x2 , x3 * step);
+		windowPropertiesValue.y += Mathf.Min(y2 , y3 * step);
+		windowPropertiesValue.z += Mathf.Min(z2 , z3 * step);
+		windowPropertiesValue.w += Mathf.Min(w2 , w3 * step);
+		UnityEngine.Debug.Log("value" + windowPropertiesValue);
+		UnityEngine.Debug.Log("target" + windowPropertiesTarget);
+	}
 	private void Update () {
 		if (Input.GetKeyDown("escape")) {		// Pause menu.
 			paused = !paused;
@@ -77,7 +109,7 @@ public class PauseMenu : MonoBehaviour {
 				transform.position = selectedPlayer.transform.position;
 				transform.rotation = selectedPlayer.transform.rotation;
 				transform.parent = selectedPlayer.transform;
-				GetComponent<Camera>().orthographic = false;		
+				GetComponent<Camera>().orthographic = false;
 			}
 			else {
 				transform.parent = null;
@@ -87,93 +119,101 @@ public class PauseMenu : MonoBehaviour {
 			}
 		}
 	}
-	private void OnGUI () {
-		if (paused && !levelEdit.isLoading) {
-			Vector2 groupSize = new Vector2(windowPropertiesValue.z-windowPadding.x*2, windowPropertiesValue.w-windowPadding.y*2);	// Store the value of the window in this variable.
-			float scrollBarX = (caption.Length*buttonSize.y>groupSize.y-buttonSize.y*2 ? 16 : 0);		// Determins if we should increase window size to fit a scroll bar in.
-			float scrollBarY = (buttonSize.x>groupSize.x ? 16 : 0);
-			GUI.skin = gUISkin;		// This tells how the text will display.
-			GUI.Box(new Rect(windowPropertiesValue.x, windowPropertiesValue.y, windowPropertiesValue.z, windowPropertiesValue.w), "");	// Empty growing box.	// Fix issue when we win.
-			GUI.BeginGroup(new Rect(windowPropertiesValue.x+windowPadding.x, windowPropertiesValue.y+windowPadding.y, groupSize.x, groupSize.y));//, "MEOW");//, style);
-			windowPropertiesTarget = new Vector4((Screen.width/2)+(-windowPropertiesValue.z/2), (Screen.height/2)+(-windowPropertiesValue.w/2), windowSize.x, windowSize.y);		// Default value.
-			if (windowPropertiesValue==new Vector4(Mathf.Max(windowPropertiesTarget.x, screenPadding.x), Mathf.Max(windowPropertiesTarget.y, screenPadding.y), Mathf.Min(windowPropertiesTarget.z, Screen.width-screenPadding.x*2)+scrollBarX, Mathf.Min(windowPropertiesTarget.w, Screen.height-screenPadding.y*2)+scrollBarY)) {	// Only show buttons when window is done resizeing itself.
-	//			print(buttonSize.y*(caption.Length)+buttonSize.y*2);
-//				levelLoad = PlayerPrefs.GetString("Levels", "No Saved Files Found").Split("/"[0]);
-				levelLoad = PlayerPrefs.GetString("Levels", "No Saved Files").Split("/"[0]);
-				GUI.Label(new Rect(0, 0, groupSize.x, buttonSize.y), heading);		//+(windowPropertiesValue.w-buttonSize.y*2<scrollBoxSize.w ? 16 : 0)
-				GUI.BeginGroup(new Rect(0, buttonSize.y, groupSize.x, groupSize.y-buttonSize.y));//, "MEOW");//, style);
-//				if (GUI.Button(new Rect(0, 0, buttonSize.x, buttonSize.y), ((int)menuHierarchyArray[0]==0 ? "Unpause" : "Return"))) {
-				
-//				if (!LevelEdit.playing) {
-//					if (GUI.Button(new Rect(0, 0, buttonSize.x, buttonSize.y), ((int)menuHierarchyArray[0]==0 ? "End" : "Return"))) {
-//						if ((int)menuHierarchyArray[0]==0) {
-//							LevelEdit.playing = !LevelEdit.playing;
-//							paused = !LevelEdit.playing;										// Return to the game.
-//						}
-//						else {
-//							Back();		// Up one in the menu.
-//						}
-//					}
-//				}
 
-				if ((int)menuHierarchyArray[0]!=0) {
-					if (GUI.Button(new Rect(0, 0, buttonSize.x, buttonSize.y), "Return")) {
-						Back();		// Up one in the menu.
-					}
-				}
-				else if (LevelEdit.editor) {
-					if (GUI.Button(new Rect(0, 0, buttonSize.x, buttonSize.y), "Unpause")) {
-						paused = false;		// Up one in the menu.
-					}
-				}
+	private float scrollBarX;
+	private float scrollBarY;
 
-
-//				if (GUI.Button(new Rect(0, 0, buttonSize.x, buttonSize.y), ((int)menuHierarchyArray[0]==0 ? (!LevelEdit.playing ? "Play" : "End") : "Return"))) {
-//					if ((int)menuHierarchyArray[0]==0) {
-//						LevelEdit.playing = !LevelEdit.playing;
-//						paused = !LevelEdit.playing;										// Return to the game.
-//					}
-//					else {
-//						Back();		// Up one in the menu.
-//					}
-//				}
-				scrollPosition = GUI.BeginScrollView(new Rect(0, buttonSize.y, groupSize.x, groupSize.y-buttonSize.y*2), scrollPosition, new Rect(0, 0, Mathf.Max(groupSize.x, buttonSize.x)-scrollBarX, buttonSize.y*caption.Length-scrollBarY));//caption.Length));			
-				if (LevelEdit.playing) {		// We are on the main menu.
-					if (LevelEdit.editor) {
-						GameEdit();
-					}
-					else {
-						GameMenu();
-					}
-				}
-				else if (LevelEdit.editor) {
-					EditorMenu();
-				}
-				else {		// We are on the main menu.
-					MainMenu();
-				}
-				if (!sizeSet) {
-					windowSize = new Vector2(buttonSize.x, buttonSize.y*(caption.Length)+buttonSize.y*2);
-				}
-				sizeSet = false;
-				for (int i=0; i<caption.Length; i++) {		// Show the buttons.
-					if (GUI.Button(new Rect(0, buttonSize.y*i, buttonSize.x, buttonSize.y), caption[i])) {
-						menuHierarchyArray[menuHierarchyArray.Count-1] = i+1;		// i starts at 0 while menu starts at 1.				// Tell it what button we want.
-						menuHierarchyArray.Add(0);									// Then move up one level.
-						menuHeadingArray.Add(caption[i]);
-					}
-					heading = (string)menuHeadingArray[menuHierarchyArray.Count-1];
-				}
-				GUI.EndScrollView();
-				GUI.EndGroup();				
-			}
-			GUI.EndGroup();
-			windowPropertiesTarget = new Vector4(Mathf.Floor(windowPropertiesTarget.x), Mathf.Floor(windowPropertiesTarget.y), Mathf.Ceil(windowPropertiesTarget.z), Mathf.Ceil(windowPropertiesTarget.w));
-			windowPropertiesValue.x += (windowPropertiesValue.x==Mathf.Max(windowPropertiesTarget.x, screenPadding.x) ? 0								: Mathf.Sign(Mathf.Max(windowPropertiesTarget.x, screenPadding.x)							-windowPropertiesValue.x));
-			windowPropertiesValue.y += (windowPropertiesValue.y==Mathf.Max(windowPropertiesTarget.y, screenPadding.y) ? 0								: Mathf.Sign(Mathf.Max(windowPropertiesTarget.y, screenPadding.y)							-windowPropertiesValue.y));
-			windowPropertiesValue.z += (windowPropertiesValue.z==Mathf.Min(windowPropertiesTarget.z, Screen.width-screenPadding.x*2)+scrollBarX ? 0		: Mathf.Sign(Mathf.Min(windowPropertiesTarget.z, Screen.width-screenPadding.x*2)+scrollBarX	-windowPropertiesValue.z));
-			windowPropertiesValue.w += (windowPropertiesValue.w==Mathf.Min(windowPropertiesTarget.w, Screen.height-screenPadding.y*2)+scrollBarY ? 0	: Mathf.Sign(Mathf.Min(windowPropertiesTarget.w, Screen.height-screenPadding.y*2)+scrollBarY-windowPropertiesValue.w));
+	private void OnGUI() {
+		if (!paused || levelEdit.isLoading) {
+			return;
 		}
+		Vector2 groupSize = new Vector2(windowPropertiesValue.z - windowPadding.x * 2 , windowPropertiesValue.w - windowPadding.y * 2); // Store the value of the window in this variable.
+		scrollBarX = (caption.Length * buttonSize.y > groupSize.y - buttonSize.y * 2 ? 16 : 0);     // Determins if we should increase window size to fit a scroll bar in.
+		scrollBarY = (buttonSize.x > groupSize.x ? 16 : 0);
+		GUI.skin = gUISkin;     // This tells how the text will display.
+
+		GUI.Box(new Rect(windowPropertiesValue.x , windowPropertiesValue.y , windowPropertiesValue.z , windowPropertiesValue.w) , "");  // Empty growing box.	// Fix issue when we win.
+		GUI.BeginGroup(new Rect(windowPropertiesValue.x + windowPadding.x , windowPropertiesValue.y + windowPadding.y , groupSize.x , groupSize.y));//, "MEOW");//, style);
+
+		windowPropertiesTarget = new Vector4((Screen.width / 2) + (-windowSize.x / 2) , (Screen.height / 2) + (-windowSize.y / 2) , windowSize.x , windowSize.y);     // Default value.
+		windowPropertiesTarget = new Vector4(Mathf.Floor(windowPropertiesTarget.x) , Mathf.Floor(windowPropertiesTarget.y) , Mathf.Ceil(windowPropertiesTarget.z) , Mathf.Ceil(windowPropertiesTarget.w));
+		windowPropertiesTarget = new Vector4(
+			Mathf.Max(windowPropertiesTarget.x , screenPadding.x) ,
+			Mathf.Max(windowPropertiesTarget.y , screenPadding.y) ,
+			Mathf.Min(windowPropertiesTarget.z , Screen.width - screenPadding.x * 2) + scrollBarX ,
+			Mathf.Min(windowPropertiesTarget.w , Screen.height - screenPadding.y * 2) + scrollBarY
+		);
+
+		if (windowPropertiesValue == windowPropertiesTarget) { // Only show buttons when window is done resizeing itself.
+			//levelLoad = PlayerPrefs.GetString("Levels" , "No Saved Files").Split("/"[0]);
+			GUI.Label(new Rect(0 , 0 , buttonSize.x , buttonSize.y) , heading);      //+(windowPropertiesValue.w-buttonSize.y*2<scrollBoxSize.w ? 16 : 0)
+			GUI.BeginGroup(new Rect(0 , buttonSize.y , groupSize.x , groupSize.y - buttonSize.y));//, "MEOW");//, style);
+
+			// if (GUI.Button(new Rect(0, 0, buttonSize.x, buttonSize.y), ((int)menuHierarchyArray[0]==0 ? "Unpause" : "Return"))) {
+			//				if (!LevelEdit.playing) {
+			//					if (GUI.Button(new Rect(0, 0, buttonSize.x, buttonSize.y), ((int)menuHierarchyArray[0]==0 ? "End" : "Return"))) {
+			//						if ((int)menuHierarchyArray[0]==0) {
+			//							LevelEdit.playing = !LevelEdit.playing;
+			//							paused = !LevelEdit.playing;										// Return to the game.
+			//						}
+			//						else {
+			//							Back();		// Up one in the menu.
+			//						}
+			//					}
+			//				}
+
+			if ((int) menuHierarchyArray[0] != 0) {
+				if (GUI.Button(new Rect(0 , 0 , buttonSize.x , buttonSize.y) , "Return")) {
+					Back();     // Up one in the menu.
+				}
+			}
+			else if (LevelEdit.editor) {
+				if (GUI.Button(new Rect(0 , 0 , buttonSize.x , buttonSize.y) , "Unpause")) {
+					paused = false;     // Up one in the menu.
+				}
+			}
+
+
+			//				if (GUI.Button(new Rect(0, 0, buttonSize.x, buttonSize.y), ((int)menuHierarchyArray[0]==0 ? (!LevelEdit.playing ? "Play" : "End") : "Return"))) {
+			//					if ((int)menuHierarchyArray[0]==0) {
+			//						LevelEdit.playing = !LevelEdit.playing;
+			//						paused = !LevelEdit.playing;										// Return to the game.
+			//					}
+			//					else {
+			//						Back();		// Up one in the menu.
+			//					}
+			//				}
+			scrollPosition = GUI.BeginScrollView(new Rect(0 , buttonSize.y , groupSize.x , groupSize.y - buttonSize.y * 2) , scrollPosition , new Rect(0 , 0 , Mathf.Max(groupSize.x , buttonSize.x) - scrollBarX , buttonSize.y * caption.Length - scrollBarY));//caption.Length));			
+			if (LevelEdit.playing) {        // We are on the main menu.
+				if (LevelEdit.editor) {
+					GameEdit();
+				}
+				else {
+					GameMenu();
+				}
+			}
+			else if (LevelEdit.editor) {
+				EditorMenu();
+			}
+			else {      // We are on the main menu.
+				MainMenu();
+			}
+			if (!sizeSet) {
+				windowSize = new Vector2(buttonSize.x , buttonSize.y * (caption.Length) + buttonSize.y * 2);
+			}
+			sizeSet = false;
+			for (int i = 0; i < caption.Length; i++) {      // Show the buttons.
+				if (GUI.Button(new Rect(0 , buttonSize.y * i , buttonSize.x , buttonSize.y) , caption[i])) {
+					menuHierarchyArray[menuHierarchyArray.Count - 1] = i + 1;       // i starts at 0 while menu starts at 1.				// Tell it what button we want.
+					menuHierarchyArray.Add(0);                                  // Then move up one level.
+					menuHeadingArray.Add(caption[i]);
+				}
+				heading = (string) menuHeadingArray[menuHierarchyArray.Count - 1];
+			}
+			GUI.EndScrollView();
+			GUI.EndGroup();
+		}
+		GUI.EndGroup();
 	}
 	private void Back () {
 		menuHierarchyArray.RemoveAt(menuHierarchyArray.Count-1);		// Remove last item in array.
