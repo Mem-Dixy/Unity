@@ -17,11 +17,11 @@ public class Weapon : MonoBehaviour {
 
 	private void Start () {
 		homing = true;
-		(targetingInner = (Instantiate(AssetLoad.assetLoad.targetingInner, transform.position, transform.rotation) as Transform)).parent = transform;
-		(targetingOuter = (Instantiate(AssetLoad.assetLoad.targetingOuter, transform.position, transform.rotation) as Transform)).parent = transform;
+		(targetingInner = (Instantiate(AssetLoad.instance.targetingInner, transform.position, transform.rotation) as Transform)).parent = transform;
+		(targetingOuter = (Instantiate(AssetLoad.instance.targetingOuter, transform.position, transform.rotation) as Transform)).parent = transform;
 		(basic = GetComponent(typeof(PlayerBasic)) as PlayerBasic).autopilot = true;
 		float ratio = (float)Screen.width/(float)Screen.height;
-		Camera missileCamera = (Instantiate(AssetLoad.assetLoad.newGameObject, transform.position, transform.rotation) as GameObject).AddComponent(typeof(Camera)) as Camera;
+		Camera missileCamera = (Instantiate(AssetLoad.instance.newGameObject, transform.position, transform.rotation) as GameObject).AddComponent(typeof(Camera)) as Camera;
 		missileCamera.transform.parent = transform;
 		missileCamera.orthographicSize = 128;
 		missileCamera.rect = new Rect(1-(0.4F/ratio), 0.6F, 0.4F/ratio, 0.4F);		// new Rect(0.8, 0.8, 0.2 0.2)?

@@ -4,9 +4,7 @@ public class PauseMenu : MonoBehaviour {
 	public static bool paused = true;			// Controlls pause menu.		// Used to see if we are on main menu or playing game (we want BZFlag menu style).
 
 	public GUISkin gUISkin;
-	public Transform Player;
 	public LevelEdit levelEdit;
-	public bool playing = false;
 
 
 	//	
@@ -23,7 +21,6 @@ public class PauseMenu : MonoBehaviour {
 
 
 	public string heading;		// This is what is displayed at the top of each menu.
-	private float sound = 100;		// How loud the sound output is.
 	private string[] levelLoad;
 	private string levelTest;
 	
@@ -35,20 +32,14 @@ public class PauseMenu : MonoBehaviour {
 	public TextAsset[] sampleLevel = new TextAsset[0];
 	private bool sizeSet = false;		// Has the default windowSize been overidden?
 
-	private PlayerBasic selectedPlayer;		// Who we are currently controling.
 	
 	private void Start () {
 		menuHeadingArray.Add("Main Menu");
 		menuHierarchyArray.Add(0);									// Then move up one level.
 		fresh = new Vector3(2, 2, 2);
-		
-		Object find = FindObjectOfType(typeof(LevelEdit)) as Object;
-		if (find) {
-			levelEdit = find as LevelEdit;
-//			print(levelEdit);
-		}
-		else {
-			print("Bad thing happened.");
+		levelEdit = LevelEdit.instance;
+		if (levelEdit == null) {
+			UnityEngine.Debug.LogError("Object with class 'LevelEdit' not found.");
 		}
 		caption = new string[]{"Restart Level", "Load Level", "Level Editor", "Setup", "Help", "Quit"};
 		windowSize = new Vector2(buttonSize.x, buttonSize.y*(caption.Length)+buttonSize.y*2);
@@ -74,62 +65,30 @@ public class PauseMenu : MonoBehaviour {
 		float y2 = y1 - windowPropertiesValue.y;
 		float z2 = z1 - windowPropertiesValue.z;
 		float w2 = w1 - windowPropertiesValue.w;
-		UnityEngine.Debug.Log("check" + new Vector4(x2 , y2 , z2 , w2));
 
 		float x3 = Mathf.Sign(x2);
 		float y3 = Mathf.Sign(y2);
 		float z3 = Mathf.Sign(z2);
 		float w3 = Mathf.Sign(w2);
-		UnityEngine.Debug.Log("sign" + new Vector4(x3 , y3 , z3 , w3));
 
 		windowPropertiesValue.x += Mathf.Min(x2 , x3 * step);
 		windowPropertiesValue.y += Mathf.Min(y2 , y3 * step);
 		windowPropertiesValue.z += Mathf.Min(z2 , z3 * step);
 		windowPropertiesValue.w += Mathf.Min(w2 , w3 * step);
-		UnityEngine.Debug.Log("value" + windowPropertiesValue);
-		UnityEngine.Debug.Log("target" + windowPropertiesTarget);
 	}
 	private void Update () {
 		if (Input.GetKeyDown("escape")) {		// Pause menu.
 			paused = !paused;
 		}
-		if (!PauseMenu.paused && LevelEdit.playing) {		// While in the game we have a "get player" laser.
-			RaycastHit hit = new RaycastHit();
-			if (Physics.Raycast(Camera.main.ScreenPointToRay(Input.mousePosition), out hit, Mathf.Infinity, 1<<30)) {
-				PlayerBasic get = hit.transform.GetComponent(typeof(PlayerBasic)) as PlayerBasic;
-				if (get) {
-					SwitchPlayer(get);
-				}
-			}
-		}
 	}
-	private void LateUpdate () {
-		if (!PauseMenu.paused && LevelEdit.playing) {
-			if(selectedPlayer!=null) {		// While in the game we have a "get player" laser.
-				transform.position = selectedPlayer.transform.position;
-				transform.rotation = selectedPlayer.transform.rotation;
-				transform.parent = selectedPlayer.transform;
-				GetComponent<Camera>().orthographic = false;
-			}
-			else {
-				transform.parent = null;
-				transform.position = new Vector3(0, 16.4f, 0);
-				transform.rotation = Quaternion.Euler(90, 0, 0);
-				GetComponent<Camera>().orthographic = true;
-			}
-		}
-	}
-
-	private float scrollBarX;
-	private float scrollBarY;
 
 	private void OnGUI() {
 		if (!paused || levelEdit.isLoading) {
 			return;
 		}
 		Vector2 groupSize = new Vector2(windowPropertiesValue.z - windowPadding.x * 2 , windowPropertiesValue.w - windowPadding.y * 2); // Store the value of the window in this variable.
-		scrollBarX = (caption.Length * buttonSize.y > groupSize.y - buttonSize.y * 2 ? 16 : 0);     // Determins if we should increase window size to fit a scroll bar in.
-		scrollBarY = (buttonSize.x > groupSize.x ? 16 : 0);
+		float scrollBarX = (caption.Length * buttonSize.y > groupSize.y - buttonSize.y * 2 ? 16 : 0);     // Determins if we should increase window size to fit a scroll bar in.
+		float scrollBarY = (buttonSize.x > groupSize.x ? 16 : 0);
 		GUI.skin = gUISkin;     // This tells how the text will display.
 
 		GUI.Box(new Rect(windowPropertiesValue.x , windowPropertiesValue.y , windowPropertiesValue.z , windowPropertiesValue.w) , "");  // Empty growing box.	// Fix issue when we win.
@@ -573,33 +532,36 @@ public class PauseMenu : MonoBehaviour {
 				}
 			}
 			else if ((int)menuHierarchyArray[1]==3) {		// Quality Levels.
+				// REDO
+				/*
 				if ((int)menuHierarchyArray[2]==0) {
 					caption = new string[]{"Fastest", "Fast", "Simple", "Good", "Beautiful", "Fantastic"};
 				}
 				else if ((int)menuHierarchyArray[2]==1) {
-					QualitySettings.currentLevel = QualityLevel.Fastest;
+					QualitySettings.SetQualityLevel(QualityLevel.Fastest);
 					Back();
 				}
 				else if ((int)menuHierarchyArray[2]==2) {
-					QualitySettings.currentLevel = QualityLevel.Fast;
+					QualitySettings.SetQualityLevel(QualityLevel.Fast);
 					Back();
 				}
 				else if ((int)menuHierarchyArray[2]==3) {
-					QualitySettings.currentLevel = QualityLevel.Simple;
+					QualitySettings.SetQualityLevel(QualityLevel.Simple);
 					Back();
 				}
 				else if ((int)menuHierarchyArray[2]==4) {
-					QualitySettings.currentLevel = QualityLevel.Good;
+					QualitySettings.SetQualityLevel(QualityLevel.Good);
 					Back();
 				}
 				else if ((int)menuHierarchyArray[2]==5) {
-					QualitySettings.currentLevel = QualityLevel.Beautiful;
+					QualitySettings.SetQualityLevel(QualityLevel.Beautiful);
 					Back();
 				}
 				else if ((int)menuHierarchyArray[2]==6) {
-					QualitySettings.currentLevel = QualityLevel.Fantastic;
+					QualitySettings.SetQualityLevel(QualityLevel.Fantastic);
 					Back();
 				}
+				*/
 			}
 //			else if ((int)menuHierarchyArray[1]==4) {		// Sound.
 //				caption = new string[]{};
@@ -640,12 +602,5 @@ public class PauseMenu : MonoBehaviour {
 		else if ((int)menuHierarchyArray[0]==4) {//5) {		// Quit.
 			QuitGame(1);
 		}
-	}
-	private void SwitchPlayer (PlayerBasic other) {
-		if (selectedPlayer) {
-			selectedPlayer.human = false;
-		}
-		selectedPlayer = other;
-		selectedPlayer.human = true;
 	}
 }

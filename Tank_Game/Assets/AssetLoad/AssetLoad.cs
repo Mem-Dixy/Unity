@@ -1,20 +1,13 @@
-using UnityEngine;
-using System.Collections;
-
-public class AssetLoad : MonoBehaviour {
-	
-	public static AssetLoad assetLoad;
-	
-	public GameObject newGameObject;
-	public Transform targetingInner;
-	public Transform targetingOuter;
-	public Transform healthBar;
-	public Transform[] mapIcon;
-		
-	private void Awake () {
-		assetLoad = this;
+public class AssetLoad : UnityEngine.MonoBehaviour {
+	public static AssetLoad instance;
+	public UnityEngine.GameObject newGameObject;
+	public UnityEngine.Transform targetingInner;
+	public UnityEngine.Transform targetingOuter;
+	public UnityEngine.Transform healthBar;
+	public UnityEngine.Transform[] mapIcon;
+	private void Awake() {
+		instance = this;
 	}
-	
 	public Weapons[] weapons;
 	public Weapon[] weapon;
 	public enum Weapons {
@@ -26,9 +19,14 @@ public class AssetLoad : MonoBehaviour {
 		square,
 		arrow
 	}
-	
-	public static Vector3 DimensionLimiter (Vector3 input, Vector3 axes) {
-		return Vector3.Scale(input, new Vector3(Mathf.Round(Mathf.Clamp01(axes.x)), Mathf.Round(Mathf.Clamp01(axes.y)), Mathf.Round(Mathf.Clamp01(axes.z))));
+	public static UnityEngine.Vector3 DimensionLimiter(UnityEngine.Vector3 input , UnityEngine.Vector3 axes) {
+		return UnityEngine.Vector3.Scale(
+			input ,
+			new UnityEngine.Vector3(
+				UnityEngine.Mathf.Round(UnityEngine.Mathf.Clamp01(axes.x)) ,
+				UnityEngine.Mathf.Round(UnityEngine.Mathf.Clamp01(axes.y)) ,
+				UnityEngine.Mathf.Round(UnityEngine.Mathf.Clamp01(axes.z))
+			)
+		);
 	}
-
 }

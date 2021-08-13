@@ -91,9 +91,9 @@ public class PlayerBasic : MonoBehaviour {
 		target1List.CopyTo(target1);
 		target2List.CopyTo(target2);
 		// Make a laser.
-		(laser = (Instantiate(AssetLoad.assetLoad.newGameObject, transform.position, transform.rotation) as GameObject).transform).parent = transform;
-		(Instantiate(AssetLoad.assetLoad.mapIcon[(int)mapIcon], transform.position, transform.rotation) as Transform).parent = transform;
-		(Instantiate(AssetLoad.assetLoad.healthBar, transform.position, transform.rotation) as Transform).parent = transform;
+		(laser = (Instantiate(AssetLoad.instance.newGameObject, transform.position, transform.rotation) as GameObject).transform).parent = transform;
+		(Instantiate(AssetLoad.instance.mapIcon[(int)mapIcon], transform.position, transform.rotation) as Transform).parent = transform;
+		(Instantiate(AssetLoad.instance.healthBar, transform.position, transform.rotation) as Transform).parent = transform;
 
 		if (turnSpeed==0 || moveSpeed==0) {
 			Debug.LogError("Idiot. You forgot to set the speed.", this);
