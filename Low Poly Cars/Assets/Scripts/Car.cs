@@ -28,12 +28,31 @@ public class Car : MonoBehaviour
 
     void FixedUpdate()
     {
-        wheelColliderLeftBack.motorTorque = Input.GetAxis("Vertical") * motorTorque;
-        wheelColliderRightBack.motorTorque = Input.GetAxis("Vertical") * motorTorque;
-     
-        wheelColliderLeftFront.steerAngle = Input.GetAxis("Horizontal") * maxSteer;
-        wheelColliderRightFront.steerAngle = Input.GetAxis("Horizontal") * maxSteer;
 
+
+        var gamepad = UnityEngine.InputSystem.Gamepad.current;
+        if (gamepad == null)
+            return; // No gamepad connected.
+
+        if (gamepad.rightTrigger.wasPressedThisFrame) {
+            // 'Use' code here
+        }
+
+        Vector2 leftStick = gamepad.leftStick.ReadValue();
+        Vector2 rightStick = gamepad.rightStick.ReadValue();
+
+        float lx = UnityEngine.InputSystem.Gamepad.current.leftStick.x.ReadValue();
+        float ly = UnityEngine.InputSystem.Gamepad.current.leftStick.y.ReadValue();
+        float rx = UnityEngine.InputSystem.Gamepad.current.rightStick.x.ReadValue();
+        float ry = UnityEngine.InputSystem.Gamepad.current.rightStick.y.ReadValue();
+
+
+        wheelColliderLeftBack.motorTorque = ry * motorTorque;
+        wheelColliderRightBack.motorTorque = ry * motorTorque;
+     
+        wheelColliderLeftFront.steerAngle = rx * maxSteer;
+        wheelColliderRightFront.steerAngle = rx * maxSteer;
+  
     }
 
     void Update()
