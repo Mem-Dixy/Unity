@@ -24,11 +24,16 @@ public class Car : MonoBehaviour
     public float motorTorque = 100f;
     public float maxSteer = 20f;
     private Rigidbody _rigidbody;
+    private Vector3 worldUp;
 
     void Start()
     {
         _rigidbody = GetComponent<Rigidbody>();
         _rigidbody.centerOfMass = centerOfMass.localPosition;
+        Vector3 gravity = Physics.gravity;
+        Vector3 inverse = Vector3.zero - gravity;
+        Vector3 normalized = inverse.normalized;
+        worldUp = normalized;
     }
 
     void FixedUpdate()
@@ -73,7 +78,7 @@ public class Car : MonoBehaviour
         wheelColliderRightFront.steerAngle = turn * maxSteer;
 
         Vector3 relativePos = new Vector3(rx, 0, ry);
-        Quaternion rotation = Quaternion.LookRotation(relativePos , Vector3.up);
+        Quaternion rotation = Quaternion.LookRotation(relativePos , worldUp);
         gun.localRotation = rotation;
     }
 
