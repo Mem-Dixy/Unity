@@ -16,10 +16,17 @@ public class Jeep : MonoBehaviour {
     public Transform wheelLeftBack;
     public Transform wheelRightBack;
     public Transform gun;
+    public Transform mordor;
 
     public float motorTorque = 100f;
-    public float maxSteer = 20f;
+    public float maxSteer = 6;
+    public Vector3 gunAim;
+
     private Rigidbody _rigidbody;
+
+    public float rateOfFire = 0.2f;
+    private float timeSinceFired = 0.0f;
+
 
     public float driveForce {
         get => _driveForce;
@@ -49,6 +56,8 @@ public class Jeep : MonoBehaviour {
         wheelColliderRightBack.motorTorque = driveForce * motorTorque;
         wheelColliderLeftFront.steerAngle = turnForce * maxSteer;
         wheelColliderRightFront.steerAngle = turnForce * maxSteer;
+        Vector3 relativeUp = transform.TransformDirection(Vector3.up);
+        gun.LookAt(gunAim , relativeUp);
     }
 
     public void Update() {
@@ -56,6 +65,7 @@ public class Jeep : MonoBehaviour {
         TurnWheel(wheelColliderRightFront , wheelRightFront);
         TurnWheel(wheelColliderLeftBack , wheelLeftBack);
         TurnWheel(wheelColliderRightBack , wheelRightBack);
+        timeSinceFired -= Time.deltaTime;
     }
 
     private void TurnWheel(WheelCollider collider , Transform transform) {
@@ -64,5 +74,13 @@ public class Jeep : MonoBehaviour {
         collider.GetWorldPose(out pos , out quat);
         transform.position = pos;
         transform.rotation = quat;
+    }
+
+    public void Fire() {
+        if (timeSinceFired <= 0) {
+            timeSinceFired = rateOfFire;
+            Instantiate(mordor , gun.position , gun.rotation);
+            Debug.Log("ouch");
+        }
     }
 }

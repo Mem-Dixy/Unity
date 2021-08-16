@@ -21,7 +21,7 @@ public class JeepController : MonoBehaviour {
     public Transform aimGun;
 
     public Jeep jeep;
-
+    public float fireDeadZone = 0.2f;
 
     void Start() {
         jeep = GetComponent<Jeep>();
@@ -45,7 +45,6 @@ public class JeepController : MonoBehaviour {
         float rx = gamepad.rightStick.x.ReadValue();
         float ry = gamepad.rightStick.y.ReadValue();
 
-
         Vector3 direction = new Vector3(10 * lx , 0 , 10 * ly);
         Vector3 targetPoint = inputHelper.TransformDirection(direction);
         Vector3 offsetPoint = targetPoint + transform.position;
@@ -59,19 +58,18 @@ public class JeepController : MonoBehaviour {
         //
         Vector3 direction2 = new Vector3(8 * rx , 0 , 8 * ry);
         Vector3 targetPoint2 = inputHelper.TransformDirection(direction2);
+        Vector3 offsetPoint2 = targetPoint2 + jeep.gun.position;
         //
         jeep.turnForce = turn;
         jeep.driveForce = forwardy;
-    /*
-    Vector3 offsetPoint2 = targetPoint2 + gun.position;
-    Vector3 relativeUp = transform.TransformDirection(Vector3.up);
-    gun.LookAt(offsetPoint2 , relativeUp);
-    */
+        jeep.gunAim = offsetPoint2;
 
+        aimCar.position = offsetPoint;
+        aimGun.position = offsetPoint2;
 
-    aimCar.position = offsetPoint;
-        //aimGun.position = offsetPoint2;
-
+        if (new Vector3(rx, 0, ry).magnitude > 0.2) {
+            jeep.Fire();
+        }
     }
 
     public void Update() {
