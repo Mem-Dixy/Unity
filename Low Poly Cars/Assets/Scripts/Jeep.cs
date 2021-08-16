@@ -22,7 +22,7 @@ public class Jeep : MonoBehaviour {
     public float maxSteer = 6;
     public Vector3 gunAim;
 
-    private Rigidbody _rigidbody;
+    public Rigidbody _rigidbody;
 
     public float rateOfFire = 0.2f;
     private float timeSinceFired = 0.0f;
@@ -80,7 +80,6 @@ public class Jeep : MonoBehaviour {
         if (timeSinceFired <= 0) {
             timeSinceFired = rateOfFire;
             Instantiate(mordor , gun.position , gun.rotation);
-            Debug.Log("ouch");
         }
     }
 }

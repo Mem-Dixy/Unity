@@ -40,6 +40,15 @@ public class JeepController : MonoBehaviour {
         Vector2 leftStick = gamepad.leftStick.ReadValue();
         Vector2 rightStick = gamepad.rightStick.ReadValue();
 
+        bool fire = gamepad.triangleButton.isPressed;
+        jeep._rigidbody.isKinematic = fire;
+        if (fire) {
+            transform.position = new Vector3(0 , 15 , 0);
+            transform.rotation = Quaternion.identity;
+
+        }
+
+
         float lx = gamepad.leftStick.x.ReadValue();
         float ly = gamepad.leftStick.y.ReadValue();
         float rx = gamepad.rightStick.x.ReadValue();
@@ -87,3 +96,9 @@ public class JeepController : MonoBehaviour {
         inputHelper.LookAt(worldAxisForward , worldAxisUp);
     }
 }
+
+
+
+// make it so gun look at not gitter when no shooting
+// make so car stops when no input
+// maybe add backing up when not moving??
