@@ -80,14 +80,14 @@ csharp_style_var_for_built_in_types = false:error
 csharp_style_var_when_type_is_apparent = false:error
 
 # Expression-bodied members
-csharp_style_expression_bodied_accessors = true:error
-csharp_style_expression_bodied_constructors = true:error
-csharp_style_expression_bodied_indexers = true:error
-csharp_style_expression_bodied_lambdas = true:error
-csharp_style_expression_bodied_local_functions = true:error
-csharp_style_expression_bodied_methods = true:error
-csharp_style_expression_bodied_operators = true:error
-csharp_style_expression_bodied_properties = true:error
+csharp_style_expression_bodied_accessors = false:error
+csharp_style_expression_bodied_constructors = false:error
+csharp_style_expression_bodied_indexers = false:error
+csharp_style_expression_bodied_lambdas = false:error
+csharp_style_expression_bodied_local_functions = false:error
+csharp_style_expression_bodied_methods = false:error
+csharp_style_expression_bodied_operators = false:error
+csharp_style_expression_bodied_properties = false:error
 
 # Pattern matching preferences
 csharp_style_pattern_matching_over_as_with_null_check = true:error

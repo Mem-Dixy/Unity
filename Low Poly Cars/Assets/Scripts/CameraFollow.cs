@@ -1,27 +1,20 @@
-using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+public class CameraFollow : UnityEngine.MonoBehaviour {
 
-public class CameraFollow : MonoBehaviour
-{
+	public UnityEngine.Transform Target;
 
-    public Transform Target;
+	public UnityEngine.Vector3 offset;
+	public UnityEngine.Vector3 eulerRotation;
+	public System.Int32 damper;
 
-    public Vector3 offset;
-    public Vector3 eulerRotation;
-    public float damper;
+	void Start() {
+		this.transform.eulerAngles = this.eulerRotation;
+	}
 
-    void Start()
-    {
-        transform.eulerAngles = eulerRotation;
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        if (Target == null) {
-            return;
+	// Update is called once per frame
+	void Update() {
+		if (this.Target == null) {
+			return;
 		}
-        transform.position = Vector3.Lerp(transform.position, Target.position + offset, damper * (Time.deltaTime * 4));
-    }
+		this.transform.position = UnityEngine.Vector3.Lerp(this.transform.position, this.Target.position + this.offset, this.damper * (UnityEngine.Time.deltaTime * 4));
+	}
 }
