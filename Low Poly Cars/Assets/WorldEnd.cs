@@ -1,14 +1,4 @@
-using System.Collections;
-using System.Collections.Generic;
-
 using UnityEngine;
-
-// Vector3.ProjectOnPlane - example
-
-// Generate a random plane in xy. Show the position of a random
-// vector and a connection to the plane. The example shows nothing
-// in the Game view but uses Update(). The script reference example
-// uses Gizmos to show the positions and axes in the Scene.
 
 public class WorldEnd : UnityEngine.MonoBehaviour {
     public Transform playerCamera;
@@ -18,7 +8,6 @@ public class WorldEnd : UnityEngine.MonoBehaviour {
 
     // the rotation of this object defines the world up direction
     public Transform virtualGroundOrientationReference;
-
 
     // the x y z axis of the world calculated from the ground reference and the camera
     public Vector3 worldAxisUp;
@@ -31,59 +20,56 @@ public class WorldEnd : UnityEngine.MonoBehaviour {
     private Transform inputHelper;
 
     private void Start() {
-        virtualGroundNormal = virtualGroundOrientationReference.TransformDirection(Vector3.up);
-        inputHelper = new GameObject("Input Helper").transform;
+        this.virtualGroundNormal = this.virtualGroundOrientationReference.TransformDirection(Vector3.up);
+		this.inputHelper = new GameObject("Input Helper").transform;
     }
-
 
     private void Update() {
 
-
-        Vector3 camera_position = playerCamera.position;
+        Vector3 camera_position = this.playerCamera.position;
         Vector3 camera_shadow = new Vector3(camera_position.x , 0 , camera_position.z); // project?
 
-        Vector3 cam_ray1 = camera_shadow - camera_position;
-        Vector3 cam_ray = new Vector3(0 , -playerCamera.position.y , 0);
+        Vector3 cam_ray = new Vector3(0 , -this.playerCamera.position.y , 0);
 
-        drop.position = virtualGroundOrientationReference.TransformVector(Vector3.up);
-        spot.position = virtualGroundOrientationReference.TransformPoint(Vector3.up);
-        point.position = virtualGroundOrientationReference.TransformDirection(Vector3.up); 
+		this.drop.position = this.virtualGroundOrientationReference.TransformVector(Vector3.up);
+		this.spot.position = this.virtualGroundOrientationReference.TransformPoint(Vector3.up);
+		this.point.position = this.virtualGroundOrientationReference.TransformDirection(Vector3.up); 
 
-        Vector3 aforwardian = playerCamera.TransformVector(Vector3.forward);
-        Vector3 forwardian = aforwardian = playerCamera.position;
+        Vector3 aforwardian = this.playerCamera.TransformVector(Vector3.forward);
+        Vector3 forwardian = aforwardian - this.playerCamera.position;
         Vector3 putt = Vector3.Project(cam_ray , forwardian);
         Vector3 final = putt - camera_shadow;
-        point.rotation = Quaternion.LookRotation(final , Vector3.up);
+		this.point.rotation = Quaternion.LookRotation(final , Vector3.up);
 
-        // find plane normal
-        virtualGroundNormal = virtualGroundOrientationReference.TransformDirection(Vector3.up);
+		// find plane normal
+		this.virtualGroundNormal = this.virtualGroundOrientationReference.TransformDirection(Vector3.up);
         // fix camera rotation
-        Vector3 worldPosition = playerCamera.TransformPoint(Vector3.forward);
-        Vector3 worldUp = virtualGroundNormal;
-        playerCamera.LookAt(worldPosition , worldUp);
-        // set axis
-        worldAxisUp = virtualGroundNormal;
-        worldAxisForward = playerCamera.TransformVector(Vector3.forward);
-        Vector3.OrthoNormalize(ref worldAxisUp , ref worldAxisForward , ref worldAxisRight);
-        // adjust input helper
-        inputHelper.LookAt(worldAxisForward , worldAxisUp);
+        Vector3 worldPosition = this.playerCamera.TransformPoint(Vector3.forward);
+        Vector3 worldUp = this.virtualGroundNormal;
+		this.playerCamera.LookAt(worldPosition , worldUp);
+		// set axis
+		this.worldAxisUp = this.virtualGroundNormal;
+		this.worldAxisForward = this.playerCamera.TransformVector(Vector3.forward);
+        Vector3.OrthoNormalize(ref this.worldAxisUp , ref this.worldAxisForward , ref this.worldAxisRight);
+		// adjust input helper
+		this.inputHelper.LookAt(this.worldAxisForward , this.worldAxisUp);
         //
     }
 
     // Show a Scene view example.
     void OnDrawGizmosSelected() {
         Gizmos.color = Color.white;
-        Gizmos.DrawLine(Vector3.zero , virtualGroundNormal);
+        Gizmos.DrawLine(Vector3.zero , this.virtualGroundNormal);
 
         Gizmos.color = Color.blue;
         Gizmos.DrawSphere(Vector3.zero , 0.05f);
 
         Gizmos.color = Color.green;
-        Gizmos.DrawLine(Vector3.zero , worldAxisUp);
+        Gizmos.DrawLine(Vector3.zero , this.worldAxisUp);
         Gizmos.color = Color.blue;
-        Gizmos.DrawLine(Vector3.zero , worldAxisForward);
+        Gizmos.DrawLine(Vector3.zero , this.worldAxisForward);
         Gizmos.color = Color.red;
-        Gizmos.DrawLine(Vector3.zero , worldAxisRight);
+        Gizmos.DrawLine(Vector3.zero , this.worldAxisRight);
 
     }
 }
