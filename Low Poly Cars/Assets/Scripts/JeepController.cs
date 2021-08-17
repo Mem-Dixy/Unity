@@ -21,7 +21,7 @@ public class JeepController : MonoBehaviour {
     public Transform aimGun;
 
     public Jeep jeep;
-    public float fireDeadZone = 0.2f;
+
 
     void Start() {
         jeep = GetComponent<Jeep>();
@@ -40,19 +40,11 @@ public class JeepController : MonoBehaviour {
         Vector2 leftStick = gamepad.leftStick.ReadValue();
         Vector2 rightStick = gamepad.rightStick.ReadValue();
 
-        bool fire = gamepad.triangleButton.isPressed;
-        jeep._rigidbody.isKinematic = fire;
-        if (fire) {
-            transform.position = new Vector3(0 , 15 , 0);
-            transform.rotation = Quaternion.identity;
-
-        }
-
-
         float lx = gamepad.leftStick.x.ReadValue();
         float ly = gamepad.leftStick.y.ReadValue();
         float rx = gamepad.rightStick.x.ReadValue();
         float ry = gamepad.rightStick.y.ReadValue();
+
 
         Vector3 direction = new Vector3(10 * lx , 0 , 10 * ly);
         Vector3 targetPoint = inputHelper.TransformDirection(direction);
@@ -67,18 +59,19 @@ public class JeepController : MonoBehaviour {
         //
         Vector3 direction2 = new Vector3(8 * rx , 0 , 8 * ry);
         Vector3 targetPoint2 = inputHelper.TransformDirection(direction2);
-        Vector3 offsetPoint2 = targetPoint2 + jeep.gun.position;
         //
         jeep.turnForce = turn;
         jeep.driveForce = forwardy;
-        jeep.gunAim = offsetPoint2;
+    /*
+    Vector3 offsetPoint2 = targetPoint2 + gun.position;
+    Vector3 relativeUp = transform.TransformDirection(Vector3.up);
+    gun.LookAt(offsetPoint2 , relativeUp);
+    */
 
-        aimCar.position = offsetPoint;
-        aimGun.position = offsetPoint2;
 
-        if (new Vector3(rx, 0, ry).magnitude > 0.2) {
-            jeep.Fire();
-        }
+    aimCar.position = offsetPoint;
+        //aimGun.position = offsetPoint2;
+
     }
 
     public void Update() {
@@ -96,9 +89,3 @@ public class JeepController : MonoBehaviour {
         inputHelper.LookAt(worldAxisForward , worldAxisUp);
     }
 }
-
-
-
-// make it so gun look at not gitter when no shooting
-// make so car stops when no input
-// maybe add backing up when not moving??
