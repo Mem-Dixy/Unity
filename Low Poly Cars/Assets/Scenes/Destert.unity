@@ -418,17 +418,6 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 8820386162410906514, guid: de3ba8bbfd18a7a43ac360ac9253c867, type: 3}
   m_PrefabInstance: {fileID: 553767637}
   m_PrefabAsset: {fileID: 0}
---- !u!114 &29604838 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 929883569221568712, guid: f3c4cf3fb665f5f40b56748f42ffdf5d, type: 3}
-  m_PrefabInstance: {fileID: 1698560834}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: fbd9effccb0a921438c7b3f37b6f2168, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!4 &29604844 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 3890887937272201873, guid: f3c4cf3fb665f5f40b56748f42ffdf5d, type: 3}
@@ -2188,11 +2177,6 @@ PrefabInstance:
 Transform:
   m_CorrespondingSourceObject: {fileID: 8820386162410906514, guid: de3ba8bbfd18a7a43ac360ac9253c867, type: 3}
   m_PrefabInstance: {fileID: 586889500}
-  m_PrefabAsset: {fileID: 0}
---- !u!4 &593489971 stripped
-Transform:
-  m_CorrespondingSourceObject: {fileID: 1145553720461886328, guid: f3c4cf3fb665f5f40b56748f42ffdf5d, type: 3}
-  m_PrefabInstance: {fileID: 1698560834}
   m_PrefabAsset: {fileID: 0}
 --- !u!4 &604069145 stripped
 Transform:
@@ -6108,14 +6092,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 929883569221568709, guid: f3c4cf3fb665f5f40b56748f42ffdf5d, type: 3}
-      propertyPath: m_Interpolate
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 929883569221568710, guid: f3c4cf3fb665f5f40b56748f42ffdf5d, type: 3}
-      propertyPath: jeep
-      value: 
-      objectReference: {fileID: 29604838}
     - target: {fileID: 929883569221568710, guid: f3c4cf3fb665f5f40b56748f42ffdf5d, type: 3}
       propertyPath: aimCar
       value: 
@@ -6132,14 +6108,6 @@ PrefabInstance:
       propertyPath: virtualGroundOrientationReference
       value: 
       objectReference: {fileID: 1258466490}
-    - target: {fileID: 929883569221568712, guid: f3c4cf3fb665f5f40b56748f42ffdf5d, type: 3}
-      propertyPath: gun
-      value: 
-      objectReference: {fileID: 593489971}
-    - target: {fileID: 929883569221568712, guid: f3c4cf3fb665f5f40b56748f42ffdf5d, type: 3}
-      propertyPath: mordor
-      value: 
-      objectReference: {fileID: 3926678713590082251, guid: 3b7e5d00c004c1f459c8c8848bc7e152, type: 3}
     - target: {fileID: 3890887937272201873, guid: f3c4cf3fb665f5f40b56748f42ffdf5d, type: 3}
       propertyPath: m_RootOrder
       value: 1

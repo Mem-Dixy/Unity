@@ -39,12 +39,12 @@ namespace game {
 			}
 		}
 
-		private void Start() {
+		public void Start() {
 			this._rigidbody = this.GetComponent<UnityEngine.Rigidbody>();
 			this._rigidbody.centerOfMass = this.centerOfMass.localPosition;
 		}
 
-		private void FixedUpdate() {
+		public void FixedUpdate() {
 			this.wheelColliderLeftBack.motorTorque = this.driveForce * this.motorTorque;
 			this.wheelColliderRightBack.motorTorque = this.driveForce * this.motorTorque;
 			this.wheelColliderLeftFront.steerAngle = this.turnForce * this.maxSteer;
@@ -54,17 +54,7 @@ namespace game {
 		}
 
 		public void Update() {
-			this.TurnWheel(this.wheelColliderLeftFront, this.wheelLeftFront);
-			this.TurnWheel(this.wheelColliderRightFront, this.wheelRightFront);
-			this.TurnWheel(this.wheelColliderLeftBack, this.wheelLeftBack);
-			this.TurnWheel(this.wheelColliderRightBack, this.wheelRightBack);
 			this.timeSinceFired -= UnityEngine.Time.deltaTime;
-		}
-
-		private void TurnWheel(UnityEngine.WheelCollider collider, UnityEngine.Transform transform) {
-			collider.GetWorldPose(out UnityEngine.Vector3 pos, out UnityEngine.Quaternion quat);
-			transform.position = pos;
-			transform.rotation = quat;
 		}
 
 		public void Fire() {

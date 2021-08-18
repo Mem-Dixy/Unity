@@ -20,14 +20,14 @@ namespace game {
 		public Jeep jeep;
 		public System.Single fireDeadZone = 0.2f;
 
-		private void Start() {
+		public void Start() {
 			this.jeep = this.GetComponent<Jeep>();
 
 			// make input helper
 			this.inputHelper = new UnityEngine.GameObject("Input Helper").transform;
 		}
 
-		private void FixedUpdate() {
+		public void FixedUpdate() {
 
 			UnityEngine.InputSystem.Gamepad gamepad = UnityEngine.InputSystem.Gamepad.current;
 
