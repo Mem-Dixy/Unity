@@ -1,21 +1,15 @@
-using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+public class Bullet : UnityEngine.MonoBehaviour {
+	public System.Single timedLife = 20;
+	public System.Single speed = 25;
 
-public class Bullet : MonoBehaviour
-{
-    public float timedLife = 20;
-    public float speed = 25;
-
-    void FixedUpdate() {
-        transform.Translate(0 , 0 , speed * Time.deltaTime);
+	private void FixedUpdate() {
+		this.transform.Translate(0, 0, this.speed * UnityEngine.Time.deltaTime);
 	}
-    // Update is called once per frame
-    void Update()
-    {
-        timedLife -= Time.deltaTime;
-        if (timedLife < 0) {
-            Destroy(gameObject);
+	// Update is called once per frame
+	private void Update() {
+		this.timedLife -= UnityEngine.Time.deltaTime;
+		if (this.timedLife < 0) {
+			Destroy(this.gameObject);
 		}
-    }
+	}
 }

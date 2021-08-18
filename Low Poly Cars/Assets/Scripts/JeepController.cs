@@ -1,104 +1,100 @@
-using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+public class JeepController : UnityEngine.MonoBehaviour {
+	public UnityEngine.Transform playerCamera;
 
-public class JeepController : MonoBehaviour {
-    public Transform playerCamera;
+	// the rotation of this object defines the world up direction
+	public UnityEngine.Transform virtualGroundOrientationReference;
+	private UnityEngine.Vector3 virtualGroundNormal;
 
-    // the rotation of this object defines the world up direction
-    public Transform virtualGroundOrientationReference;
-    private Vector3 virtualGroundNormal;
+	// the x y z axis of the world calculated from the ground reference and the camera
+	private UnityEngine.Vector3 worldAxisUp;
+	private UnityEngine.Vector3 worldAxisForward;
+	private UnityEngine.Vector3 worldAxisRight;
 
-    // the x y z axis of the world calculated from the ground reference and the camera
-    private Vector3 worldAxisUp;
-    private Vector3 worldAxisForward;
-    private Vector3 worldAxisRight;
+	// would be nice to remove the dependency of this empty object for vector calculations
+	private UnityEngine.Transform inputHelper;
 
-    // would be nice to remove the dependency of this empty object for vector calculations
-    private Transform inputHelper;
+	public UnityEngine.Transform aimCar;
+	public UnityEngine.Transform aimGun;
 
-    public Transform aimCar;
-    public Transform aimGun;
+	public Jeep jeep;
+	public System.Single fireDeadZone = 0.2f;
 
-    public Jeep jeep;
-    public float fireDeadZone = 0.2f;
+	private void Start() {
+		this.jeep = this.GetComponent<Jeep>();
 
-    void Start() {
-        jeep = GetComponent<Jeep>();
-        
-        // make input helper
-        inputHelper = new GameObject("Input Helper").transform;
-    }
+		// make input helper
+		this.inputHelper = new UnityEngine.GameObject("Input Helper").transform;
+	}
 
-    void FixedUpdate() {
+	private void FixedUpdate() {
 
+		UnityEngine.InputSystem.Gamepad gamepad = UnityEngine.InputSystem.Gamepad.current;
 
-        var gamepad = UnityEngine.InputSystem.Gamepad.current;
-        if (gamepad == null) {
-            return; // No gamepad connected.
-        }
-        Vector2 leftStick = gamepad.leftStick.ReadValue();
-        Vector2 rightStick = gamepad.rightStick.ReadValue();
+		if (gamepad == null) {
+			return;
+		}
 
-        bool fire = gamepad.triangleButton.isPressed;
-        jeep._rigidbody.isKinematic = fire;
-        if (fire) {
-            transform.position = new Vector3(0 , 15 , 0);
-            transform.rotation = Quaternion.identity;
+		System.Boolean fire = gamepad.triangleButton.isPressed;
+		this.jeep._rigidbody.isKinematic = fire;
+		if (fire) {
+			this.transform.position = new UnityEngine.Vector3(0, 15, 0);
+			this.transform.rotation = UnityEngine.Quaternion.identity;
 
-        }
+		}
 
+		System.Single lx = gamepad.leftStick.x.ReadValue();
+		System.Single ly = gamepad.leftStick.y.ReadValue();
+		System.Single rx = gamepad.rightStick.x.ReadValue();
+		System.Single ry = gamepad.rightStick.y.ReadValue();
 
-        float lx = gamepad.leftStick.x.ReadValue();
-        float ly = gamepad.leftStick.y.ReadValue();
-        float rx = gamepad.rightStick.x.ReadValue();
-        float ry = gamepad.rightStick.y.ReadValue();
+		UnityEngine.Vector3 direction = new UnityEngine.Vector3(10 * lx, 0, 10 * ly);
+		UnityEngine.Vector3 targetPoint = this.inputHelper.TransformDirection(direction);
+		UnityEngine.Vector3 offsetPoint = targetPoint + this.transform.position;
+		//
+		UnityEngine.Vector3 point = this.transform.InverseTransformPoint(offsetPoint);
+		System.Single turn = UnityEngine.Mathf.Atan2(point.x, point.z);
 
-        Vector3 direction = new Vector3(10 * lx , 0 , 10 * ly);
-        Vector3 targetPoint = inputHelper.TransformDirection(direction);
-        Vector3 offsetPoint = targetPoint + transform.position;
-        //
-        Vector3 point = transform.InverseTransformPoint(offsetPoint);
-        float turn = Mathf.Atan2(point.x , point.z);
+		System.Single face = UnityEngine.Vector3.Dot(UnityEngine.Vector3.forward, point);
+		System.Single forwardy = UnityEngine.Mathf.Clamp01(face);
 
-        float face = Vector3.Dot(Vector3.forward , point);
-        float forwardy = Mathf.Clamp01(face);
+		//
+		UnityEngine.Vector3 direction2 = new UnityEngine.Vector3(8 * rx, 0, 8 * ry);
+		UnityEngine.Vector3 targetPoint2 = this.inputHelper.TransformDirection(direction2);
+		UnityEngine.Vector3 offsetPoint2 = targetPoint2 + this.jeep.gun.position;
+		//
+		this.jeep.TurnForce = turn;
+		this.jeep.DriveForce = forwardy;
+		this.jeep.gunAim = offsetPoint2;
 
-        //
-        Vector3 direction2 = new Vector3(8 * rx , 0 , 8 * ry);
-        Vector3 targetPoint2 = inputHelper.TransformDirection(direction2);
-        Vector3 offsetPoint2 = targetPoint2 + jeep.gun.position;
-        //
-        jeep.turnForce = turn;
-        jeep.driveForce = forwardy;
-        jeep.gunAim = offsetPoint2;
+		this.aimCar.position = offsetPoint;
+		this.aimGun.position = offsetPoint2;
 
-        aimCar.position = offsetPoint;
-        aimGun.position = offsetPoint2;
+		if (new UnityEngine.Vector3(rx, 0, ry).magnitude > 0.2) {
+			this.jeep.Fire();
+		}
+	}
 
-        if (new Vector3(rx, 0, ry).magnitude > 0.2) {
-            jeep.Fire();
-        }
-    }
-
-    public void Update() {
-        // find plane normal
-        virtualGroundNormal = virtualGroundOrientationReference.TransformDirection(Vector3.up);
-        // fix camera rotation
-        Vector3 worldPosition = playerCamera.TransformPoint(Vector3.forward);
-        Vector3 worldUp = virtualGroundNormal;
-        playerCamera.LookAt(worldPosition , worldUp);
-        // set axis
-        worldAxisUp = virtualGroundNormal;
-        worldAxisForward = playerCamera.TransformVector(Vector3.forward);
-        Vector3.OrthoNormalize(ref worldAxisUp , ref worldAxisForward , ref worldAxisRight);
-        // adjust input helper
-        inputHelper.LookAt(worldAxisForward , worldAxisUp);
-    }
+	public void Update() {
+		// find plane normal
+		this.virtualGroundNormal = this.virtualGroundOrientationReference.TransformDirection(UnityEngine.Vector3.up);
+		// fix camera rotation
+		UnityEngine.Vector3 worldPosition = this.playerCamera.TransformPoint(UnityEngine.Vector3.forward);
+		UnityEngine.Vector3 worldUp = this.virtualGroundNormal;
+		this.playerCamera.LookAt(worldPosition, worldUp);
+		// set axis
+		this.worldAxisUp = this.virtualGroundNormal;
+		this.worldAxisForward = this.playerCamera.TransformVector(UnityEngine.Vector3.forward);
+		UnityEngine.Vector3.OrthoNormalize(ref this.worldAxisUp, ref this.worldAxisForward, ref this.worldAxisRight);
+		// adjust input helper
+		this.inputHelper.LookAt(this.worldAxisForward, this.worldAxisUp);
+	}
 }
-
-
 
 // make it so gun look at not gitter when no shooting
 // make so car stops when no input
 // maybe add backing up when not moving??
+// gravity gun
+// boost da car
+// add enemy turrets that shoot you
+// laser beam
+// fix errors

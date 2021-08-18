@@ -1,85 +1,76 @@
-using System.Collections;
-using System.Collections.Generic;
+public class Jeep : UnityEngine.MonoBehaviour {
+	public UnityEngine.Transform centerOfMass;
 
-using UnityEngine;
+	public UnityEngine.WheelCollider wheelColliderLeftFront;
+	public UnityEngine.WheelCollider wheelColliderLeftBack;
+	public UnityEngine.WheelCollider wheelColliderRightFront;
+	public UnityEngine.WheelCollider wheelColliderRightBack;
 
-public class Jeep : MonoBehaviour {
-    public Transform centerOfMass;
+	public UnityEngine.Transform wheelLeftFront;
+	public UnityEngine.Transform wheelRightFront;
+	public UnityEngine.Transform wheelLeftBack;
+	public UnityEngine.Transform wheelRightBack;
+	public UnityEngine.Transform gun;
+	public UnityEngine.Transform mordor;
 
-    public WheelCollider wheelColliderLeftFront;
-    public WheelCollider wheelColliderLeftBack;
-    public WheelCollider wheelColliderRightFront;
-    public WheelCollider wheelColliderRightBack;
+	public System.Single motorTorque = 100f;
+	public System.Single maxSteer = 6;
+	public UnityEngine.Vector3 gunAim;
 
-    public Transform wheelLeftFront;
-    public Transform wheelRightFront;
-    public Transform wheelLeftBack;
-    public Transform wheelRightBack;
-    public Transform gun;
-    public Transform mordor;
+	public UnityEngine.Rigidbody _rigidbody;
 
-    public float motorTorque = 100f;
-    public float maxSteer = 6;
-    public Vector3 gunAim;
+	public System.Single rateOfFire = 0.2f;
+	private System.Single timeSinceFired = 0.0f;
 
-    public Rigidbody _rigidbody;
+	public System.Single DriveForce {
+		get { return this.driveForce; }
+		set {
+			this.driveForce = UnityEngine.Mathf.Clamp(value, -1, 1);
+		}
+	}
+	private System.Single driveForce;
 
-    public float rateOfFire = 0.2f;
-    private float timeSinceFired = 0.0f;
+	public System.Single TurnForce {
+		get { return this.turnForce; }
 
+		set {
+			this.turnForce = UnityEngine.Mathf.Clamp(value, -1, 1);
+		}
+	}
+	private System.Single turnForce;
 
-    public float driveForce {
-        get => _driveForce;
-        set {
-            _driveForce = Mathf.Clamp(value , -1 , 1);
-         }
-    }
-    private float _driveForce;
+	private void Start() {
+		this._rigidbody = this.GetComponent<UnityEngine.Rigidbody>();
+		this._rigidbody.centerOfMass = this.centerOfMass.localPosition;
+	}
 
-    public float turnForce {
-        get => _turnForce;
-        set {
-            _turnForce = Mathf.Clamp(value , -1 , 1);
-        }
-    }
-    private float _turnForce;
+	private void FixedUpdate() {
+		this.wheelColliderLeftBack.motorTorque = this.driveForce * this.motorTorque;
+		this.wheelColliderRightBack.motorTorque = this.driveForce * this.motorTorque;
+		this.wheelColliderLeftFront.steerAngle = this.turnForce * this.maxSteer;
+		this.wheelColliderRightFront.steerAngle = this.turnForce * this.maxSteer;
+		UnityEngine.Vector3 relativeUp = this.transform.TransformDirection(UnityEngine.Vector3.up);
+		this.gun.LookAt(this.gunAim, relativeUp);
+	}
 
+	public void Update() {
+		this.TurnWheel(this.wheelColliderLeftFront, this.wheelLeftFront);
+		this.TurnWheel(this.wheelColliderRightFront, this.wheelRightFront);
+		this.TurnWheel(this.wheelColliderLeftBack, this.wheelLeftBack);
+		this.TurnWheel(this.wheelColliderRightBack, this.wheelRightBack);
+		this.timeSinceFired -= UnityEngine.Time.deltaTime;
+	}
 
+	private void TurnWheel(UnityEngine.WheelCollider collider, UnityEngine.Transform transform) {
+		collider.GetWorldPose(out UnityEngine.Vector3 pos, out UnityEngine.Quaternion quat);
+		transform.position = pos;
+		transform.rotation = quat;
+	}
 
-    void Start() {
-        _rigidbody = GetComponent<Rigidbody>();
-        _rigidbody.centerOfMass = centerOfMass.localPosition;
-    }
-
-    void FixedUpdate() {
-        wheelColliderLeftBack.motorTorque = driveForce * motorTorque;
-        wheelColliderRightBack.motorTorque = driveForce * motorTorque;
-        wheelColliderLeftFront.steerAngle = turnForce * maxSteer;
-        wheelColliderRightFront.steerAngle = turnForce * maxSteer;
-        Vector3 relativeUp = transform.TransformDirection(Vector3.up);
-        gun.LookAt(gunAim , relativeUp);
-    }
-
-    public void Update() {
-        TurnWheel(wheelColliderLeftFront , wheelLeftFront);
-        TurnWheel(wheelColliderRightFront , wheelRightFront);
-        TurnWheel(wheelColliderLeftBack , wheelLeftBack);
-        TurnWheel(wheelColliderRightBack , wheelRightBack);
-        timeSinceFired -= Time.deltaTime;
-    }
-
-    private void TurnWheel(WheelCollider collider , Transform transform) {
-        Vector3 pos;
-        Quaternion quat;
-        collider.GetWorldPose(out pos , out quat);
-        transform.position = pos;
-        transform.rotation = quat;
-    }
-
-    public void Fire() {
-        if (timeSinceFired <= 0) {
-            timeSinceFired = rateOfFire;
-            Instantiate(mordor , gun.position , gun.rotation);
-        }
-    }
+	public void Fire() {
+		if (this.timeSinceFired <= 0) {
+			this.timeSinceFired = this.rateOfFire;
+			_ = UnityEngine.Object.Instantiate(this.mordor, this.gun.position, this.gun.rotation);
+		}
+	}
 }

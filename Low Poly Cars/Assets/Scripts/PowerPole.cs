@@ -1,12 +1,6 @@
-using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
-
-public class PowerPole : MonoBehaviour
-{
-    void OnCollisionEnter(Collision collision)
-    {
-        Rigidbody rigidbody = GetComponent<Rigidbody>() as Rigidbody;
-        rigidbody.isKinematic = false;
-    }
+public class PowerPole : UnityEngine.MonoBehaviour {
+	private void OnCollisionEnter() {
+		UnityEngine.Rigidbody rigidbody = this.GetComponent<UnityEngine.Rigidbody>() as UnityEngine.Rigidbody;
+		rigidbody.isKinematic = false;
+	}
 }

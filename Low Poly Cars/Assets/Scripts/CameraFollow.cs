@@ -6,12 +6,12 @@ public class CameraFollow : UnityEngine.MonoBehaviour {
 	public UnityEngine.Vector3 eulerRotation;
 	public System.Int32 damper;
 
-	void Start() {
+	private void Start() {
 		this.transform.eulerAngles = this.eulerRotation;
 	}
 
 	// Update is called once per frame
-	void Update() {
+	private void Update() {
 		if (this.Target == null) {
 			return;
 		}
