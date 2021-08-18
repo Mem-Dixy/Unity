@@ -1,6 +1,7 @@
 namespace game {
 	public class JeepController : UnityEngine.MonoBehaviour {
 		public UnityEngine.Transform playerCamera;
+		public UnityEngine.Rigidbody _rigidbody;
 
 		// the rotation of this object defines the world up direction
 		public UnityEngine.Transform virtualGroundOrientationReference;
@@ -21,7 +22,8 @@ namespace game {
 		public System.Single fireDeadZone = 0.2f;
 
 		public void Start() {
-			this.jeep = this.GetComponent<Jeep>();
+			this._rigidbody = this.GetComponent<UnityEngine.Rigidbody>();
+			this.jeep = this.GetComponentInChildren<Jeep>();
 
 			// make input helper
 			this.inputHelper = new UnityEngine.GameObject("Input Helper").transform;
@@ -36,7 +38,7 @@ namespace game {
 			}
 
 			System.Boolean fire = gamepad.triangleButton.isPressed;
-			this.jeep._rigidbody.isKinematic = fire;
+			this._rigidbody.isKinematic = fire;
 			if (fire) {
 				this.transform.position = new UnityEngine.Vector3(0, 15, 0);
 				this.transform.rotation = UnityEngine.Quaternion.identity;

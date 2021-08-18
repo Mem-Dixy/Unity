@@ -6,7 +6,7 @@ namespace game {
 		public UnityEngine.WheelCollider WheelCollider { get; private set; }
 
 		public void Start() {
-			this.WheelCollider = this.GetComponent<UnityEngine.WheelCollider>() as UnityEngine.WheelCollider;
+			this.WheelCollider = this.GetComponent<UnityEngine.WheelCollider>();
 		}
 		public void Update() {
 			this.WheelCollider.GetWorldPose(out UnityEngine.Vector3 pos, out UnityEngine.Quaternion quat);

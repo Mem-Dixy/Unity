@@ -7,12 +7,12 @@ namespace game {
 		public UnityEngine.Vector3 eulerRotation;
 		public System.Int32 damper;
 
-		private void Start() {
+		public void Start() {
 			this.transform.eulerAngles = this.eulerRotation;
 		}
 
 		// Update is called once per frame
-		private void Update() {
+		public void Update() {
 			if (this.Target == null) {
 				return;
 			}
