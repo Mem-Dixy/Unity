@@ -74,7 +74,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2c70afe2354273141822efe6bee41b40, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  wheel: {fileID: 8357900633867548332}
+  wheelMesh: {fileID: 8357900633867548332}
 --- !u!1 &929883568393632028
 GameObject:
   m_ObjectHideFlags: 0
@@ -149,7 +149,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2c70afe2354273141822efe6bee41b40, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  wheel: {fileID: 5902082133923231247}
+  wheelMesh: {fileID: 5902082133923231247}
 --- !u!1 &929883568435311946
 GameObject:
   m_ObjectHideFlags: 0
@@ -224,7 +224,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2c70afe2354273141822efe6bee41b40, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  wheel: {fileID: 435337051217236816}
+  wheelMesh: {fileID: 435337051217236816}
 --- !u!1 &929883568447407418
 GameObject:
   m_ObjectHideFlags: 0
@@ -299,7 +299,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2c70afe2354273141822efe6bee41b40, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  wheel: {fileID: 6419310692372952110}
+  wheelMesh: {fileID: 6419310692372952110}
 --- !u!1 &929883568501841109
 GameObject:
   m_ObjectHideFlags: 0
@@ -675,13 +675,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 44aa6606e68ba864c9512dbc5d6b3f61, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  jeep: {fileID: 6555312948050249667}
   playerCamera: {fileID: 0}
-  _rigidbody: {fileID: 0}
   virtualGroundOrientationReference: {fileID: 0}
   aimCar: {fileID: 0}
   aimGun: {fileID: 0}
-  jeep: {fileID: 6555312948050249667}
   fireDeadZone: 0.2
+  backupAngle: 10
 --- !u!1 &6555312948050249666
 GameObject:
   m_ObjectHideFlags: 0
@@ -787,11 +787,10 @@ MonoBehaviour:
   wheelColliderRightFront: {fileID: 6749261846616560181}
   wheelColliderRightBack: {fileID: 5078204109637037502}
   gun: {fileID: 1145553720461886328}
-  mordor: {fileID: 0}
+  mordor: {fileID: 3926678713590082251, guid: 3b7e5d00c004c1f459c8c8848bc7e152, type: 3}
   motorTorque: 2000
   maxSteer: 40
   gunAim: {x: 0, y: 0, z: 0}
-  _rigidbody: {fileID: 929883569221568709}
   rateOfFire: 0.2
 --- !u!1 &8089656317032612666
 GameObject:

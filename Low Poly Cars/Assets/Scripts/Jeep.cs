@@ -1,5 +1,7 @@
 namespace game {
 	public class Jeep : UnityEngine.MonoBehaviour {
+		private UnityEngine.Rigidbody Rigidbody;
+
 		private UnityEngine.Transform centerOfMass;
 
 		public Wheel wheelColliderLeftFront;
@@ -13,8 +15,6 @@ namespace game {
 		public System.Single motorTorque = 100f;
 		public System.Single maxSteer = 6;
 		public UnityEngine.Vector3 gunAim;
-
-		public UnityEngine.Rigidbody _rigidbody;
 
 		public System.Single rateOfFire = 0.2f;
 		private System.Single timeSinceFired = 0.0f;
@@ -35,11 +35,11 @@ namespace game {
 			}
 		}
 
-		public void Start() {
-			//this._rigidbody = this.transform.parent.GetComponent<UnityEngine.Rigidbody>();
+		public void Awake() {
+			this.Rigidbody = this.transform.parent.GetComponent<UnityEngine.Rigidbody>();
 			UnityEngine.GameObject gameObject = new UnityEngine.GameObject("Center Of Mass");
 			this.centerOfMass = Instantiate(gameObject, UnityEngine.Vector3.zero, UnityEngine.Quaternion.identity, this.transform).transform;
-			this._rigidbody.centerOfMass = this.centerOfMass.localPosition;
+			this.Rigidbody.centerOfMass = this.centerOfMass.localPosition;
 		}
 
 		public void FixedUpdate() {

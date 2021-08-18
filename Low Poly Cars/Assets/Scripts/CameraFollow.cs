@@ -11,7 +11,6 @@ namespace game {
 			this.transform.eulerAngles = this.eulerRotation;
 		}
 
-		// Update is called once per frame
 		public void Update() {
 			if (this.Target == null) {
 				return;

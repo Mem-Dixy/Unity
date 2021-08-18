@@ -1,6 +1,5 @@
 make it so gun look at not gitter when no shooting
 make so car stops when no input
-maybe add backing up when not moving??
 gravity gun
 boost da car
 add enemy turrets that shoot you

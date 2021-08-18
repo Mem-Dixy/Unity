@@ -1,7 +1,10 @@
 namespace game {
 	public class JeepController : UnityEngine.MonoBehaviour {
+		private UnityEngine.Rigidbody Rigidbody;
+		private UnityEngine.Transform Transform;
+		public Jeep jeep;
+
 		public UnityEngine.Transform playerCamera;
-		public UnityEngine.Rigidbody _rigidbody;
 
 		// the rotation of this object defines the world up direction
 		public UnityEngine.Transform virtualGroundOrientationReference;
@@ -18,11 +21,12 @@ namespace game {
 		public UnityEngine.Transform aimCar;
 		public UnityEngine.Transform aimGun;
 
-		public Jeep jeep;
 		public System.Single fireDeadZone = 0.2f;
+		public System.Single backupAngle = 10;
 
-		public void Start() {
-			this._rigidbody = this.GetComponent<UnityEngine.Rigidbody>();
+		public void Awake() {
+			this.Rigidbody = this.GetComponent<UnityEngine.Rigidbody>();
+			this.Transform = this.GetComponent<UnityEngine.Transform>();
 			this.jeep = this.GetComponentInChildren<Jeep>();
 
 			// make input helper
@@ -37,12 +41,10 @@ namespace game {
 				return;
 			}
 
-			System.Boolean fire = gamepad.triangleButton.isPressed;
-			this._rigidbody.isKinematic = fire;
-			if (fire) {
-				this.transform.position = new UnityEngine.Vector3(0, 15, 0);
-				this.transform.rotation = UnityEngine.Quaternion.identity;
-
+			if (gamepad.triangleButton.isPressed) {
+				this.Rigidbody.angularVelocity = UnityEngine.Vector3.zero;
+				this.Rigidbody.velocity = UnityEngine.Vector3.zero;
+				this.Transform.SetPositionAndRotation(new UnityEngine.Vector3(0, 15, 0), UnityEngine.Quaternion.identity);
 			}
 
 			System.Single lx = gamepad.leftStick.x.ReadValue();
@@ -50,15 +52,32 @@ namespace game {
 			System.Single rx = gamepad.rightStick.x.ReadValue();
 			System.Single ry = gamepad.rightStick.y.ReadValue();
 
-			UnityEngine.Vector3 direction = new UnityEngine.Vector3(10 * lx, 0, 10 * ly);
+			UnityEngine.Vector3 direction;
+			if (new UnityEngine.Vector3(lx, 0, ly).magnitude > this.fireDeadZone) {
+				direction = new UnityEngine.Vector3(10 * lx, 0, 10 * ly);
+			}
+			else {
+
+				UnityEngine.Vector3 velocity = this.Rigidbody.velocity;
+				UnityEngine.Vector3 reverseVelocity = new UnityEngine.Vector3(-velocity.x, -velocity.y, -velocity.z);
+				reverseVelocity.Normalize();
+				direction = new UnityEngine.Vector3(reverseVelocity.x, 0, reverseVelocity.y);
+			}
 			UnityEngine.Vector3 targetPoint = this.inputHelper.TransformDirection(direction);
-			UnityEngine.Vector3 offsetPoint = targetPoint + this.transform.position;
+			UnityEngine.Vector3 offsetPoint = targetPoint + this.Transform.position;
 			//
-			UnityEngine.Vector3 point = this.transform.InverseTransformPoint(offsetPoint);
+			UnityEngine.Vector3 point = this.Transform.InverseTransformPoint(offsetPoint);
 			System.Single turn = UnityEngine.Mathf.Atan2(point.x, point.z);
 
 			System.Single face = UnityEngine.Vector3.Dot(UnityEngine.Vector3.forward, point);
-			System.Single forwardy = UnityEngine.Mathf.Clamp01(face);
+			//System.Single forwardy = UnityEngine.Mathf.Clamp01(face);
+			System.Single forwardy = 0;
+			if (UnityEngine.Mathf.Abs(turn) < UnityEngine.Mathf.Deg2Rad * 90) {
+				forwardy = face;
+			}
+			if (UnityEngine.Mathf.Abs(turn) > UnityEngine.Mathf.Deg2Rad * (180 - this.backupAngle)) {
+				forwardy = face;
+			}
 
 			//
 			UnityEngine.Vector3 direction2 = new UnityEngine.Vector3(8 * rx, 0, 8 * ry);
@@ -72,7 +91,7 @@ namespace game {
 			this.aimCar.position = offsetPoint;
 			this.aimGun.position = offsetPoint2;
 
-			if (new UnityEngine.Vector3(rx, 0, ry).magnitude > 0.2) {
+			if (new UnityEngine.Vector3(rx, 0, ry).magnitude > this.fireDeadZone) {
 				this.jeep.Fire();
 			}
 		}
