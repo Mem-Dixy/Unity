@@ -52,17 +52,18 @@ namespace game {
 			System.Single rx = gamepad.rightStick.x.ReadValue();
 			System.Single ry = gamepad.rightStick.y.ReadValue();
 
-			UnityEngine.Vector3 direction;
+			UnityEngine.Vector3 direction = UnityEngine.Vector3.zero;
 			if (new UnityEngine.Vector3(lx, 0, ly).magnitude > this.fireDeadZone) {
 				direction = new UnityEngine.Vector3(10 * lx, 0, 10 * ly);
 			}
+			/*
 			else {
 
 				UnityEngine.Vector3 velocity = this.Rigidbody.velocity;
 				UnityEngine.Vector3 reverseVelocity = new UnityEngine.Vector3(-velocity.x, -velocity.y, -velocity.z);
 				reverseVelocity.Normalize();
 				direction = new UnityEngine.Vector3(reverseVelocity.x, 0, reverseVelocity.y);
-			}
+			}*/
 			UnityEngine.Vector3 targetPoint = this.inputHelper.TransformDirection(direction);
 			UnityEngine.Vector3 offsetPoint = targetPoint + this.Transform.position;
 			//

@@ -2,12 +2,12 @@ namespace game {
 	public class Jeep : UnityEngine.MonoBehaviour {
 		private UnityEngine.Rigidbody Rigidbody;
 
-		private UnityEngine.Transform centerOfMass;
+		public UnityEngine.Transform centerOfMass;
 
-		public Wheel wheelColliderLeftFront;
-		public Wheel wheelColliderLeftBack;
-		public Wheel wheelColliderRightFront;
-		public Wheel wheelColliderRightBack;
+		public Wheel wheelColliderBackLeft;
+		public Wheel wheelColliderBackRight;
+		public Wheel wheelColliderFrontLeft;
+		public Wheel wheelColliderFrontRight;
 
 		public UnityEngine.Transform gun;
 		public UnityEngine.Transform mordor;
@@ -36,17 +36,17 @@ namespace game {
 		}
 
 		public void Awake() {
-			this.Rigidbody = this.transform.parent.GetComponent<UnityEngine.Rigidbody>();
-			UnityEngine.GameObject gameObject = new UnityEngine.GameObject("Center Of Mass");
-			this.centerOfMass = Instantiate(gameObject, UnityEngine.Vector3.zero, UnityEngine.Quaternion.identity, this.transform).transform;
+			this.Rigidbody = this.transform.GetComponent<UnityEngine.Rigidbody>();
+			//UnityEngine.GameObject gameObject = new UnityEngine.GameObject("Center Of Mass");
+			//this.centerOfMass = Instantiate(gameObject, UnityEngine.Vector3.zero, UnityEngine.Quaternion.identity, this.transform).transform;
 			this.Rigidbody.centerOfMass = this.centerOfMass.localPosition;
 		}
 
 		public void FixedUpdate() {
-			this.wheelColliderLeftBack.WheelCollider.motorTorque = this.driveForce * this.motorTorque;
-			this.wheelColliderRightBack.WheelCollider.motorTorque = this.driveForce * this.motorTorque;
-			this.wheelColliderLeftFront.WheelCollider.steerAngle = this.turnForce * this.maxSteer;
-			this.wheelColliderRightFront.WheelCollider.steerAngle = this.turnForce * this.maxSteer;
+			this.wheelColliderBackLeft.WheelCollider.motorTorque = this.driveForce * this.motorTorque;
+			this.wheelColliderBackRight.WheelCollider.motorTorque = this.driveForce * this.motorTorque;
+			this.wheelColliderFrontLeft.WheelCollider.steerAngle = this.turnForce * this.maxSteer;
+			this.wheelColliderFrontRight.WheelCollider.steerAngle = this.turnForce * this.maxSteer;
 			UnityEngine.Vector3 relativeUp = this.transform.TransformDirection(UnityEngine.Vector3.up);
 			this.gun.LookAt(this.gunAim, relativeUp);
 		}
