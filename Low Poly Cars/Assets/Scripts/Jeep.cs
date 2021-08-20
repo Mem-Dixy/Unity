@@ -4,12 +4,8 @@ namespace game {
 
 		public UnityEngine.Transform centerOfMass;
 
-		public Wheel wheelColliderBackLeft;
-		public Wheel wheelColliderBackRight;
-		public Wheel wheelColliderFrontLeft;
-		public Wheel wheelColliderFrontRight;
-
 		public UnityEngine.Transform gun;
+		public UnityEngine.Transform fire;
 		public UnityEngine.Transform mordor;
 
 		public System.Single motorTorque = 100f;
@@ -28,6 +24,8 @@ namespace game {
 		}
 
 		private System.Single turnForce;
+
+		private Wheel[] wheel;
 		public System.Single TurnForce {
 			get { return this.turnForce; }
 			set {
@@ -36,17 +34,22 @@ namespace game {
 		}
 
 		public void Awake() {
+			this.centerOfMass = this.transform;
+			this.wheel = this.GetComponentsInChildren<Wheel>();
 			this.Rigidbody = this.transform.GetComponent<UnityEngine.Rigidbody>();
 			//UnityEngine.GameObject gameObject = new UnityEngine.GameObject("Center Of Mass");
 			//this.centerOfMass = Instantiate(gameObject, UnityEngine.Vector3.zero, UnityEngine.Quaternion.identity, this.transform).transform;
 			this.Rigidbody.centerOfMass = this.centerOfMass.localPosition;
 		}
-
 		public void FixedUpdate() {
-			this.wheelColliderBackLeft.WheelCollider.motorTorque = this.driveForce * this.motorTorque;
-			this.wheelColliderBackRight.WheelCollider.motorTorque = this.driveForce * this.motorTorque;
-			this.wheelColliderFrontLeft.WheelCollider.steerAngle = this.turnForce * this.maxSteer;
-			this.wheelColliderFrontRight.WheelCollider.steerAngle = this.turnForce * this.maxSteer;
+			foreach (Wheel wheel in this.wheel) {
+				if (wheel.drive) {
+					wheel.WheelCollider.motorTorque = this.driveForce * this.motorTorque;
+				}
+				if (wheel.turn) {
+					wheel.WheelCollider.steerAngle = this.turnForce * this.maxSteer;
+				}
+			}
 			UnityEngine.Vector3 relativeUp = this.transform.TransformDirection(UnityEngine.Vector3.up);
 			this.gun.LookAt(this.gunAim, relativeUp);
 		}
@@ -57,7 +60,7 @@ namespace game {
 		public void Fire() {
 			if (this.timeSinceFired <= 0) {
 				this.timeSinceFired = this.rateOfFire;
-				_ = Instantiate(this.mordor, this.gun.position, this.gun.rotation);
+				_ = Instantiate(this.mordor, this.fire.position, this.fire.rotation);
 			}
 		}
 	}
