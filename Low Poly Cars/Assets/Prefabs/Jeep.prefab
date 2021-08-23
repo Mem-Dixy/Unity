@@ -341,9 +341,14 @@ MonoBehaviour:
   fire: {fileID: 5587854347434835018}
   mordor: {fileID: 3926678713590082251, guid: 3b7e5d00c004c1f459c8c8848bc7e152, type: 3}
   motorTorque: 2000
-  maxSteer: 40
+  motorAcceleration: 1000
+  turnAngle: 40
+  turnRate: 90
   gunAim: {x: 0, y: 0, z: 0}
   rateOfFire: 0.2
+  turnnny: 0
+  turnnny2: 0
+  turnnny3: 0
 --- !u!114 &929883569221568710
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -361,8 +366,27 @@ MonoBehaviour:
   virtualGroundOrientationReference: {fileID: 0}
   aimCar: {fileID: 0}
   aimGun: {fileID: 0}
-  fireDeadZone: 0.2
+  gamepad: {fileID: 1645987236}
   backupAngle: 10
+--- !u!114 &1645987236
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 270135171408756288}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a58500e482273734b8f35fe1a938f09c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  leftStickDeadZone: {x: 0.2, y: 0.2}
+  rightStickDeadZone: {x: 0.2, y: 0.2}
+  leftStickValue: {x: 0, y: 0}
+  rightStickValue: {x: 0, y: 0}
+  leftStickIsOn: 0
+  rightStickIsOn: 0
+  triangleButtonIsOn: 0
 --- !u!64 &1645987239
 MeshCollider:
   m_ObjectHideFlags: 0
@@ -450,7 +474,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 919132149155446097, guid: 9c370a2423a6f8d4f9709ac4aa170e13, type: 3}
       propertyPath: m_Name
-      value: Jeep
+      value: Jeep_fbx
       objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: 864914354027421115, guid: 9c370a2423a6f8d4f9709ac4aa170e13, type: 3}

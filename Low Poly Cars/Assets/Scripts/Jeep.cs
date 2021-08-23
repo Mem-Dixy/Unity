@@ -8,10 +8,11 @@ namespace game {
 		public UnityEngine.Transform fire;
 		public UnityEngine.Transform mordor;
 
-		public System.Single motorTorque = 100f;
+		public System.Single motorTorque = 2000.0f;
+		public System.Single motorAcceleration = 1000.0f;
 
 		public System.Single turnAngle = 40.0f;
-		public System.Single turnRate = 1.0f;
+		public System.Single turnRate = 90.0f;
 		public UnityEngine.Vector3 gunAim;
 
 		public System.Single rateOfFire = 0.2f;
@@ -22,25 +23,26 @@ namespace game {
 		public System.Single turnnny3;
 
 		private System.Single driveForce;
-		public System.Single DriveForce {
-			get { return this.driveForce; }
-			set {
-				this.driveForce = UnityEngine.Mathf.Clamp(value, -1, 1);
-			}
-		}
-
 		private System.Single carTurn;
 		private System.Single gunTurn;
 
 		private Wheel[] wheel;
 
+		public void SetDrive(UnityEngine.Vector3 position) {
+			UnityEngine.Vector3 localPosition = this.transform.InverseTransformPoint(position);
+			System.Single dot = UnityEngine.Vector3.Dot(UnityEngine.Vector3.forward, localPosition);
+			System.Single value = UnityEngine.Mathf.Clamp(dot, -1, +1) * this.motorTorque;
+			System.Single min = -this.motorTorque;
+			System.Single max = +this.motorTorque;
+			System.Single result = UnityEngine.Mathf.Clamp(value, min, max);
+			this.driveForce = result;
+		}
 		public void SetTurn(UnityEngine.Vector3 position) {
 			UnityEngine.Vector3 localPosition = this.transform.InverseTransformPoint(position);
 			System.Single y = localPosition.x;
 			System.Single f = localPosition.z;
 			System.Single x = UnityEngine.Mathf.Abs(f);
 			System.Single radians = UnityEngine.Mathf.Atan2(y, x);
-			// maybe I want this in radians after all?
 			System.Single value = UnityEngine.Mathf.Rad2Deg * radians;
 			System.Single min = -this.turnAngle;
 			System.Single max = +this.turnAngle;
@@ -52,7 +54,6 @@ namespace game {
 			System.Single y = localPosition.x;
 			System.Single x = localPosition.z;
 			System.Single radians = UnityEngine.Mathf.Atan2(y, x);
-			// maybe I want this in radians after all?
 			System.Single value = UnityEngine.Mathf.Rad2Deg * radians;
 			System.Single min = -180;
 			System.Single max = +180;
@@ -71,27 +72,25 @@ namespace game {
 			this.turnAngle = UnityEngine.Mathf.Clamp(UnityEngine.Mathf.Abs(this.turnAngle), 0, 90);
 			this.motorTorque = UnityEngine.Mathf.Abs(this.motorTorque);
 		}
-
 		public void FixedUpdate() {
-			System.Single a = this.turnnny;
-			System.Single b = this.turnnny2;
-			System.Single t = this.turnnny3;
-			System.Single d = UnityEngine.Mathf.LerpAngle(a, b, t);
-			//UnityEngine.Debug.Log(d);
 			foreach (Wheel wheel in this.wheel) {
 				if (wheel.drive) {
+					System.Single current = wheel.WheelCollider.motorTorque;
+					System.Single target = this.driveForce;
+					System.Single maxDelta = this.motorAcceleration * UnityEngine.Time.fixedDeltaTime;
+					System.Single result = UnityEngine.Mathf.MoveTowards(current, target, maxDelta);
+					wheel.WheelCollider.motorTorque = result;
 				}
 				if (wheel.turn) {
-					System.Single currentAngle = wheel.WheelCollider.steerAngle;
-					System.Single deltaAngle = UnityEngine.Mathf.DeltaAngle(currentAngle, this.carTurn);
-					System.Single nextAngle = UnityEngine.Mathf.Clamp(deltaAngle, -this.turnRate, +this.turnRate);
-					System.Single putAngle = currentAngle + nextAngle;
-					wheel.WheelCollider.steerAngle = putAngle;
+					System.Single current = wheel.WheelCollider.steerAngle;
+					System.Single target = this.carTurn;
+					System.Single maxDelta = this.turnRate * UnityEngine.Time.fixedDeltaTime;
+					System.Single angle = UnityEngine.Mathf.MoveTowardsAngle(current, target, maxDelta);
+					wheel.WheelCollider.steerAngle = angle;
 				}
 			}
 			this.gun.eulerAngles = new UnityEngine.Vector3(0, this.gunTurn, 0);
 		}
-
 		public void Update() {
 			this.timeSinceFired -= UnityEngine.Time.deltaTime;
 		}

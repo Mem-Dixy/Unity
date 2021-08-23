@@ -42,24 +42,11 @@ namespace game {
 			}
 
 			UnityEngine.Vector3 pointCar = this.InputMagic(this.gamepad.leftStickValue, this.aimCar);
-			System.Single turn = UnityEngine.Mathf.Atan2(pointCar.x, UnityEngine.Mathf.Abs(pointCar.z));
-
-			System.Single face = UnityEngine.Vector3.Dot(UnityEngine.Vector3.forward, pointCar);
-			//System.Single forwardy = UnityEngine.Mathf.Clamp01(face);
-			System.Single forwardy = 0;
-			if (UnityEngine.Mathf.Abs(turn) < UnityEngine.Mathf.Deg2Rad * 90) {
-				forwardy = face;
-			}
-			if (UnityEngine.Mathf.Abs(turn) > UnityEngine.Mathf.Deg2Rad * (180 - this.backupAngle)) {
-				forwardy = face;
-			}
-			forwardy = UnityEngine.Vector3.Dot(UnityEngine.Vector3.forward, pointCar);
-			//
 			UnityEngine.Vector3 pointGun = this.InputMagic(this.gamepad.rightStickValue, this.aimGun);
 			//
 			this.jeep.SetTurn(pointCar);
 			this.jeep.SetAimTurn(pointGun);
-			this.jeep.DriveForce = forwardy;
+			this.jeep.SetDrive(pointCar);
 
 			if (this.gamepad.rightStickIsOn) {
 				this.jeep.Fire();
