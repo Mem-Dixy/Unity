@@ -21,7 +21,7 @@ namespace game {
 		public UnityEngine.Transform aimCar;
 		public UnityEngine.Transform aimGun;
 
-		public System.Single fireDeadZone = 0.2f;
+		public Gamepad gamepad;
 		public System.Single backupAngle = 10;
 
 		public void Awake() {
@@ -35,42 +35,17 @@ namespace game {
 
 		public void FixedUpdate() {
 
-			UnityEngine.InputSystem.Gamepad gamepad = UnityEngine.InputSystem.Gamepad.current;
-
-			if (gamepad == null) {
-				return;
-			}
-
-			if (gamepad.triangleButton.isPressed) {
+			if (this.gamepad.triangleButtonIsOn) {
 				this.Rigidbody.angularVelocity = UnityEngine.Vector3.zero;
 				this.Rigidbody.velocity = UnityEngine.Vector3.zero;
 				this.Transform.SetPositionAndRotation(new UnityEngine.Vector3(0, 15, 0), UnityEngine.Quaternion.identity);
 			}
 
-			System.Single lx = gamepad.leftStick.x.ReadValue();
-			System.Single ly = gamepad.leftStick.y.ReadValue();
-			System.Single rx = gamepad.rightStick.x.ReadValue();
-			System.Single ry = gamepad.rightStick.y.ReadValue();
+			UnityEngine.Vector3 pointCar = this.InputMagic(this.gamepad.leftStickValue, this.gamepad.leftStickIsOn, this.Transform.position);
+			System.Single turn = UnityEngine.Mathf.Atan2(pointCar.x, UnityEngine.Mathf.Abs(pointCar.z));
+			UnityEngine.Debug.Log(turn * UnityEngine.Mathf.Rad2Deg);
 
-			UnityEngine.Vector3 direction = UnityEngine.Vector3.zero;
-			if (new UnityEngine.Vector3(lx, 0, ly).magnitude > this.fireDeadZone) {
-				direction = new UnityEngine.Vector3(10 * lx, 0, 10 * ly);
-			}
-			/*
-			else {
-
-				UnityEngine.Vector3 velocity = this.Rigidbody.velocity;
-				UnityEngine.Vector3 reverseVelocity = new UnityEngine.Vector3(-velocity.x, -velocity.y, -velocity.z);
-				reverseVelocity.Normalize();
-				direction = new UnityEngine.Vector3(reverseVelocity.x, 0, reverseVelocity.y);
-			}*/
-			UnityEngine.Vector3 targetPoint = this.inputHelper.TransformDirection(direction);
-			UnityEngine.Vector3 offsetPoint = targetPoint + this.Transform.position;
-			//
-			UnityEngine.Vector3 point = this.Transform.InverseTransformPoint(offsetPoint);
-			System.Single turn = UnityEngine.Mathf.Atan2(point.x, point.z);
-
-			System.Single face = UnityEngine.Vector3.Dot(UnityEngine.Vector3.forward, point);
+			System.Single face = UnityEngine.Vector3.Dot(UnityEngine.Vector3.forward, pointCar);
 			//System.Single forwardy = UnityEngine.Mathf.Clamp01(face);
 			System.Single forwardy = 0;
 			if (UnityEngine.Mathf.Abs(turn) < UnityEngine.Mathf.Deg2Rad * 90) {
@@ -79,24 +54,32 @@ namespace game {
 			if (UnityEngine.Mathf.Abs(turn) > UnityEngine.Mathf.Deg2Rad * (180 - this.backupAngle)) {
 				forwardy = face;
 			}
-
+			forwardy = UnityEngine.Vector3.Dot(UnityEngine.Vector3.forward, pointCar);
 			//
-			UnityEngine.Vector3 direction2 = new UnityEngine.Vector3(8 * rx, 0, 8 * ry);
-			UnityEngine.Vector3 targetPoint2 = this.inputHelper.TransformDirection(direction2);
-			UnityEngine.Vector3 offsetPoint2 = targetPoint2 + this.jeep.gun.position;
+			UnityEngine.Vector3 pointGun = this.InputMagic(this.gamepad.rightStickValue, this.gamepad.rightStickIsOn, this.Transform.position);
 			//
-			this.jeep.TurnForce = turn;
+			this.jeep.SetTurn(pointCar);
 			this.jeep.DriveForce = forwardy;
-			this.jeep.gunAim = offsetPoint2;
+			this.jeep.SetAimTurn(pointGun);
+			
+			this.aimCar.position = new UnityEngine.Vector3(pointCar.x * 10, pointCar.y * 10, pointCar.z*10);
+			this.aimGun.position = new UnityEngine.Vector3(pointGun.x * 8, pointGun.y * 8, pointGun.z * 8);
 
-			this.aimCar.position = offsetPoint;
-			this.aimGun.position = offsetPoint2;
-
-			if (new UnityEngine.Vector3(rx, 0, ry).magnitude > this.fireDeadZone) {
+			if (this.gamepad.rightStickIsOn) {
 				this.jeep.Fire();
 			}
 		}
 
+		public UnityEngine.Vector3 InputMagic(UnityEngine.Vector2 stick, System.Boolean isOn, UnityEngine.Vector3 offset) {
+			if (!isOn) {
+				return UnityEngine.Vector3.zero;
+			}
+			UnityEngine.Vector3 direction = new UnityEngine.Vector3(stick.x, 0, stick.y);
+			UnityEngine.Vector3 targetPoint = this.inputHelper.TransformDirection(direction);
+			UnityEngine.Vector3 offsetPoint = targetPoint + offset;
+			UnityEngine.Vector3 point = this.Transform.InverseTransformPoint(offsetPoint);
+			return point;
+		}
 		public void Update() {
 			// find plane normal
 			this.virtualGroundNormal = this.virtualGroundOrientationReference.TransformDirection(UnityEngine.Vector3.up);
