@@ -9,7 +9,9 @@ namespace game {
 		public UnityEngine.Transform mordor;
 
 		public System.Single motorTorque = 100f;
-		public System.Single maxSteer = 6;
+
+		public System.Single turnAngle = 40.0f;
+		public System.Single turnRate = 1.0f;
 		public UnityEngine.Vector3 gunAim;
 
 		public System.Single rateOfFire = 0.2f;
@@ -27,26 +29,35 @@ namespace game {
 			}
 		}
 
-		private System.Single turnForce;
+		private System.Single carTurn;
+		private System.Single gunTurn;
 
 		private Wheel[] wheel;
 
-		private System.Single Turn(UnityEngine.Vector3 localPosition) {
+		public void SetTurn(UnityEngine.Vector3 position) {
+			UnityEngine.Vector3 localPosition = this.transform.InverseTransformPoint(position);
 			System.Single y = localPosition.x;
 			System.Single f = localPosition.z;
 			System.Single x = UnityEngine.Mathf.Abs(f);
 			System.Single radians = UnityEngine.Mathf.Atan2(y, x);
 			// maybe I want this in radians after all?
 			System.Single value = UnityEngine.Mathf.Rad2Deg * radians;
-			System.Single min = -this.maxSteer;
-			System.Single max = +this.maxSteer;
-			return UnityEngine.Mathf.Clamp(value, min, max);
+			System.Single min = -this.turnAngle;
+			System.Single max = +this.turnAngle;
+			System.Single result = UnityEngine.Mathf.Clamp(value, min, max);
+			this.carTurn = result;
 		}
-		public void SetTurn(UnityEngine.Vector3 localPosition) {
-			this.turnForce = this.Turn(localPosition);
-		}
-		public void SetAimTurn(UnityEngine.Vector3 localPosition) {
-			this.turnForce = this.Turn(localPosition);
+		public void SetAimTurn(UnityEngine.Vector3 position) {
+			UnityEngine.Vector3 localPosition = this.transform.InverseTransformPoint(position);
+			System.Single y = localPosition.x;
+			System.Single x = localPosition.z;
+			System.Single radians = UnityEngine.Mathf.Atan2(y, x);
+			// maybe I want this in radians after all?
+			System.Single value = UnityEngine.Mathf.Rad2Deg * radians;
+			System.Single min = -180;
+			System.Single max = +180;
+			System.Single result = UnityEngine.Mathf.Clamp(value, min, max);
+			this.gunTurn = result;
 		}
 		public void Awake() {
 			this.centerOfMass = this.transform;
@@ -57,7 +68,7 @@ namespace game {
 			this.Rigidbody.centerOfMass = this.centerOfMass.localPosition;
 		}
 		public void Start() {
-			this.maxSteer = UnityEngine.Mathf.Clamp(UnityEngine.Mathf.Abs(this.maxSteer), 0, 90);
+			this.turnAngle = UnityEngine.Mathf.Clamp(UnityEngine.Mathf.Abs(this.turnAngle), 0, 90);
 			this.motorTorque = UnityEngine.Mathf.Abs(this.motorTorque);
 		}
 
@@ -71,15 +82,14 @@ namespace game {
 				if (wheel.drive) {
 				}
 				if (wheel.turn) {
-					wheel.WheelCollider.steerAngle = this.turnForce * this.maxSteer;
-					// -90 to 0 to +90
-					// -360 to 0 to 360
-					wheel.WheelCollider.steerAngle = this.turnnny;
+					System.Single currentAngle = wheel.WheelCollider.steerAngle;
+					System.Single deltaAngle = UnityEngine.Mathf.DeltaAngle(currentAngle, this.carTurn);
+					System.Single nextAngle = UnityEngine.Mathf.Clamp(deltaAngle, -this.turnRate, +this.turnRate);
+					System.Single putAngle = currentAngle + nextAngle;
+					wheel.WheelCollider.steerAngle = putAngle;
 				}
 			}
-			UnityEngine.Vector3 aimGun = this.transform.InverseTransformDirection(this.gunAim);
-			UnityEngine.Vector3 relativeUp = this.transform.TransformDirection(UnityEngine.Vector3.up);
-			this.gun.LookAt(aimGun, relativeUp);
+			this.gun.eulerAngles = new UnityEngine.Vector3(0, this.gunTurn, 0);
 		}
 
 		public void Update() {
