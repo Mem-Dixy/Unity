@@ -26,12 +26,15 @@ namespace EnTropy {
 			System.Int32 index = this.towers.Length;
 			while (index-- > 0) {
 				if (UnityEngine.GUI.Button(new UnityEngine.Rect(2 * this.skin.buttonSize.x, (0 + index) * this.skin.buttonSize.y, this.skin.buttonSize.x, this.skin.buttonSize.y), this.towers[index].name)) {
-					this.MakeTower(this.towers[index]);
+					System.Int32 x = 41*4;
+					while (x-->0) {
+						System.Int32 y = 41;
+						while (y-- > 0) {
+							this.MakeTower(this.towers[index], new UnityEngine.Vector2Int(x, y));
+						}
+					}
 				}
 			}
-		}
-		public void Update() {
-
 		}
 
 		private delegate void Empty();
@@ -49,13 +52,17 @@ namespace EnTropy {
 				}
 			}
 		}
-		private void MakeTower(TowerData towerData) {
+		private void MakeTower(TowerData towerData, UnityEngine.Vector2Int spot) {
 			UnityEngine.GameObject tower = UnityEngine.GameObject.CreatePrimitive(UnityEngine.PrimitiveType.Cube);
 			tower.name = towerData.name;
 			TowerObject towerObject = tower.AddComponent(typeof(TowerObject)) as TowerObject;
 			towerObject.damage = this.damage[this.damageIndex];
 			towerObject.range = this.range[this.rangeIndex];
-			tower.transform.position = new UnityEngine.Vector3(0, 1, 2);
+			towerObject.damageUpgrade = spot.x;
+			towerObject.speedUpgrade = spot.y;
+			towerObject.towerData = towerData;
+			tower.transform.position = new UnityEngine.Vector3(spot.x, 0, spot.y);
+			towerObject.Work();
 		}
 	}
 }
