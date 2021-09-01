@@ -1,12 +1,17 @@
 namespace EnTropy {
 	public class Damage : UnityEngine.MonoBehaviour {
+		public System.Int32 maxDamageUpgrade = 41 * 4;
+		public System.Int32 maxSpeedUpgrade = 41;
+
 		public System.Int32[] damage;
 		public System.Int32[] range;
 		public System.Int32 damageIndex;
 		public System.Int32 rangeIndex;
 		public TowerData[] towers;
+		public TowerObject[,] towerObject;
 		private Configuration skin;
 		public void Start() {
+			this.towerObject = new TowerObject[0, 0];
 			this.skin = Configuration.self;
 			System.Int32 index = 31;
 			this.damage = new System.Int32[index];
@@ -21,6 +26,10 @@ namespace EnTropy {
 			this.towers = TowerMaker.Make();
 		}
 		private void OnGUI() {
+			if (UnityEngine.GUI.Button(new UnityEngine.Rect(8 * this.skin.buttonSize.x, 0 * this.skin.buttonSize.y, this.skin.buttonSize.x, this.skin.buttonSize.y), "Spawn Tower")) {
+				this.SpawnTower();
+			}
+			//
 			this.ButtonArray(this.damage, 0, 0, ref this.damageIndex);
 			this.ButtonArray(this.range, 1, 0, ref this.rangeIndex);
 			System.Int32 index = this.towers.Length;
@@ -63,6 +72,28 @@ namespace EnTropy {
 			towerObject.towerData = towerData;
 			tower.transform.position = new UnityEngine.Vector3(spot.x, 0, spot.y);
 			towerObject.Work();
+		}
+		private void SpawnTower() {
+			this.KillTower();
+			this.towerObject = new TowerObject[this.maxDamageUpgrade, this.maxSpeedUpgrade];
+			System.Int32 index_x = this.maxDamageUpgrade;
+			while (index_x-- > 0) {
+				System.Int32 index_y = this.maxSpeedUpgrade;
+				while (index_y-- > 0) {
+					this.towerObject[index_x, index_y] = this.NewTowerObject();
+				}
+			}
+		}
+		private void KillTower() {
+			foreach (TowerObject tower in this.towerObject) {
+				Destroy(tower.gameObject);
+			}
+		}
+		private TowerObject NewTowerObject() {
+			UnityEngine.GameObject tower = UnityEngine.GameObject.CreatePrimitive(UnityEngine.PrimitiveType.Cube);
+			TowerObject towerObject = tower.AddComponent(typeof(TowerObject)) as TowerObject;
+			towerObject.Reset();
+			return towerObject;
 		}
 	}
 }
