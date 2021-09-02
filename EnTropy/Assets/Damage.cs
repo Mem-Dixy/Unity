@@ -24,12 +24,32 @@ namespace EnTropy {
 				this.range[index] = index * 10;
 			}
 			this.towers = TowerMaker.Make();
+			//
+			this.towerObject = new TowerObject[this.maxDamageUpgrade, this.maxSpeedUpgrade];
+			System.Int32 index_x = this.maxDamageUpgrade;
+			while (index_x-- > 0) {
+				System.Int32 index_y = this.maxSpeedUpgrade;
+				while (index_y-- > 0) {
+					this.towerObject[index_x, index_y] = this.NewTowerObject(index_x, index_y);
+				}
+			}
 		}
 		private void OnGUI() {
-			if (UnityEngine.GUI.Button(new UnityEngine.Rect(8 * this.skin.buttonSize.x, 0 * this.skin.buttonSize.y, this.skin.buttonSize.x, this.skin.buttonSize.y), "Spawn Tower")) {
-				this.SpawnTower();
+			if (UnityEngine.GUI.Button(new UnityEngine.Rect(8 * this.skin.buttonSize.x, 1 * this.skin.buttonSize.y, this.skin.buttonSize.x, this.skin.buttonSize.y), "Show Ratio")) {
+				foreach (TowerObject towerObject in this.towerObject) {
+					towerObject.ShowRatio();
+				}
 			}
-			//
+			if (UnityEngine.GUI.Button(new UnityEngine.Rect(8 * this.skin.buttonSize.x, 2 * this.skin.buttonSize.y, this.skin.buttonSize.x, this.skin.buttonSize.y), "Show Damage")) {
+				foreach (TowerObject towerObject in this.towerObject) {
+					towerObject.ShowDamage();
+				}
+			}
+			if (UnityEngine.GUI.Button(new UnityEngine.Rect(8 * this.skin.buttonSize.x, 3 * this.skin.buttonSize.y, this.skin.buttonSize.x, this.skin.buttonSize.y), "Show Cost")) {
+				foreach (TowerObject towerObject in this.towerObject) {
+					towerObject.ShowCost();
+				}
+			}
 			this.ButtonArray(this.damage, 0, 0, ref this.damageIndex);
 			this.ButtonArray(this.range, 1, 0, ref this.rangeIndex);
 			System.Int32 index = this.towers.Length;
@@ -39,7 +59,7 @@ namespace EnTropy {
 					while (x-->0) {
 						System.Int32 y = 41;
 						while (y-- > 0) {
-							this.MakeTower(this.towers[index], new UnityEngine.Vector2Int(x, y));
+							this.towerObject[x, y].SetTower(this.towers[index]);
 						}
 					}
 				}
@@ -61,38 +81,10 @@ namespace EnTropy {
 				}
 			}
 		}
-		private void MakeTower(TowerData towerData, UnityEngine.Vector2Int spot) {
-			UnityEngine.GameObject tower = UnityEngine.GameObject.CreatePrimitive(UnityEngine.PrimitiveType.Cube);
-			tower.name = towerData.name;
-			TowerObject towerObject = tower.AddComponent(typeof(TowerObject)) as TowerObject;
-			towerObject.damage = this.damage[this.damageIndex];
-			towerObject.range = this.range[this.rangeIndex];
-			towerObject.damageUpgrade = spot.x;
-			towerObject.speedUpgrade = spot.y;
-			towerObject.towerData = towerData;
-			tower.transform.position = new UnityEngine.Vector3(spot.x, 0, spot.y);
-			towerObject.Work();
-		}
-		private void SpawnTower() {
-			this.KillTower();
-			this.towerObject = new TowerObject[this.maxDamageUpgrade, this.maxSpeedUpgrade];
-			System.Int32 index_x = this.maxDamageUpgrade;
-			while (index_x-- > 0) {
-				System.Int32 index_y = this.maxSpeedUpgrade;
-				while (index_y-- > 0) {
-					this.towerObject[index_x, index_y] = this.NewTowerObject();
-				}
-			}
-		}
-		private void KillTower() {
-			foreach (TowerObject tower in this.towerObject) {
-				Destroy(tower.gameObject);
-			}
-		}
-		private TowerObject NewTowerObject() {
+		private TowerObject NewTowerObject(System.Int32 damageUpgrade, System.Int32 speedUpgrade) {
 			UnityEngine.GameObject tower = UnityEngine.GameObject.CreatePrimitive(UnityEngine.PrimitiveType.Cube);
 			TowerObject towerObject = tower.AddComponent(typeof(TowerObject)) as TowerObject;
-			towerObject.Reset();
+			towerObject.Constructor(damageUpgrade, speedUpgrade);
 			return towerObject;
 		}
 	}
