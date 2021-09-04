@@ -10,7 +10,16 @@ namespace EnTropy {
 		public TowerData[] towers;
 		public TowerObject[,] towerObject;
 		private Configuration skin;
+
+		private Upgrade[] upgrade;
+
 		public void Start() {
+			this.upgrade = new Upgrade[4];
+			this.upgrade[0] = Upgrade.WaveDamage();
+			this.upgrade[1] = Upgrade.WaveRange();
+			this.upgrade[2] = Upgrade.WaveLife();
+			this.upgrade[3] = Upgrade.WaveIncome();
+
 			this.towerObject = new TowerObject[0, 0];
 			this.skin = Configuration.self;
 			System.Int32 index = 31;
@@ -34,6 +43,7 @@ namespace EnTropy {
 				}
 			}
 		}
+		private System.String textValue = "";
 		private void OnGUI() {
 			if (UnityEngine.GUI.Button(new UnityEngine.Rect(8 * this.skin.buttonSize.x, 1 * this.skin.buttonSize.y, this.skin.buttonSize.x, this.skin.buttonSize.y), "Show Ratio")) {
 				foreach (TowerObject towerObject in this.towerObject) {
@@ -55,8 +65,8 @@ namespace EnTropy {
 			System.Int32 index = this.towers.Length;
 			while (index-- > 0) {
 				if (UnityEngine.GUI.Button(new UnityEngine.Rect(2 * this.skin.buttonSize.x, (0 + index) * this.skin.buttonSize.y, this.skin.buttonSize.x, this.skin.buttonSize.y), this.towers[index].name)) {
-					System.Int32 x = 41*4;
-					while (x-->0) {
+					System.Int32 x = 41 * 4;
+					while (x-- > 0) {
 						System.Int32 y = 41;
 						while (y-- > 0) {
 							this.towerObject[x, y].SetTower(this.towers[index]);
@@ -64,8 +74,19 @@ namespace EnTropy {
 					}
 				}
 			}
+			//
+			UnityEngine.GUI.Label(new UnityEngine.Rect(500, 500, this.skin.buttonSize.x, this.skin.buttonSize.y), "heading");
+			this.textValue = UnityEngine.GUI.TextField(new UnityEngine.Rect(500, 550, 235, this.skin.buttonSize.y), this.textValue, 16);
+			//System.String value = UnityEngine.GUI.TextField(new UnityEngine.Rect(5 * this.skin.buttonSize.x, (0 + index) * this.skin.buttonSize.y, this.skin.buttonSize.x, this.skin.buttonSize.y), "Moo", 2);
+			if (System.Int32.TryParse(this.textValue, out System.Int32 result)) {
+				this.damageIndex = result;
+			}
+			//
+			System.Int32 up_index = 4;
+			while (up_index-- > 0) {
+				this.upgrade[up_index].OnGUI(new UnityEngine.Rect(600, 400 + (50 * up_index), 2000, 50));
+			}
 		}
-
 		private delegate void Empty();
 
 		private void Button(Empty empty) {
