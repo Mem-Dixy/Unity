@@ -3,7 +3,7 @@ using UnityEngine;
 
 namespace Samples.Runtime.Text {
 	[RequireComponent(typeof(UIDocument))]
-	public class AlignmentTags : MonoBehaviour {
+	public class TheAlignmentTags : MonoBehaviour {
 		[SerializeField] private PanelSettings panelSettings = default;
 		[SerializeField] private VisualTreeAsset sourceAsset = default;
 		[SerializeField] private StyleSheet styleAsset = default;
