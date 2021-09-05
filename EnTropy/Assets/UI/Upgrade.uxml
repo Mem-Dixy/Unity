@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<UXML xmlns="UnityEngine.UIElements">
+	<Label name="player-name-labela" text="default namea" />
+	<Label name="player-score-labela" text="default scorea" />
+	<Label name="player-nam2e-labela" text="default namea" />
+	<Label name="player-sco2re-labela" text="default scorea" />
+	<Label name="pla4yer-name-labela" text="default namea" />
+	<Label name="playe3r-score-labela" text="default scorea" />
+</UXML>
