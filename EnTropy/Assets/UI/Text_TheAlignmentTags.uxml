@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <UXML xmlns="UnityEngine.UIElements">
+	<TextField name="texttalk" text="+12.50" max-length="7" focus-index="1" />
 	<Template src="/Assets/UI/Fish.uxml" name="MyTemplate" />
 	<Instance name="player1" template="MyTemplate">
 		<AttributeOverrides element-name="player-name-label" text="Alice" />

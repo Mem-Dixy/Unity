@@ -1,3 +1,9 @@
+TextField {
+	-unity-font-definition: url("./Fonts & Materials/LiberationSans SDF.asset");
+	font-size: 64px;
+	color: black;
+}
+
 Label {
 	-unity-font-definition: url("./Fonts & Materials/LiberationSans SDF.asset");
 	/*-unity-font-definition: resource("Fonts/LiberationSans SDF.asset");*/

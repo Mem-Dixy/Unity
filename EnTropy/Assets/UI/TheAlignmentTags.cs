@@ -11,6 +11,7 @@ namespace EnTropy {
 		private System.Int32 activeButtonIndex = -1;
 		private System.Single delay = 3f;
 		private System.Int32 score;
+		private UnityEngine.UIElements.TextField textField;
 		public void SetPanelSettings(UnityEngine.UIElements.PanelSettings PanelSettings) {
 			this.PanelSettings = PanelSettings;
 			UnityEngine.UIElements.UIDocument uiDocument = this.GetComponent<UnityEngine.UIElements.UIDocument>();
@@ -43,6 +44,10 @@ namespace EnTropy {
 					return (element as UnityEngine.UIElements.Label).enableRichText = false;
 				}
 			);
+			this.textField = UnityEngine.UIElements.UQueryExtensions.Q<UnityEngine.UIElements.TextField>(root, "texttalk");
+			this.textField.RegisterCallback<UnityEngine.UIElements.BlurEvent>(BlurEvent => {
+				this.textField.value += "!";
+			});
 		}
 		void Update() {
 			this.delay -= UnityEngine.Time.deltaTime;
