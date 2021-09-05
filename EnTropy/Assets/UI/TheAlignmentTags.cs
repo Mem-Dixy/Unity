@@ -1,92 +1,72 @@
-using System.Collections.Generic;
-
-using UnityEngine;
-using UnityEngine.UIElements;
-
-using Random = UnityEngine.Random;
 namespace EnTropy {
-	[RequireComponent(typeof(UIDocument))]
-	public class TheAlignmentTags : MonoBehaviour {
-		[SerializeField] private PanelSettings panelSettings = default;
-		[SerializeField] private VisualTreeAsset sourceAsset = default;
-		[SerializeField] private StyleSheet styleAsset = default;
+	[UnityEngine.RequireComponent(typeof(UnityEngine.UIElements.UIDocument))]
+	public class TheAlignmentTags : UnityEngine.MonoBehaviour {
+		[UnityEngine.SerializeField] private UnityEngine.UIElements.PanelSettings PanelSettings = default;
+		[UnityEngine.SerializeField] private UnityEngine.UIElements.VisualTreeAsset VisualTreeAsset = default;
+		[UnityEngine.SerializeField] private UnityEngine.UIElements.StyleSheet StyleSheet = default;
 		void Awake() {
-			UIDocument uiDocument = this.GetComponent<UIDocument>();
-			uiDocument.panelSettings = this.panelSettings;
-			uiDocument.visualTreeAsset = this.sourceAsset;
+			UnityEngine.UIElements.UIDocument uiDocument = this.GetComponent<UnityEngine.UIElements.UIDocument>();
+			uiDocument.panelSettings = this.PanelSettings;
+			uiDocument.visualTreeAsset = this.VisualTreeAsset;
 		}
-
 		private enum GameState {
 			Waiting,
 			Active
 		}
-
 		private const System.String ActiveClassName = "game-button--active";
-
-
-		private List<Button> gameButtons;
-		private Label scoreLabel;
-
+		private System.Collections.Generic.List<UnityEngine.UIElements.Button> gameButtons;
+		private UnityEngine.UIElements.Label scoreLabel;
 		private GameState currentState = GameState.Waiting;
 		private System.Int32 activeButtonIndex = -1;
 		private System.Single delay = 3f;
 		private System.Int32 score;
-
-		public void SetPanelSettings(PanelSettings newPanelSettings) {
-			this.panelSettings = newPanelSettings;
-			UIDocument uiDocument = this.GetComponent<UIDocument>();
-			uiDocument.panelSettings = this.panelSettings;
+		public void SetPanelSettings(UnityEngine.UIElements.PanelSettings PanelSettings) {
+			this.PanelSettings = PanelSettings;
+			UnityEngine.UIElements.UIDocument uiDocument = this.GetComponent<UnityEngine.UIElements.UIDocument>();
+			uiDocument.panelSettings = this.PanelSettings;
 		}
-
-
 		void OnEnable() {
 			if (this.scoreLabel == null) {
 				this.score = 0;
 				//After a domain reload, we need to re-cache our VisualElements and hook our callbacks
-				this.InitializeVisualTree(this.GetComponent<UIDocument>());
+				this.InitializeVisualTree(this.GetComponent<UnityEngine.UIElements.UIDocument>());
 			}
 		}
-
-		private void InitializeVisualTree(UIDocument doc) {
-			VisualElement root = doc.rootVisualElement;
-
-			this.scoreLabel = root.Q<Label>(className: "score-number");
+		private void InitializeVisualTree(UnityEngine.UIElements.UIDocument UIDocument) {
+			UnityEngine.UIElements.VisualElement root = UIDocument.rootVisualElement;
+			this.scoreLabel = Root<UnityEngine.UIElements.Label>.Q(root, className: "score-number");
 			this.scoreLabel.text = this.score.ToString();
-
-			this.gameButtons = root.Query<Button>(className: "game-button").ToList();
-			VisualElement gameBoard = root.Q<VisualElement>(className: "board");
-			gameBoard.RegisterCallback<ClickEvent>(evt => {
-				if (evt.target is Button targetButton && targetButton.ClassListContains(ActiveClassName)) {
+			this.gameButtons = Root<UnityEngine.UIElements.Button>.Query(root, className: "game-button").ToList();
+			UnityEngine.UIElements.VisualElement gameBoard = Root<UnityEngine.UIElements.VisualElement>.Q(root, className: "board");
+			gameBoard.RegisterCallback<UnityEngine.UIElements.ClickEvent>(evt => {
+				if (evt.target is UnityEngine.UIElements.Button targetButton && targetButton.ClassListContains(ActiveClassName)) {
 					this.score += 1;
 					this.scoreLabel.text = this.score.ToString();
 					targetButton.RemoveFromClassList(ActiveClassName);
 					evt.StopImmediatePropagation();
 				}
 			});
-			root.styleSheets.Add(this.styleAsset);
-
-			_ = root.Query(className: "disableRichText").ForEach(
+			root.styleSheets.Add(this.StyleSheet);
+			_ = Root<UnityEngine.UIElements.VisualElement>.Query(root, className: "disableRichText").ForEach(
 				element => {
 					return (element as Label).enableRichText = false;
 				}
 			);
-
 		}
-
 		void Update() {
-			this.delay -= Time.deltaTime;
+			this.delay -= UnityEngine.Time.deltaTime;
 			if (this.delay < 0f) {
 				switch (this.currentState) {
 					case GameState.Waiting:
-					this.activeButtonIndex = Random.Range(0, this.gameButtons.Count);
+					this.activeButtonIndex = UnityEngine.Random.Range(0, this.gameButtons.Count);
 					this.gameButtons[this.activeButtonIndex].AddToClassList(ActiveClassName);
 					this.currentState = GameState.Active;
-					this.delay = Random.Range(0.5f, 2f);
+					this.delay = UnityEngine.Random.Range(0.5f, 2f);
 					break;
 					case GameState.Active:
 					this.gameButtons[this.activeButtonIndex].RemoveFromClassList(ActiveClassName);
 					this.currentState = GameState.Waiting;
-					this.delay = Random.Range(1f, 4f);
+					this.delay = UnityEngine.Random.Range(1f, 4f);
 					break;
 				}
 			}
