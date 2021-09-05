@@ -45,9 +45,19 @@ namespace EnTropy {
 				}
 			);
 			this.textField = UnityEngine.UIElements.UQueryExtensions.Q<UnityEngine.UIElements.TextField>(root, "texttalk");
-			this.textField.RegisterCallback<UnityEngine.UIElements.BlurEvent>(BlurEvent => {
-				this.textField.value += "!";
-			});
+
+			System.String words = "moo";
+			this.textField.RegisterCallback<UnityEngine.UIElements.BlurEvent, System.String>(this.NewMethod4, words, UnityEngine.UIElements.TrickleDown.NoTrickleDown);
+			this.textField.RegisterCallback<UnityEngine.UIElements.BlurEvent>(this.NewMethod1, UnityEngine.UIElements.TrickleDown.NoTrickleDown);
+		}
+		private void NewMethod1(UnityEngine.UIElements.BlurEvent BlurEvent) {
+			System.Object _ = BlurEvent.currentTarget;
+			this.textField.value += "!";
+		}
+
+		private void NewMethod4(UnityEngine.UIElements.BlurEvent BlurEvent, System.String words) {
+			System.Object _ = BlurEvent.currentTarget;
+			this.textField.value += "!";
 		}
 		void Update() {
 			this.delay -= UnityEngine.Time.deltaTime;
