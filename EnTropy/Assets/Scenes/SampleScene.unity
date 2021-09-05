@@ -423,7 +423,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f21c074d86024caca2a0034ce4f53f73, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_PanelSettings: {fileID: 11400000, guid: 329a1ccb8b1a35742ae29ee05d696ad0, type: 2}
+  m_PanelSettings: {fileID: 11400000, guid: be250958fe5b143c78f7c1cb86cffdff, type: 2}
   m_ParentUI: {fileID: 0}
   sourceAsset: {fileID: 9197481963319205126, guid: 6b83252b48cf87d47a2183ded452401c, type: 3}
   m_SortingOrder: 0
@@ -453,6 +453,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 85f666c3b75c3e54aa7e066b95c9d9c5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  panelSettings: {fileID: 11400000, guid: be250958fe5b143c78f7c1cb86cffdff, type: 2}
-  sourceAsset: {fileID: 9197481963319205126, guid: 6b83252b48cf87d47a2183ded452401c, type: 3}
-  styleAsset: {fileID: 7433441132597879392, guid: 2b9d5797c433d194f8191cffcf428263, type: 3}
+  StyleSheet: {fileID: 7433441132597879392, guid: 2b9d5797c433d194f8191cffcf428263, type: 3}

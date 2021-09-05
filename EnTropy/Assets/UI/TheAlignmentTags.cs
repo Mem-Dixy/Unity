@@ -1,15 +1,5 @@
 namespace EnTropy {
-	[UnityEngine.RequireComponent(typeof(UnityEngine.UIElements.UIDocument))]
-	public class TheAlignmentTags : UnityEngine.MonoBehaviour {
-		[UnityEngine.SerializeField] private UnityEngine.UIElements.PanelSettings PanelSettings = default;
-		[UnityEngine.SerializeField] private UnityEngine.UIElements.VisualTreeAsset VisualTreeAsset = default;
-		[UnityEngine.SerializeField] private UnityEngine.UIElements.StyleSheet StyleSheet = default;
-		void Awake() {
-			UnityEngine.Random.InitState(123);
-			UnityEngine.UIElements.UIDocument uiDocument = this.GetComponent<UnityEngine.UIElements.UIDocument>();
-			uiDocument.panelSettings = this.PanelSettings;
-			uiDocument.visualTreeAsset = this.VisualTreeAsset;
-		}
+	public class TheAlignmentTags : UIDocument {
 		private enum GameState {
 			Waiting,
 			Active
@@ -59,7 +49,6 @@ namespace EnTropy {
 			if (this.delay < 0f) {
 				switch (this.currentState) {
 					case GameState.Waiting:
-					UnityEngine.Debug.Log(this.gameButtons);
 					this.activeButtonIndex = UnityEngine.Random.Range(0, this.gameButtons.Count);
 					this.gameButtons[this.activeButtonIndex].AddToClassList(ActiveClassName);
 					this.currentState = GameState.Active;
