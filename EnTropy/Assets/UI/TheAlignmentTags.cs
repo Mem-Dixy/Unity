@@ -5,6 +5,7 @@ namespace EnTropy {
 		[UnityEngine.SerializeField] private UnityEngine.UIElements.VisualTreeAsset VisualTreeAsset = default;
 		[UnityEngine.SerializeField] private UnityEngine.UIElements.StyleSheet StyleSheet = default;
 		void Awake() {
+			UnityEngine.Random.InitState(123);
 			UnityEngine.UIElements.UIDocument uiDocument = this.GetComponent<UnityEngine.UIElements.UIDocument>();
 			uiDocument.panelSettings = this.PanelSettings;
 			uiDocument.visualTreeAsset = this.VisualTreeAsset;
@@ -34,10 +35,10 @@ namespace EnTropy {
 		}
 		private void InitializeVisualTree(UnityEngine.UIElements.UIDocument UIDocument) {
 			UnityEngine.UIElements.VisualElement root = UIDocument.rootVisualElement;
-			this.scoreLabel = Root<UnityEngine.UIElements.Label>.Q(root, className: "score-number");
+			this.scoreLabel = UnityEngine.UIElements.UQueryExtensions.Q<UnityEngine.UIElements.Label>(root, null, "score-number");
 			this.scoreLabel.text = this.score.ToString();
-			this.gameButtons = Root<UnityEngine.UIElements.Button>.Query(root, className: "game-button").ToList();
-			UnityEngine.UIElements.VisualElement gameBoard = Root<UnityEngine.UIElements.VisualElement>.Q(root, className: "board");
+			this.gameButtons = UnityEngine.UIElements.UQueryExtensions.Query<UnityEngine.UIElements.Button>(root, null, "game-button").ToList();
+			UnityEngine.UIElements.VisualElement gameBoard = UnityEngine.UIElements.UQueryExtensions.Q(root, null, "board");
 			gameBoard.RegisterCallback<UnityEngine.UIElements.ClickEvent>(evt => {
 				if (evt.target is UnityEngine.UIElements.Button targetButton && targetButton.ClassListContains(ActiveClassName)) {
 					this.score += 1;
@@ -47,9 +48,9 @@ namespace EnTropy {
 				}
 			});
 			root.styleSheets.Add(this.StyleSheet);
-			_ = Root<UnityEngine.UIElements.VisualElement>.Query(root, className: "disableRichText").ForEach(
+			_ = UnityEngine.UIElements.UQueryExtensions.Query(root, null, "disableRichText").ForEach(
 				element => {
-					return (element as Label).enableRichText = false;
+					return (element as UnityEngine.UIElements.Label).enableRichText = false;
 				}
 			);
 		}
@@ -58,6 +59,7 @@ namespace EnTropy {
 			if (this.delay < 0f) {
 				switch (this.currentState) {
 					case GameState.Waiting:
+					UnityEngine.Debug.Log(this.gameButtons);
 					this.activeButtonIndex = UnityEngine.Random.Range(0, this.gameButtons.Count);
 					this.gameButtons[this.activeButtonIndex].AddToClassList(ActiveClassName);
 					this.currentState = GameState.Active;
