@@ -1,6 +1,97 @@
 <?xml version="1.0" encoding="utf-8"?>
 <UXML xmlns="UnityEngine.UIElements">
-	<TextField name="texttalk" text="+12.50" max-length="7" focus-index="1" />
+	<Foldout>
+		<VisualElement class="row">
+			<Label class="score-label" text="Wave Damage" />
+			<VisualElement class="row">
+				<Label class="score-label" text="((upgrade level + " />
+				<TextField name="texttalk" text="10.4" max-length="4" focus-index="1" />
+			</VisualElement>
+			<VisualElement class="row">
+				<Label class="score-label" text=") * " />
+				<TextField name="texttalk" text="13" max-length="2" focus-index="2" />
+			</VisualElement>
+			<VisualElement class="row">
+				<Label class="score-label" text=") ^ " />
+				<TextField name="texttalk" text="0.96" max-length="4" focus-index="3" />
+			</VisualElement>
+		</VisualElement>
+		<VisualElement class="row">
+			<Label class="score-label" text="Wave Range" />
+			<VisualElement class="row">
+				<Label class="score-label" text="((upgrade level + " />
+				<TextField name="texttalk" text="1.3" max-length="4" focus-index="4" />
+			</VisualElement>
+			<VisualElement class="row">
+				<Label class="score-label" text=") * " />
+				<TextField name="texttalk" text="26" max-length="2" focus-index="5" />
+			</VisualElement>
+			<VisualElement class="row">
+				<Label class="score-label" text=") ^ " />
+				<TextField name="texttalk" text="1.36" max-length="4" focus-index="6" />
+			</VisualElement>
+		</VisualElement>
+		<VisualElement class="row">
+			<Label class="score-label" text="Wave Life" />
+			<VisualElement class="row">
+				<Label class="score-label" text="((upgrade level + " />
+				<TextField name="texttalk" text="0.9" max-length="4" focus-index="7" />
+			</VisualElement>
+			<VisualElement class="row">
+				<Label class="score-label" text=") * " />
+				<TextField name="texttalk" text="23" max-length="2" focus-index="8" />
+			</VisualElement>
+			<VisualElement class="row">
+				<Label class="score-label" text=") ^ " />
+				<TextField name="texttalk" text="1.5" max-length="4" focus-index="9" />
+			</VisualElement>
+		</VisualElement>
+		<VisualElement class="row">
+			<Label class="score-label" text="Wave Income" />
+			<VisualElement class="row">
+				<Label class="score-label" text="((upgrade level + " />
+				<TextField name="texttalk" text="3.5" max-length="4" focus-index="10" />
+			</VisualElement>
+			<VisualElement class="row">
+				<Label class="score-label" text=") * " />
+				<TextField name="texttalk" text="12" max-length="2" focus-index="11" />
+			</VisualElement>
+			<VisualElement class="row">
+				<Label class="score-label" text=") ^ " />
+				<TextField name="texttalk" text="1.26" max-length="4" focus-index="12" />
+			</VisualElement>
+		</VisualElement>
+		<VisualElement class="row">
+			<Label class="score-label" text="Rock Break" />
+			<VisualElement class="row">
+				<Label class="score-label" text="((upgrade level + " />
+				<TextField name="texttalk" text="0" max-length="4" focus-index="13" />
+			</VisualElement>
+			<VisualElement class="row">
+				<Label class="score-label" text=") * " />
+				<TextField name="texttalk" text="1" max-length="2" focus-index="14" />
+			</VisualElement>
+			<VisualElement class="row">
+				<Label class="score-label" text=") ^ " />
+				<TextField name="texttalk" text="2" max-length="4" focus-index="15" />
+			</VisualElement>
+		</VisualElement>
+		<VisualElement class="row">
+			<Label class="score-label" text="Block Prices" />
+			<VisualElement class="row">
+				<Label class="score-label" text="Tower" />
+				<TextField name="texttalk" text="7" max-length="3" focus-index="16" />
+			</VisualElement>
+			<VisualElement class="row">
+				<Label class="score-label" text="Supply Depot" />
+				<TextField name="texttalk" text="64" max-length="3" focus-index="17" />
+			</VisualElement>
+			<VisualElement class="row">
+				<Label class="score-label" text="Small Blocker" />
+				<TextField name="texttalk" text="38" max-length="3" focus-index="18" />
+			</VisualElement>
+		</VisualElement>
+	</Foldout>
 	<Template src="/Assets/UI/Fish.uxml" name="MyTemplate" />
 	<Instance name="player1" template="MyTemplate">
 		<AttributeOverrides element-name="player-name-label" text="Alice" />
