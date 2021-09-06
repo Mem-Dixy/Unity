@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <UXML xmlns="UnityEngine.UIElements">
-	<Foldout>
+	<Foldout value="false">
 		<VisualElement class="row">
 			<Label class="score-label" text="Wave Damage" />
 			<VisualElement class="row">
@@ -92,42 +92,144 @@
 			</VisualElement>
 		</VisualElement>
 	</Foldout>
-	<Template src="/Assets/UI/Fish.uxml" name="MyTemplate" />
-	<Instance name="player1" template="MyTemplate">
-		<AttributeOverrides element-name="player-name-label" text="Alice" />
-		<AttributeOverrides element-name="player-score-label" text="2" />
-	</Instance>
-	<Instance name="player2" template="MyTemplate">
-		<AttributeOverrides element-name="player-name-label" text="Bob" />
-		<AttributeOverrides element-name="player-score-label" text="1" />
-	</Instance>
-	<Instance name="player3" template="MyTemplate" />
-	<Template src="/Assets/UI/Upgrade.uxml" name="Upgrade" />
-	<Instance name="player4" template="Upgrade">
-		<AttributeOverrides element-name="player-name-labela" text="Bob" />
-		<AttributeOverrides element-name="player-score-labela" text="1" />
-	</Instance>
-	<VisualElement class="main-container">
-		<VisualElement class="header">
-			<Label class="header-title" text="Whack-A-Button" />
+	<Foldout value="false">
+		<VisualElement class="row">
+			<Label text="High Damage Tower" />
+			<TextField focus-index="100" text="105" max-length="4" />
 		</VisualElement>
-		<VisualElement class="score">
-			<Label class="score-label" text="Score: " />
-			<Label class="score-label score-number" text="0" />
+		<VisualElement class="row">
+			<Label text="Bounce Tower" />
+			<TextField focus-index="101" text="389" max-length="4" />
 		</VisualElement>
-		<VisualElement class="board">
-			<VisualElement class="board__row">
-				<Button class="game-button" />
-				<Button class="game-button" />
+		<VisualElement class="row">
+			<Label text="Big Multi Shot Tower" />
+			<TextField focus-index="102" text="128" max-length="4" />
+		</VisualElement>
+		<VisualElement class="row">
+			<Label text="Multi Shot Tower" />
+			<TextField focus-index="103" text="173" max-length="4" />
+		</VisualElement>
+		<VisualElement class="row">
+			<Label text="Big Splash Tower" />
+			<TextField focus-index="104" text="198" max-length="4" />
+		</VisualElement>
+		<VisualElement class="row">
+			<Label text="Splash" />
+			<TextField focus-index="110" text="56" max-length="4" />
+		</VisualElement>
+		<VisualElement class="row">
+			<Label text="Chain Reaction Tower" />
+			<TextField focus-index="111" text="879" max-length="4" />
+		</VisualElement>
+		<VisualElement class="row">
+			<Label text="Rage Tower" />
+			<TextField focus-index="112" text="101" max-length="4" />
+		</VisualElement>
+		<VisualElement class="row">
+			<Label text="Torus Tower" />
+			<TextField focus-index="113" text="409" max-length="4" />
+		</VisualElement>
+		<VisualElement class="row">
+			<Label text="Charge Tower" />
+			<TextField focus-index="114" text="41" max-length="4" />
+		</VisualElement>
+		<VisualElement class="row">
+			<Label text="Sniper Tower" />
+			<TextField focus-index="120" text="214" max-length="4" />
+		</VisualElement>
+		<VisualElement class="row">
+			<Label text="Anti Air Tower" />
+			<TextField focus-index="121" text="105" max-length="4" />
+		</VisualElement>
+	</Foldout>
+	<Foldout value="false">
+		<VisualElement class="row">
+			<Label text="Melee Tower" />
+			<TextField focus-index="200" text="345" max-length="4" />
+		</VisualElement>
+		<VisualElement class="row">
+			<Label text="Bombardment Tower" />
+			<TextField focus-index="201" text="161" max-length="4" />
+		</VisualElement>
+		<VisualElement class="row">
+			<Label text="Damage Field Tower" />
+			<TextField focus-index="202" text="277" max-length="4" />
+		</VisualElement>
+		<VisualElement class="row">
+			<Label text="Discharge Tower" />
+			<TextField focus-index="203" text="199" max-length="4" />
+		</VisualElement>
+		<VisualElement class="row">
+			<Label text="Flame Tower" />
+			<TextField focus-index="204" text="401" max-length="4" />
+		</VisualElement>
+		<VisualElement class="row">
+			<Label text="Line Splash Tower" />
+			<TextField focus-index="210" text="167" max-length="4" />
+		</VisualElement>
+		<VisualElement class="row">
+			<Label text="Angle Tower" />
+			<TextField focus-index="211" text="458" max-length="4" />
+		</VisualElement>
+		<VisualElement class="row">
+			<Label text="Minimum Range Tower" />
+			<TextField focus-index="212" text="410" max-length="4" />
+		</VisualElement>
+		<VisualElement class="row">
+			<Label text="Infection Tower" />
+			<TextField focus-index="213" text="141" max-length="4" />
+		</VisualElement>
+		<VisualElement class="row">
+			<Label text="Trigger Tower" />
+			<TextField focus-index="214" text="205" max-length="4" />
+		</VisualElement>
+		<VisualElement class="row">
+			<Label text="Two Sided Tower" />
+			<TextField focus-index="220" text="652" max-length="4" />
+		</VisualElement>
+		<VisualElement class="row">
+			<Label text="Long Minimum Range Tower" />
+			<TextField focus-index="221" text="198" max-length="4" />
+		</VisualElement>
+	</Foldout>
+	<Foldout value="false">
+		<Template src="/Assets/UI/Fish.uxml" name="MyTemplate" />
+		<Instance name="player1" template="MyTemplate">
+			<AttributeOverrides element-name="player-name-label" text="Alice" />
+			<AttributeOverrides element-name="player-score-label" text="2" />
+		</Instance>
+		<Instance name="player2" template="MyTemplate">
+			<AttributeOverrides element-name="player-name-label" text="Bob" />
+			<AttributeOverrides element-name="player-score-label" text="1" />
+		</Instance>
+		<Instance name="player3" template="MyTemplate" />
+		<Template src="/Assets/UI/Upgrade.uxml" name="Upgrade" />
+		<Instance name="player4" template="Upgrade">
+			<AttributeOverrides element-name="player-name-labela" text="Bob" />
+			<AttributeOverrides element-name="player-score-labela" text="1" />
+		</Instance>
+		<VisualElement class="main-container">
+			<VisualElement class="header">
+				<Label class="header-title" text="Whack-A-Button" />
 			</VisualElement>
-			<VisualElement class="board__row">
-				<Button class="game-button" />
-				<Button class="game-button" />
+			<VisualElement class="score">
+				<Label class="score-label" text="Score: " />
+				<Label class="score-label score-number" text="0" />
 			</VisualElement>
-			<VisualElement class="board__row">
-				<Button class="game-button" />
-				<Button class="game-button" />
+			<VisualElement class="board">
+				<VisualElement class="board__row">
+					<Button class="game-button" />
+					<Button class="game-button" />
+				</VisualElement>
+				<VisualElement class="board__row">
+					<Button class="game-button" />
+					<Button class="game-button" />
+				</VisualElement>
+				<VisualElement class="board__row">
+					<Button class="game-button" />
+					<Button class="game-button" />
+				</VisualElement>
 			</VisualElement>
 		</VisualElement>
-	</VisualElement>
+	</Foldout>
 </UXML>

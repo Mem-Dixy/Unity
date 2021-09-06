@@ -79,3 +79,17 @@ namespace EnTropy {
 		}
 	}
 }
+/*
+4	explodeing	317		0
+5	explode 	343		0
+6	strong 		120		0
+7	armoring	144		16
+8	unarmor		1553	-28
+9	explode		1045	0
+10	exlpode		??		0
+11	strongling	662
+12	armoring		873	46
+13	unormr	9304	0
+explode 7670
+strong 2980
+*/
