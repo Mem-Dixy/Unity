@@ -18,6 +18,23 @@ namespace EnTropy {
 		private System.Single delay = 3f;
 		private System.Int32 score;
 		private UnityEngine.UIElements.TextField textField;
+
+		UnityEngine.UIElements.TextField damage1;
+		UnityEngine.UIElements.TextField damage2;
+		UnityEngine.UIElements.TextField damage3;
+		UnityEngine.UIElements.TextField range1;
+		UnityEngine.UIElements.TextField range2;
+		UnityEngine.UIElements.TextField range3;
+		UnityEngine.UIElements.TextField life1;
+		UnityEngine.UIElements.TextField life2;
+		UnityEngine.UIElements.TextField life3;
+		UnityEngine.UIElements.TextField income1;
+		UnityEngine.UIElements.TextField income2;
+		UnityEngine.UIElements.TextField income3;
+		UnityEngine.UIElements.TextField rock1;
+		UnityEngine.UIElements.TextField rock2;
+		UnityEngine.UIElements.TextField rock3;
+
 		public void SetPanelSettings(UnityEngine.UIElements.PanelSettings PanelSettings) {
 			this.PanelSettings = PanelSettings;
 			UnityEngine.UIElements.UIDocument uiDocument = this.GetComponent<UnityEngine.UIElements.UIDocument>();
@@ -64,31 +81,55 @@ namespace EnTropy {
 			this.incomeLabels = UnityEngine.UIElements.UQueryExtensions.Query<UnityEngine.UIElements.Label>(root, null, "income").ToList();
 			this.rockLabels = UnityEngine.UIElements.UQueryExtensions.Query<UnityEngine.UIElements.Label>(root, null, "rock").ToList();
 
+			this.damage1 = UnityEngine.UIElements.UQueryExtensions.Q<UnityEngine.UIElements.TextField>(root, "damage-1");
+			this.damage2 = UnityEngine.UIElements.UQueryExtensions.Q<UnityEngine.UIElements.TextField>(root, "damage-2");
+			this.damage3 = UnityEngine.UIElements.UQueryExtensions.Q<UnityEngine.UIElements.TextField>(root, "damage-3");
+			this.range1 = UnityEngine.UIElements.UQueryExtensions.Q<UnityEngine.UIElements.TextField>(root, "range-1");
+			this.range2 = UnityEngine.UIElements.UQueryExtensions.Q<UnityEngine.UIElements.TextField>(root, "range-2");
+			this.range3 = UnityEngine.UIElements.UQueryExtensions.Q<UnityEngine.UIElements.TextField>(root, "range-3");
+			this.life1 = UnityEngine.UIElements.UQueryExtensions.Q<UnityEngine.UIElements.TextField>(root, "life-1");
+			this.life2 = UnityEngine.UIElements.UQueryExtensions.Q<UnityEngine.UIElements.TextField>(root, "life-2");
+			this.life3 = UnityEngine.UIElements.UQueryExtensions.Q<UnityEngine.UIElements.TextField>(root, "life-3");
+			this.income1 = UnityEngine.UIElements.UQueryExtensions.Q<UnityEngine.UIElements.TextField>(root, "income-1");
+			this.income2 = UnityEngine.UIElements.UQueryExtensions.Q<UnityEngine.UIElements.TextField>(root, "income-2");
+			this.income3 = UnityEngine.UIElements.UQueryExtensions.Q<UnityEngine.UIElements.TextField>(root, "income-3");
+			this.rock1 = UnityEngine.UIElements.UQueryExtensions.Q<UnityEngine.UIElements.TextField>(root, "rock-1");
+			this.rock2 = UnityEngine.UIElements.UQueryExtensions.Q<UnityEngine.UIElements.TextField>(root, "rock-2");
+			this.rock3 = UnityEngine.UIElements.UQueryExtensions.Q<UnityEngine.UIElements.TextField>(root, "rock-3");
 		}
-		private void CalculateClickMethod(UnityEngine.UIElements.ClickEvent ClickEvent) {
+	private void CalculateClickMethod(UnityEngine.UIElements.ClickEvent ClickEvent) {
 			System.Object _ = ClickEvent.currentTarget;
 			System.Int32 index = this.damageLabels.Count;
 			while (index-- > 0) {
-				this.damageLabels[index].text = index.ToString();
+				UnityEngine.Debug.Log(this.damage3.value + "=" + this.damage3.text);
+				this.damageLabels[index].text = this.UpgradeFormula(index, this.damage1.text, this.damage2.text, this.damage3.text);
 			}
 			index = this.rangeLabels.Count;
 			while (index-- > 0) {
-				this.rangeLabels[index].text = index.ToString();
+				this.rangeLabels[index].text = this.UpgradeFormula(index, this.range1.text, this.range2.text, this.range3.text);
 			}
 			index = this.lifeLabels.Count;
 			while (index-- > 0) {
-				this.lifeLabels[index].text = index.ToString();
+				this.lifeLabels[index].text = this.UpgradeFormula(index, this.life1.text, this.life2.text, this.life3.text);
 			}
 			index = this.incomeLabels.Count;
 			while (index-- > 0) {
-				this.incomeLabels[index].text = index.ToString();
+				this.incomeLabels[index].text = this.UpgradeFormula(index, this.income1.text, this.income2.text, this.income3.text);
 			}
 			index = this.rockLabels.Count;
 			while (index-- > 0) {
-				this.rockLabels[index].text = index.ToString();
+				this.rockLabels[index].text = this.UpgradeFormula(index, this.rock1.text, this.rock2.text, this.rock3.text);
 			}
 			UnityEngine.Debug.Log("Click");
 			this.textField.value += "!";
+		}
+		private System.String UpgradeFormula(System.Int32 upgrade, System.String addition, System.String multiplication, System.String exponentiation) {
+			_ = System.Single.TryParse(addition, out System.Single _addition);
+			_ = System.Single.TryParse(multiplication, out System.Single _multiplication);
+			_ = System.Single.TryParse(exponentiation, out System.Single _exponentiation);
+			System.Double answer = System.Math.Pow((upgrade + _addition) * _multiplication, _exponentiation);
+			System.String result = System.Math.Round(answer).ToString();
+			return result;
 		}
 		private void NewMethod1(UnityEngine.UIElements.BlurEvent BlurEvent) {
 			System.Object _ = BlurEvent.currentTarget;
