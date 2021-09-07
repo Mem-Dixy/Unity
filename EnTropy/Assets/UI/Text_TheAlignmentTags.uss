@@ -11,6 +11,11 @@ Label {
 	color: white;
 }
 
+Foldout {
+	margin-top: 10px;
+	font-size: 150px;
+}
+
 .row {
 	flex-direction: row;
 	justify-content: space-between;

@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <UXML xmlns="UnityEngine.UIElements">
+	<Button name="update" text="Update Data" />
 	<Foldout value="false">
 		<VisualElement class="row">
 			<Label class="score-label" text="Wave Damage" />
@@ -190,6 +191,861 @@
 		<VisualElement class="row">
 			<Label text="Long Minimum Range Tower" />
 			<TextField focus-index="221" text="198" max-length="4" />
+		</VisualElement>
+	</Foldout>
+	<Foldout value="false">
+		<VisualElement class="row">
+			<Label class="damage" text="0" />
+			<Label class="range" text="0" />
+			<Label class="life" text="0" />
+			<Label class="income" text="0" />
+			<Label class="rock" text="0" />
+		</VisualElement>
+		<VisualElement class="row">
+			<Label class="damage" text="0" />
+			<Label class="range" text="0" />
+			<Label class="life" text="0" />
+			<Label class="income" text="0" />
+			<Label class="rock" text="0" />
+		</VisualElement>
+		<VisualElement class="row">
+			<Label class="damage" text="0" />
+			<Label class="range" text="0" />
+			<Label class="life" text="0" />
+			<Label class="income" text="0" />
+			<Label class="rock" text="0" />
+		</VisualElement>
+		<VisualElement class="row">
+			<Label class="damage" text="0" />
+			<Label class="range" text="0" />
+			<Label class="life" text="0" />
+			<Label class="income" text="0" />
+			<Label class="rock" text="0" />
+		</VisualElement>
+		<VisualElement class="row">
+			<Label class="damage" text="0" />
+			<Label class="range" text="0" />
+			<Label class="life" text="0" />
+			<Label class="income" text="0" />
+			<Label class="rock" text="0" />
+		</VisualElement>
+		<VisualElement class="row">
+			<Label class="damage" text="0" />
+			<Label class="range" text="0" />
+			<Label class="life" text="0" />
+			<Label class="income" text="0" />
+			<Label class="rock" text="0" />
+		</VisualElement>
+		<VisualElement class="row">
+			<Label class="damage" text="0" />
+			<Label class="range" text="0" />
+			<Label class="life" text="0" />
+			<Label class="income" text="0" />
+			<Label class="rock" text="0" />
+		</VisualElement>
+		<VisualElement class="row">
+			<Label class="damage" text="0" />
+			<Label class="range" text="0" />
+			<Label class="life" text="0" />
+			<Label class="income" text="0" />
+			<Label class="rock" text="0" />
+		</VisualElement>
+		<VisualElement class="row">
+			<Label class="damage" text="0" />
+			<Label class="range" text="0" />
+			<Label class="life" text="0" />
+			<Label class="income" text="0" />
+			<Label class="rock" text="0" />
+		</VisualElement>
+		<VisualElement class="row">
+			<Label class="damage" text="0" />
+			<Label class="range" text="0" />
+			<Label class="life" text="0" />
+			<Label class="income" text="0" />
+			<Label class="rock" text="0" />
+		</VisualElement>
+		<VisualElement class="row">
+			<Label class="damage" text="0" />
+			<Label class="range" text="0" />
+			<Label class="life" text="0" />
+			<Label class="income" text="0" />
+			<Label class="rock" text="0" />
+		</VisualElement>
+		<VisualElement class="row">
+			<Label class="damage" text="0" />
+			<Label class="range" text="0" />
+			<Label class="life" text="0" />
+			<Label class="income" text="0" />
+			<Label class="rock" text="0" />
+		</VisualElement>
+		<VisualElement class="row">
+			<Label class="damage" text="0" />
+			<Label class="range" text="0" />
+			<Label class="life" text="0" />
+			<Label class="income" text="0" />
+			<Label class="rock" text="0" />
+		</VisualElement>
+		<VisualElement class="row">
+			<Label class="damage" text="0" />
+			<Label class="range" text="0" />
+			<Label class="life" text="0" />
+			<Label class="income" text="0" />
+			<Label class="rock" text="0" />
+		</VisualElement>
+		<VisualElement class="row">
+			<Label class="damage" text="0" />
+			<Label class="range" text="0" />
+			<Label class="life" text="0" />
+			<Label class="income" text="0" />
+			<Label class="rock" text="0" />
+		</VisualElement>
+		<VisualElement class="row">
+			<Label class="damage" text="0" />
+			<Label class="range" text="0" />
+			<Label class="life" text="0" />
+			<Label class="income" text="0" />
+			<Label class="rock" text="0" />
+		</VisualElement>
+		<VisualElement class="row">
+			<Label class="damage" text="0" />
+			<Label class="range" text="0" />
+			<Label class="life" text="0" />
+			<Label class="income" text="0" />
+			<Label class="rock" text="0" />
+		</VisualElement>
+		<VisualElement class="row">
+			<Label class="damage" text="0" />
+			<Label class="range" text="0" />
+			<Label class="life" text="0" />
+			<Label class="income" text="0" />
+			<Label class="rock" text="0" />
+		</VisualElement>
+		<VisualElement class="row">
+			<Label class="damage" text="0" />
+			<Label class="range" text="0" />
+			<Label class="life" text="0" />
+			<Label class="income" text="0" />
+			<Label class="rock" text="0" />
+		</VisualElement>
+		<VisualElement class="row">
+			<Label class="damage" text="0" />
+			<Label class="range" text="0" />
+			<Label class="life" text="0" />
+			<Label class="income" text="0" />
+			<Label class="rock" text="0" />
+		</VisualElement>
+		<VisualElement class="row">
+			<Label class="damage" text="0" />
+			<Label class="range" text="0" />
+			<Label class="life" text="0" />
+			<Label class="income" text="0" />
+			<Label class="rock" text="0" />
+		</VisualElement>
+		<VisualElement class="row">
+			<Label class="damage" text="0" />
+			<Label class="range" text="0" />
+			<Label class="life" text="0" />
+			<Label class="income" text="0" />
+			<Label class="rock" text="0" />
+		</VisualElement>
+		<VisualElement class="row">
+			<Label class="damage" text="0" />
+			<Label class="range" text="0" />
+			<Label class="life" text="0" />
+			<Label class="income" text="0" />
+			<Label class="rock" text="0" />
+		</VisualElement>
+		<VisualElement class="row">
+			<Label class="damage" text="0" />
+			<Label class="range" text="0" />
+			<Label class="life" text="0" />
+			<Label class="income" text="0" />
+			<Label class="rock" text="0" />
+		</VisualElement>
+		<VisualElement class="row">
+			<Label class="damage" text="0" />
+			<Label class="range" text="0" />
+			<Label class="life" text="0" />
+			<Label class="income" text="0" />
+			<Label class="rock" text="0" />
+		</VisualElement>
+		<VisualElement class="row">
+			<Label class="damage" text="0" />
+			<Label class="range" text="0" />
+			<Label class="life" text="0" />
+			<Label class="income" text="0" />
+			<Label class="rock" text="0" />
+		</VisualElement>
+		<VisualElement class="row">
+			<Label class="damage" text="0" />
+			<Label class="range" text="0" />
+			<Label class="life" text="0" />
+			<Label class="income" text="0" />
+			<Label class="rock" text="0" />
+		</VisualElement>
+		<VisualElement class="row">
+			<Label class="damage" text="0" />
+			<Label class="range" text="0" />
+			<Label class="life" text="0" />
+			<Label class="income" text="0" />
+			<Label class="rock" text="0" />
+		</VisualElement>
+		<VisualElement class="row">
+			<Label class="damage" text="0" />
+			<Label class="range" text="0" />
+			<Label class="life" text="0" />
+			<Label class="income" text="0" />
+			<Label class="rock" text="0" />
+		</VisualElement>
+		<VisualElement class="row">
+			<Label class="damage" text="0" />
+			<Label class="range" text="0" />
+			<Label class="life" text="0" />
+			<Label class="income" text="0" />
+			<Label class="rock" text="0" />
+		</VisualElement>
+		<VisualElement class="row">
+			<Label class="damage" text="0" />
+			<Label class="range" text="0" />
+			<Label class="life" text="0" />
+			<Label class="income" text="0" />
+			<Label class="rock" text="0" />
+		</VisualElement>
+	</Foldout>
+	<Foldout value="false">
+		<VisualElement class="row">
+			<Label class="damage" text="0" />
+			<Label class="range" text="0" />
+			<Label class="life" text="0" />
+			<Label class="income" text="0" />
+			<Label class="rock" text="0" />
+		</VisualElement>
+		<VisualElement class="row">
+			<Label class="damage" text="0" />
+			<Label class="range" text="0" />
+			<Label class="life" text="0" />
+			<Label class="income" text="0" />
+			<Label class="rock" text="0" />
+		</VisualElement>
+		<VisualElement class="row">
+			<Label class="damage" text="0" />
+			<Label class="range" text="0" />
+			<Label class="life" text="0" />
+			<Label class="income" text="0" />
+			<Label class="rock" text="0" />
+		</VisualElement>
+		<VisualElement class="row">
+			<Label class="damage" text="0" />
+			<Label class="range" text="0" />
+			<Label class="life" text="0" />
+			<Label class="income" text="0" />
+			<Label class="rock" text="0" />
+		</VisualElement>
+		<VisualElement class="row">
+			<Label class="damage" text="0" />
+			<Label class="range" text="0" />
+			<Label class="life" text="0" />
+			<Label class="income" text="0" />
+			<Label class="rock" text="0" />
+		</VisualElement>
+		<VisualElement class="row">
+			<Label class="damage" text="0" />
+			<Label class="range" text="0" />
+			<Label class="life" text="0" />
+			<Label class="income" text="0" />
+			<Label class="rock" text="0" />
+		</VisualElement>
+		<VisualElement class="row">
+			<Label class="damage" text="0" />
+			<Label class="range" text="0" />
+			<Label class="life" text="0" />
+			<Label class="income" text="0" />
+			<Label class="rock" text="0" />
+		</VisualElement>
+		<VisualElement class="row">
+			<Label class="damage" text="0" />
+			<Label class="range" text="0" />
+			<Label class="life" text="0" />
+			<Label class="income" text="0" />
+			<Label class="rock" text="0" />
+		</VisualElement>
+		<VisualElement class="row">
+			<Label class="damage" text="0" />
+			<Label class="range" text="0" />
+			<Label class="life" text="0" />
+			<Label class="income" text="0" />
+			<Label class="rock" text="0" />
+		</VisualElement>
+		<VisualElement class="row">
+			<Label class="damage" text="0" />
+			<Label class="range" text="0" />
+			<Label class="life" text="0" />
+			<Label class="income" text="0" />
+			<Label class="rock" text="0" />
+		</VisualElement>
+		<VisualElement class="row">
+			<Label class="damage" text="0" />
+			<Label class="range" text="0" />
+			<Label class="life" text="0" />
+			<Label class="income" text="0" />
+			<Label class="rock" text="0" />
+		</VisualElement>
+		<VisualElement class="row">
+			<Label class="damage" text="0" />
+			<Label class="range" text="0" />
+			<Label class="life" text="0" />
+			<Label class="income" text="0" />
+			<Label class="rock" text="0" />
+		</VisualElement>
+		<VisualElement class="row">
+			<Label class="damage" text="0" />
+			<Label class="range" text="0" />
+			<Label class="life" text="0" />
+			<Label class="income" text="0" />
+			<Label class="rock" text="0" />
+		</VisualElement>
+		<VisualElement class="row">
+			<Label class="damage" text="0" />
+			<Label class="range" text="0" />
+			<Label class="life" text="0" />
+			<Label class="income" text="0" />
+			<Label class="rock" text="0" />
+		</VisualElement>
+		<VisualElement class="row">
+			<Label class="damage" text="0" />
+			<Label class="range" text="0" />
+			<Label class="life" text="0" />
+			<Label class="income" text="0" />
+			<Label class="rock" text="0" />
+		</VisualElement>
+		<VisualElement class="row">
+			<Label class="damage" text="0" />
+			<Label class="range" text="0" />
+			<Label class="life" text="0" />
+			<Label class="income" text="0" />
+			<Label class="rock" text="0" />
+		</VisualElement>
+		<VisualElement class="row">
+			<Label class="damage" text="0" />
+			<Label class="range" text="0" />
+			<Label class="life" text="0" />
+			<Label class="income" text="0" />
+			<Label class="rock" text="0" />
+		</VisualElement>
+		<VisualElement class="row">
+			<Label class="damage" text="0" />
+			<Label class="range" text="0" />
+			<Label class="life" text="0" />
+			<Label class="income" text="0" />
+			<Label class="rock" text="0" />
+		</VisualElement>
+		<VisualElement class="row">
+			<Label class="damage" text="0" />
+			<Label class="range" text="0" />
+			<Label class="life" text="0" />
+			<Label class="income" text="0" />
+			<Label class="rock" text="0" />
+		</VisualElement>
+		<VisualElement class="row">
+			<Label class="damage" text="0" />
+			<Label class="range" text="0" />
+			<Label class="life" text="0" />
+			<Label class="income" text="0" />
+			<Label class="rock" text="0" />
+		</VisualElement>
+		<VisualElement class="row">
+			<Label class="damage" text="0" />
+			<Label class="range" text="0" />
+			<Label class="life" text="0" />
+			<Label class="income" text="0" />
+			<Label class="rock" text="0" />
+		</VisualElement>
+		<VisualElement class="row">
+			<Label class="damage" text="0" />
+			<Label class="range" text="0" />
+			<Label class="life" text="0" />
+			<Label class="income" text="0" />
+			<Label class="rock" text="0" />
+		</VisualElement>
+		<VisualElement class="row">
+			<Label class="damage" text="0" />
+			<Label class="range" text="0" />
+			<Label class="life" text="0" />
+			<Label class="income" text="0" />
+			<Label class="rock" text="0" />
+		</VisualElement>
+		<VisualElement class="row">
+			<Label class="damage" text="0" />
+			<Label class="range" text="0" />
+			<Label class="life" text="0" />
+			<Label class="income" text="0" />
+			<Label class="rock" text="0" />
+		</VisualElement>
+		<VisualElement class="row">
+			<Label class="damage" text="0" />
+			<Label class="range" text="0" />
+			<Label class="life" text="0" />
+			<Label class="income" text="0" />
+			<Label class="rock" text="0" />
+		</VisualElement>
+		<VisualElement class="row">
+			<Label class="damage" text="0" />
+			<Label class="range" text="0" />
+			<Label class="life" text="0" />
+			<Label class="income" text="0" />
+			<Label class="rock" text="0" />
+		</VisualElement>
+		<VisualElement class="row">
+			<Label class="damage" text="0" />
+			<Label class="range" text="0" />
+			<Label class="life" text="0" />
+			<Label class="income" text="0" />
+			<Label class="rock" text="0" />
+		</VisualElement>
+		<VisualElement class="row">
+			<Label class="damage" text="0" />
+			<Label class="range" text="0" />
+			<Label class="life" text="0" />
+			<Label class="income" text="0" />
+			<Label class="rock" text="0" />
+		</VisualElement>
+		<VisualElement class="row">
+			<Label class="damage" text="0" />
+			<Label class="range" text="0" />
+			<Label class="life" text="0" />
+			<Label class="income" text="0" />
+			<Label class="rock" text="0" />
+		</VisualElement>
+		<VisualElement class="row">
+			<Label class="damage" text="0" />
+			<Label class="range" text="0" />
+			<Label class="life" text="0" />
+			<Label class="income" text="0" />
+			<Label class="rock" text="0" />
+		</VisualElement>
+	</Foldout>
+	<Foldout value="false">
+		<VisualElement class="row">
+			<Label class="damage" text="0" />
+			<Label class="range" text="0" />
+			<Label class="life" text="0" />
+			<Label class="income" text="0" />
+			<Label class="rock" text="0" />
+		</VisualElement>
+		<VisualElement class="row">
+			<Label class="damage" text="0" />
+			<Label class="range" text="0" />
+			<Label class="life" text="0" />
+			<Label class="income" text="0" />
+			<Label class="rock" text="0" />
+		</VisualElement>
+		<VisualElement class="row">
+			<Label class="damage" text="0" />
+			<Label class="range" text="0" />
+			<Label class="life" text="0" />
+			<Label class="income" text="0" />
+			<Label class="rock" text="0" />
+		</VisualElement>
+		<VisualElement class="row">
+			<Label class="damage" text="0" />
+			<Label class="range" text="0" />
+			<Label class="life" text="0" />
+			<Label class="income" text="0" />
+			<Label class="rock" text="0" />
+		</VisualElement>
+		<VisualElement class="row">
+			<Label class="damage" text="0" />
+			<Label class="range" text="0" />
+			<Label class="life" text="0" />
+			<Label class="income" text="0" />
+			<Label class="rock" text="0" />
+		</VisualElement>
+		<VisualElement class="row">
+			<Label class="damage" text="0" />
+			<Label class="range" text="0" />
+			<Label class="life" text="0" />
+			<Label class="income" text="0" />
+			<Label class="rock" text="0" />
+		</VisualElement>
+		<VisualElement class="row">
+			<Label class="damage" text="0" />
+			<Label class="range" text="0" />
+			<Label class="life" text="0" />
+			<Label class="income" text="0" />
+			<Label class="rock" text="0" />
+		</VisualElement>
+		<VisualElement class="row">
+			<Label class="damage" text="0" />
+			<Label class="range" text="0" />
+			<Label class="life" text="0" />
+			<Label class="income" text="0" />
+			<Label class="rock" text="0" />
+		</VisualElement>
+		<VisualElement class="row">
+			<Label class="damage" text="0" />
+			<Label class="range" text="0" />
+			<Label class="life" text="0" />
+			<Label class="income" text="0" />
+			<Label class="rock" text="0" />
+		</VisualElement>
+		<VisualElement class="row">
+			<Label class="damage" text="0" />
+			<Label class="range" text="0" />
+			<Label class="life" text="0" />
+			<Label class="income" text="0" />
+			<Label class="rock" text="0" />
+		</VisualElement>
+		<VisualElement class="row">
+			<Label class="damage" text="0" />
+			<Label class="range" text="0" />
+			<Label class="life" text="0" />
+			<Label class="income" text="0" />
+			<Label class="rock" text="0" />
+		</VisualElement>
+		<VisualElement class="row">
+			<Label class="damage" text="0" />
+			<Label class="range" text="0" />
+			<Label class="life" text="0" />
+			<Label class="income" text="0" />
+			<Label class="rock" text="0" />
+		</VisualElement>
+		<VisualElement class="row">
+			<Label class="damage" text="0" />
+			<Label class="range" text="0" />
+			<Label class="life" text="0" />
+			<Label class="income" text="0" />
+			<Label class="rock" text="0" />
+		</VisualElement>
+		<VisualElement class="row">
+			<Label class="damage" text="0" />
+			<Label class="range" text="0" />
+			<Label class="life" text="0" />
+			<Label class="income" text="0" />
+			<Label class="rock" text="0" />
+		</VisualElement>
+		<VisualElement class="row">
+			<Label class="damage" text="0" />
+			<Label class="range" text="0" />
+			<Label class="life" text="0" />
+			<Label class="income" text="0" />
+			<Label class="rock" text="0" />
+		</VisualElement>
+		<VisualElement class="row">
+			<Label class="damage" text="0" />
+			<Label class="range" text="0" />
+			<Label class="life" text="0" />
+			<Label class="income" text="0" />
+			<Label class="rock" text="0" />
+		</VisualElement>
+		<VisualElement class="row">
+			<Label class="damage" text="0" />
+			<Label class="range" text="0" />
+			<Label class="life" text="0" />
+			<Label class="income" text="0" />
+			<Label class="rock" text="0" />
+		</VisualElement>
+		<VisualElement class="row">
+			<Label class="damage" text="0" />
+			<Label class="range" text="0" />
+			<Label class="life" text="0" />
+			<Label class="income" text="0" />
+			<Label class="rock" text="0" />
+		</VisualElement>
+		<VisualElement class="row">
+			<Label class="damage" text="0" />
+			<Label class="range" text="0" />
+			<Label class="life" text="0" />
+			<Label class="income" text="0" />
+			<Label class="rock" text="0" />
+		</VisualElement>
+		<VisualElement class="row">
+			<Label class="damage" text="0" />
+			<Label class="range" text="0" />
+			<Label class="life" text="0" />
+			<Label class="income" text="0" />
+			<Label class="rock" text="0" />
+		</VisualElement>
+		<VisualElement class="row">
+			<Label class="damage" text="0" />
+			<Label class="range" text="0" />
+			<Label class="life" text="0" />
+			<Label class="income" text="0" />
+			<Label class="rock" text="0" />
+		</VisualElement>
+		<VisualElement class="row">
+			<Label class="damage" text="0" />
+			<Label class="range" text="0" />
+			<Label class="life" text="0" />
+			<Label class="income" text="0" />
+			<Label class="rock" text="0" />
+		</VisualElement>
+		<VisualElement class="row">
+			<Label class="damage" text="0" />
+			<Label class="range" text="0" />
+			<Label class="life" text="0" />
+			<Label class="income" text="0" />
+			<Label class="rock" text="0" />
+		</VisualElement>
+		<VisualElement class="row">
+			<Label class="damage" text="0" />
+			<Label class="range" text="0" />
+			<Label class="life" text="0" />
+			<Label class="income" text="0" />
+			<Label class="rock" text="0" />
+		</VisualElement>
+		<VisualElement class="row">
+			<Label class="damage" text="0" />
+			<Label class="range" text="0" />
+			<Label class="life" text="0" />
+			<Label class="income" text="0" />
+			<Label class="rock" text="0" />
+		</VisualElement>
+		<VisualElement class="row">
+			<Label class="damage" text="0" />
+			<Label class="range" text="0" />
+			<Label class="life" text="0" />
+			<Label class="income" text="0" />
+			<Label class="rock" text="0" />
+		</VisualElement>
+		<VisualElement class="row">
+			<Label class="damage" text="0" />
+			<Label class="range" text="0" />
+			<Label class="life" text="0" />
+			<Label class="income" text="0" />
+			<Label class="rock" text="0" />
+		</VisualElement>
+		<VisualElement class="row">
+			<Label class="damage" text="0" />
+			<Label class="range" text="0" />
+			<Label class="life" text="0" />
+			<Label class="income" text="0" />
+			<Label class="rock" text="0" />
+		</VisualElement>
+		<VisualElement class="row">
+			<Label class="damage" text="0" />
+			<Label class="range" text="0" />
+			<Label class="life" text="0" />
+			<Label class="income" text="0" />
+			<Label class="rock" text="0" />
+		</VisualElement>
+		<VisualElement class="row">
+			<Label class="damage" text="0" />
+			<Label class="range" text="0" />
+			<Label class="life" text="0" />
+			<Label class="income" text="0" />
+			<Label class="rock" text="0" />
+		</VisualElement>
+	</Foldout>
+	<Foldout value="false">
+		<VisualElement class="row">
+			<Label class="damage" text="0" />
+			<Label class="range" text="0" />
+			<Label class="life" text="0" />
+			<Label class="income" text="0" />
+			<Label class="rock" text="0" />
+		</VisualElement>
+		<VisualElement class="row">
+			<Label class="damage" text="0" />
+			<Label class="range" text="0" />
+			<Label class="life" text="0" />
+			<Label class="income" text="0" />
+			<Label class="rock" text="0" />
+		</VisualElement>
+		<VisualElement class="row">
+			<Label class="damage" text="0" />
+			<Label class="range" text="0" />
+			<Label class="life" text="0" />
+			<Label class="income" text="0" />
+			<Label class="rock" text="0" />
+		</VisualElement>
+		<VisualElement class="row">
+			<Label class="damage" text="0" />
+			<Label class="range" text="0" />
+			<Label class="life" text="0" />
+			<Label class="income" text="0" />
+			<Label class="rock" text="0" />
+		</VisualElement>
+		<VisualElement class="row">
+			<Label class="damage" text="0" />
+			<Label class="range" text="0" />
+			<Label class="life" text="0" />
+			<Label class="income" text="0" />
+			<Label class="rock" text="0" />
+		</VisualElement>
+		<VisualElement class="row">
+			<Label class="damage" text="0" />
+			<Label class="range" text="0" />
+			<Label class="life" text="0" />
+			<Label class="income" text="0" />
+			<Label class="rock" text="0" />
+		</VisualElement>
+		<VisualElement class="row">
+			<Label class="damage" text="0" />
+			<Label class="range" text="0" />
+			<Label class="life" text="0" />
+			<Label class="income" text="0" />
+			<Label class="rock" text="0" />
+		</VisualElement>
+		<VisualElement class="row">
+			<Label class="damage" text="0" />
+			<Label class="range" text="0" />
+			<Label class="life" text="0" />
+			<Label class="income" text="0" />
+			<Label class="rock" text="0" />
+		</VisualElement>
+		<VisualElement class="row">
+			<Label class="damage" text="0" />
+			<Label class="range" text="0" />
+			<Label class="life" text="0" />
+			<Label class="income" text="0" />
+			<Label class="rock" text="0" />
+		</VisualElement>
+		<VisualElement class="row">
+			<Label class="damage" text="0" />
+			<Label class="range" text="0" />
+			<Label class="life" text="0" />
+			<Label class="income" text="0" />
+			<Label class="rock" text="0" />
+		</VisualElement>
+		<VisualElement class="row">
+			<Label class="damage" text="0" />
+			<Label class="range" text="0" />
+			<Label class="life" text="0" />
+			<Label class="income" text="0" />
+			<Label class="rock" text="0" />
+		</VisualElement>
+		<VisualElement class="row">
+			<Label class="damage" text="0" />
+			<Label class="range" text="0" />
+			<Label class="life" text="0" />
+			<Label class="income" text="0" />
+			<Label class="rock" text="0" />
+		</VisualElement>
+		<VisualElement class="row">
+			<Label class="damage" text="0" />
+			<Label class="range" text="0" />
+			<Label class="life" text="0" />
+			<Label class="income" text="0" />
+			<Label class="rock" text="0" />
+		</VisualElement>
+		<VisualElement class="row">
+			<Label class="damage" text="0" />
+			<Label class="range" text="0" />
+			<Label class="life" text="0" />
+			<Label class="income" text="0" />
+			<Label class="rock" text="0" />
+		</VisualElement>
+		<VisualElement class="row">
+			<Label class="damage" text="0" />
+			<Label class="range" text="0" />
+			<Label class="life" text="0" />
+			<Label class="income" text="0" />
+			<Label class="rock" text="0" />
+		</VisualElement>
+		<VisualElement class="row">
+			<Label class="damage" text="0" />
+			<Label class="range" text="0" />
+			<Label class="life" text="0" />
+			<Label class="income" text="0" />
+			<Label class="rock" text="0" />
+		</VisualElement>
+		<VisualElement class="row">
+			<Label class="damage" text="0" />
+			<Label class="range" text="0" />
+			<Label class="life" text="0" />
+			<Label class="income" text="0" />
+			<Label class="rock" text="0" />
+		</VisualElement>
+		<VisualElement class="row">
+			<Label class="damage" text="0" />
+			<Label class="range" text="0" />
+			<Label class="life" text="0" />
+			<Label class="income" text="0" />
+			<Label class="rock" text="0" />
+		</VisualElement>
+		<VisualElement class="row">
+			<Label class="damage" text="0" />
+			<Label class="range" text="0" />
+			<Label class="life" text="0" />
+			<Label class="income" text="0" />
+			<Label class="rock" text="0" />
+		</VisualElement>
+		<VisualElement class="row">
+			<Label class="damage" text="0" />
+			<Label class="range" text="0" />
+			<Label class="life" text="0" />
+			<Label class="income" text="0" />
+			<Label class="rock" text="0" />
+		</VisualElement>
+		<VisualElement class="row">
+			<Label class="damage" text="0" />
+			<Label class="range" text="0" />
+			<Label class="life" text="0" />
+			<Label class="income" text="0" />
+			<Label class="rock" text="0" />
+		</VisualElement>
+		<VisualElement class="row">
+			<Label class="damage" text="0" />
+			<Label class="range" text="0" />
+			<Label class="life" text="0" />
+			<Label class="income" text="0" />
+			<Label class="rock" text="0" />
+		</VisualElement>
+		<VisualElement class="row">
+			<Label class="damage" text="0" />
+			<Label class="range" text="0" />
+			<Label class="life" text="0" />
+			<Label class="income" text="0" />
+			<Label class="rock" text="0" />
+		</VisualElement>
+		<VisualElement class="row">
+			<Label class="damage" text="0" />
+			<Label class="range" text="0" />
+			<Label class="life" text="0" />
+			<Label class="income" text="0" />
+			<Label class="rock" text="0" />
+		</VisualElement>
+		<VisualElement class="row">
+			<Label class="damage" text="0" />
+			<Label class="range" text="0" />
+			<Label class="life" text="0" />
+			<Label class="income" text="0" />
+			<Label class="rock" text="0" />
+		</VisualElement>
+		<VisualElement class="row">
+			<Label class="damage" text="0" />
+			<Label class="range" text="0" />
+			<Label class="life" text="0" />
+			<Label class="income" text="0" />
+			<Label class="rock" text="0" />
+		</VisualElement>
+		<VisualElement class="row">
+			<Label class="damage" text="0" />
+			<Label class="range" text="0" />
+			<Label class="life" text="0" />
+			<Label class="income" text="0" />
+			<Label class="rock" text="0" />
+		</VisualElement>
+		<VisualElement class="row">
+			<Label class="damage" text="0" />
+			<Label class="range" text="0" />
+			<Label class="life" text="0" />
+			<Label class="income" text="0" />
+			<Label class="rock" text="0" />
+		</VisualElement>
+		<VisualElement class="row">
+			<Label class="damage" text="0" />
+			<Label class="range" text="0" />
+			<Label class="life" text="0" />
+			<Label class="income" text="0" />
+			<Label class="rock" text="0" />
+		</VisualElement>
+		<VisualElement class="row">
+			<Label class="damage" text="0" />
+			<Label class="range" text="0" />
+			<Label class="life" text="0" />
+			<Label class="income" text="0" />
+			<Label class="rock" text="0" />
 		</VisualElement>
 	</Foldout>
 	<Foldout value="false">

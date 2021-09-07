@@ -6,6 +6,12 @@ namespace EnTropy {
 		}
 		private const System.String ActiveClassName = "game-button--active";
 		private System.Collections.Generic.List<UnityEngine.UIElements.Button> gameButtons;
+		private UnityEngine.UIElements.Button calculateButton;
+		public System.Collections.Generic.List<UnityEngine.UIElements.Label> damageLabels;
+		public System.Collections.Generic.List<UnityEngine.UIElements.Label> rangeLabels;
+		public System.Collections.Generic.List<UnityEngine.UIElements.Label> lifeLabels;
+		public System.Collections.Generic.List<UnityEngine.UIElements.Label> incomeLabels;
+		public System.Collections.Generic.List<UnityEngine.UIElements.Label> rockLabels;
 		private UnityEngine.UIElements.Label scoreLabel;
 		private GameState currentState = GameState.Waiting;
 		private System.Int32 activeButtonIndex = -1;
@@ -49,6 +55,40 @@ namespace EnTropy {
 			System.String words = "moo";
 			this.textField.RegisterCallback<UnityEngine.UIElements.BlurEvent, System.String>(this.NewMethod4, words, UnityEngine.UIElements.TrickleDown.NoTrickleDown);
 			this.textField.RegisterCallback<UnityEngine.UIElements.BlurEvent>(this.NewMethod1, UnityEngine.UIElements.TrickleDown.NoTrickleDown);
+
+			this.calculateButton = UnityEngine.UIElements.UQueryExtensions.Q<UnityEngine.UIElements.Button>(root, "update");
+			this.calculateButton.RegisterCallback<UnityEngine.UIElements.ClickEvent>(this.CalculateClickMethod, UnityEngine.UIElements.TrickleDown.NoTrickleDown);
+			this.damageLabels = UnityEngine.UIElements.UQueryExtensions.Query<UnityEngine.UIElements.Label>(root, null, "damage").ToList();
+			this.rangeLabels = UnityEngine.UIElements.UQueryExtensions.Query<UnityEngine.UIElements.Label>(root, null, "range").ToList();
+			this.lifeLabels = UnityEngine.UIElements.UQueryExtensions.Query<UnityEngine.UIElements.Label>(root, null, "life").ToList();
+			this.incomeLabels = UnityEngine.UIElements.UQueryExtensions.Query<UnityEngine.UIElements.Label>(root, null, "income").ToList();
+			this.rockLabels = UnityEngine.UIElements.UQueryExtensions.Query<UnityEngine.UIElements.Label>(root, null, "rock").ToList();
+
+		}
+		private void CalculateClickMethod(UnityEngine.UIElements.ClickEvent ClickEvent) {
+			System.Object _ = ClickEvent.currentTarget;
+			System.Int32 index = this.damageLabels.Count;
+			while (index-- > 0) {
+				this.damageLabels[index].text = index.ToString();
+			}
+			index = this.rangeLabels.Count;
+			while (index-- > 0) {
+				this.rangeLabels[index].text = index.ToString();
+			}
+			index = this.lifeLabels.Count;
+			while (index-- > 0) {
+				this.lifeLabels[index].text = index.ToString();
+			}
+			index = this.incomeLabels.Count;
+			while (index-- > 0) {
+				this.incomeLabels[index].text = index.ToString();
+			}
+			index = this.rockLabels.Count;
+			while (index-- > 0) {
+				this.rockLabels[index].text = index.ToString();
+			}
+			UnityEngine.Debug.Log("Click");
+			this.textField.value += "!";
 		}
 		private void NewMethod1(UnityEngine.UIElements.BlurEvent BlurEvent) {
 			System.Object _ = BlurEvent.currentTarget;
