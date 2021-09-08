@@ -15,10 +15,10 @@ namespace EnTropy {
 
 		public void Start() {
 			this.upgrade = new Upgrade[4];
-			this.upgrade[0] = Upgrade.WaveDamage();
-			this.upgrade[1] = Upgrade.WaveRange();
-			this.upgrade[2] = Upgrade.WaveLife();
-			this.upgrade[3] = Upgrade.WaveIncome();
+			this.upgrade[0] = new UpgradeDamage();
+			this.upgrade[1] = new UpgradeRange();
+			this.upgrade[2] = new UpgradeLife();
+			this.upgrade[3] = new UpgradeIncome();
 
 			this.towerObject = new TowerObject[0, 0];
 			this.skin = Configuration.self;
@@ -80,11 +80,6 @@ namespace EnTropy {
 			//System.String value = UnityEngine.GUI.TextField(new UnityEngine.Rect(5 * this.skin.buttonSize.x, (0 + index) * this.skin.buttonSize.y, this.skin.buttonSize.x, this.skin.buttonSize.y), "Moo", 2);
 			if (System.Int32.TryParse(this.textValue, out System.Int32 result)) {
 				this.damageIndex = result;
-			}
-			//
-			System.Int32 up_index = 4;
-			while (up_index-- > 0) {
-				this.upgrade[up_index].OnGUI(new UnityEngine.Rect(600, 400 + (50 * up_index), 2000, 50));
 			}
 		}
 		private delegate void Empty();

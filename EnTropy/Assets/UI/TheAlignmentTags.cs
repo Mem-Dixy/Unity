@@ -100,9 +100,11 @@ namespace EnTropy {
 	private void CalculateClickMethod(UnityEngine.UIElements.ClickEvent ClickEvent) {
 			System.Object _ = ClickEvent.currentTarget;
 			System.Int32 index = this.damageLabels.Count;
+			Upgrade damage = new UpgradeDamage();
+			damage.Convert(this.damage1.text, this.damage2.text, this.damage3.text);
 			while (index-- > 0) {
 				UnityEngine.Debug.Log(this.damage3.value + "=" + this.damage3.text);
-				this.damageLabels[index].text = this.UpgradeFormula(index, this.damage1.text, this.damage2.text, this.damage3.text);
+				this.damageLabels[index].text = damage.Calculate(index).ToString();
 			}
 			index = this.rangeLabels.Count;
 			while (index-- > 0) {
