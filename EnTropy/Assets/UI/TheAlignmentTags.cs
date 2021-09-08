@@ -102,27 +102,33 @@ namespace EnTropy {
 			System.Int32 index = this.damageLabels.Count;
 			Upgrade damage = new UpgradeDamage();
 			damage.Convert(this.damage1.text, this.damage2.text, this.damage3.text);
+			Upgrade range = new UpgradeRange();
+			range.Convert(this.range1.text, this.range2.text, this.range3.text);
+			Upgrade life = new UpgradeLife();
+			life.Convert(this.life1.text, this.life2.text, this.life3.text);
+			Upgrade income = new UpgradeIncome();
+			income.Convert(this.income1.text, this.income2.text, this.income3.text);
+			Upgrade rock = new UpgradeIncome();
+			rock.Convert(this.rock1.text, this.rock2.text, this.rock3.text);
 			while (index-- > 0) {
-				UnityEngine.Debug.Log(this.damage3.value + "=" + this.damage3.text);
-				this.damageLabels[index].text = damage.Calculate(index).ToString();
+				this.damageLabels[index].text = damage.array2[index].ToString();
 			}
 			index = this.rangeLabels.Count;
 			while (index-- > 0) {
-				this.rangeLabels[index].text = this.UpgradeFormula(index, this.range1.text, this.range2.text, this.range3.text);
+				this.rangeLabels[index].text = range.array2[index].ToString();
 			}
-			index = this.lifeLabels.Count;
+			index = life.array.Length;
 			while (index-- > 0) {
-				this.lifeLabels[index].text = this.UpgradeFormula(index, this.life1.text, this.life2.text, this.life3.text);
+				this.lifeLabels[index].text = life.array2[index].ToString();
 			}
 			index = this.incomeLabels.Count;
 			while (index-- > 0) {
-				this.incomeLabels[index].text = this.UpgradeFormula(index, this.income1.text, this.income2.text, this.income3.text);
+				this.incomeLabels[index].text = income.array2[index].ToString();
 			}
 			index = this.rockLabels.Count;
 			while (index-- > 0) {
-				this.rockLabels[index].text = this.UpgradeFormula(index, this.rock1.text, this.rock2.text, this.rock3.text);
+				this.rockLabels[index].text = rock.array2[index].ToString();
 			}
-			UnityEngine.Debug.Log("Click");
 			this.textField.value += "!";
 		}
 		private System.String UpgradeFormula(System.Int32 upgrade, System.String addition, System.String multiplication, System.String exponentiation) {

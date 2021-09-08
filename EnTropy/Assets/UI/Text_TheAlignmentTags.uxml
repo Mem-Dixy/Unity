@@ -6,67 +6,67 @@
 			<Label class="score-label" text="Wave Damage" />
 			<VisualElement class="row">
 				<Label class="score-label" text="((upgrade level + " />
-				<TextField name="damage-1" text="10.4" max-length="4" focus-index="1" />
+				<TextField name="damage-1" text="8.4" max-length="4" focus-index="1" />
 			</VisualElement>
 			<VisualElement class="row">
 				<Label class="score-label" text=") * " />
-				<TextField name="damage-2" text="13" max-length="2" focus-index="2" />
+				<TextField name="damage-2" text="11" max-length="2" focus-index="2" />
 			</VisualElement>
 			<VisualElement class="row">
 				<Label class="score-label" text=") ^ " />
-				<TextField name="damage-3" text="0.96" max-length="4" focus-index="3" />
+				<TextField name="damage-3" text="1.07" max-length="4" focus-index="3" />
 			</VisualElement>
 		</VisualElement>
 		<VisualElement class="row">
 			<Label class="score-label" text="Wave Range" />
 			<VisualElement class="row">
 				<Label class="score-label" text="((upgrade level + " />
-				<TextField name="range-1" text="1.3" max-length="4" focus-index="4" />
+				<TextField name="range-1" text="3.6" max-length="4" focus-index="4" />
 			</VisualElement>
 			<VisualElement class="row">
 				<Label class="score-label" text=") * " />
-				<TextField name="range-2" text="26" max-length="2" focus-index="5" />
+				<TextField name="range-2" text="18" max-length="2" focus-index="5" />
 			</VisualElement>
 			<VisualElement class="row">
 				<Label class="score-label" text=") ^ " />
-				<TextField name="range-3" text="1.36" max-length="4" focus-index="6" />
+				<TextField name="range-3" text="1.14" max-length="4" focus-index="6" />
 			</VisualElement>
 		</VisualElement>
 		<VisualElement class="row">
 			<Label class="score-label" text="Wave Life" />
 			<VisualElement class="row">
 				<Label class="score-label" text="((upgrade level + " />
-				<TextField name="life-1" text="0.9" max-length="4" focus-index="7" />
+				<TextField name="life-1" text="1.6" max-length="4" focus-index="7" />
 			</VisualElement>
 			<VisualElement class="row">
 				<Label class="score-label" text=") * " />
-				<TextField name="life-2" text="23" max-length="2" focus-index="8" />
+				<TextField name="life-2" text="14" max-length="2" focus-index="8" />
 			</VisualElement>
 			<VisualElement class="row">
 				<Label class="score-label" text=") ^ " />
-				<TextField name="life-3" text="1.5" max-length="4" focus-index="9" />
+				<TextField name="life-3" text="1.61" max-length="4" focus-index="9" />
 			</VisualElement>
 		</VisualElement>
 		<VisualElement class="row">
 			<Label class="score-label" text="Wave Income" />
 			<VisualElement class="row">
 				<Label class="score-label" text="((upgrade level + " />
-				<TextField name="income-1" text="3.5" max-length="4" focus-index="10" />
+				<TextField name="income-1" text="0.3" max-length="4" focus-index="10" />
 			</VisualElement>
 			<VisualElement class="row">
 				<Label class="score-label" text=") * " />
-				<TextField name="income-2" text="12" max-length="2" focus-index="11" />
+				<TextField name="income-2" text="20" max-length="2" focus-index="11" />
 			</VisualElement>
 			<VisualElement class="row">
 				<Label class="score-label" text=") ^ " />
-				<TextField name="income-3" text="1.26" max-length="4" focus-index="12" />
+				<TextField name="income-3" text="1.63" max-length="4" focus-index="12" />
 			</VisualElement>
 		</VisualElement>
 		<VisualElement class="row">
 			<Label class="score-label" text="Rock Break" />
 			<VisualElement class="row">
 				<Label class="score-label" text="((upgrade level + " />
-				<TextField name="rock-1" text="0" max-length="4" focus-index="13" />
+				<TextField name="rock-1" text="64" max-length="4" focus-index="13" />
 			</VisualElement>
 			<VisualElement class="row">
 				<Label class="score-label" text=") * " />
