@@ -6,6 +6,7 @@ namespace EnTropy {
 		}
 		private const System.String ActiveClassName = "game-button--active";
 		private System.Collections.Generic.List<UnityEngine.UIElements.Button> gameButtons;
+		private UnityEngine.UIElements.Button actionButton;
 		private UnityEngine.UIElements.Button calculateButton;
 		public System.Collections.Generic.List<UnityEngine.UIElements.Label> damageLabels;
 		public System.Collections.Generic.List<UnityEngine.UIElements.Label> rangeLabels;
@@ -75,6 +76,8 @@ namespace EnTropy {
 
 			this.calculateButton = UnityEngine.UIElements.UQueryExtensions.Q<UnityEngine.UIElements.Button>(root, "update");
 			this.calculateButton.RegisterCallback<UnityEngine.UIElements.ClickEvent>(this.CalculateClickMethod, UnityEngine.UIElements.TrickleDown.NoTrickleDown);
+			this.actionButton = UnityEngine.UIElements.UQueryExtensions.Q<UnityEngine.UIElements.Button>(root, "action");
+			this.actionButton.RegisterCallback<UnityEngine.UIElements.ClickEvent>(this.ActionClickMethod, UnityEngine.UIElements.TrickleDown.NoTrickleDown);
 			this.damageLabels = UnityEngine.UIElements.UQueryExtensions.Query<UnityEngine.UIElements.Label>(root, null, "damage").ToList();
 			this.rangeLabels = UnityEngine.UIElements.UQueryExtensions.Query<UnityEngine.UIElements.Label>(root, null, "range").ToList();
 			this.lifeLabels = UnityEngine.UIElements.UQueryExtensions.Query<UnityEngine.UIElements.Label>(root, null, "life").ToList();
@@ -97,7 +100,7 @@ namespace EnTropy {
 			this.rock2 = UnityEngine.UIElements.UQueryExtensions.Q<UnityEngine.UIElements.TextField>(root, "rock-2");
 			this.rock3 = UnityEngine.UIElements.UQueryExtensions.Q<UnityEngine.UIElements.TextField>(root, "rock-3");
 		}
-	private void CalculateClickMethod(UnityEngine.UIElements.ClickEvent ClickEvent) {
+		private void CalculateClickMethod(UnityEngine.UIElements.ClickEvent ClickEvent) {
 			System.Object _ = ClickEvent.currentTarget;
 			System.Int32 index = this.damageLabels.Count;
 			Upgrade damage = new UpgradeDamage();
@@ -111,26 +114,37 @@ namespace EnTropy {
 			Upgrade rock = new UpgradeIncome();
 			rock.Convert(this.rock1.text, this.rock2.text, this.rock3.text);
 			while (index-- > 0) {
-				this.damageLabels[index].text = damage.array2[index].ToString();
+				this.damageLabels[index].text = damage.array[index].ToString();
 			}
 			index = this.rangeLabels.Count;
 			while (index-- > 0) {
-				this.rangeLabels[index].text = range.array2[index].ToString();
+				this.rangeLabels[index].text = range.array[index].ToString();
 			}
 			index = life.array.Length;
 			while (index-- > 0) {
-				this.lifeLabels[index].text = life.array2[index].ToString();
+				this.lifeLabels[index].text = life.array[index].ToString();
 			}
 			index = this.incomeLabels.Count;
 			while (index-- > 0) {
-				this.incomeLabels[index].text = income.array2[index].ToString();
+				this.incomeLabels[index].text = income.array[index].ToString();
 			}
 			index = this.rockLabels.Count;
 			while (index-- > 0) {
-				this.rockLabels[index].text = rock.array2[index].ToString();
+				this.rockLabels[index].text = rock.array[index].ToString();
 			}
 			this.textField.value += "!";
 		}
+
+		private void ActionClickMethod(UnityEngine.UIElements.ClickEvent ClickEvent) {
+			UnityEngine.Debug.Log(">" + UnityEngine.Time.realtimeSinceStartupAsDouble);
+			System.Int32 index = 1000000;
+			Upgrade damage = new UpgradeDamage();
+			while (index-- > 0) {
+				damage.Convert(this.damage1.text, this.damage2.text, this.damage3.text);
+			}
+			UnityEngine.Debug.Log("<" + UnityEngine.Time.realtimeSinceStartupAsDouble);
+		}
+
 		private System.String UpgradeFormula(System.Int32 upgrade, System.String addition, System.String multiplication, System.String exponentiation) {
 			_ = System.Single.TryParse(addition, out System.Single _addition);
 			_ = System.Single.TryParse(multiplication, out System.Single _multiplication);

@@ -22,7 +22,7 @@ namespace EnTropy {
 			this.array2[0] = 0;
 			for (System.Int32 index = 1; index < this.limit; index += 1) {
 				System.UInt32 item = this.Calculate(index - 1);
-				this.array[index] = item;
+				this.array[index - 1] = item;
 				this.array2[index] = this.array2[index - 1] + item;
 			}
 		}
